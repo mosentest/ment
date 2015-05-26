@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="ment:ear">
+    <output-path>$PROJECT_DIR$/out/artifacts/ment.ear</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ment/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="web.war">
+        <element id="artifact" artifact-name="ment:war" />
+      </element>
+      <element id="directory" name="ejb.jar">
+        <element id="artifact" artifact-name="ment:ejb" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="library" level="application" name="javax.jms-api.jar-2.0" />
+        <element id="library" level="application" name="JPA 2.1-2.1" />
+        <element id="library" level="application" name="hibernate" />
+        <element id="library" level="application" name="ejb-3.2" />
+        <element id="library" level="application" name="apache" />
+      </element>
+      <element id="jpa-descriptors" facet="ment/jpa/JPA" />
+    </root>
+  </artifact>
+</component>

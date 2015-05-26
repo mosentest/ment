@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="ment:ejb">
+    <output-path>$PROJECT_DIR$/out/artifacts/ment.jar</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ment/ejb/EJB" />
+      <element id="module-output" name="ment" />
+    </root>
+  </artifact>
+</component>
