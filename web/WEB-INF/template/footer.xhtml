@@ -1,0 +1,26 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:panelGroup layout="block">
+	<ui:debug hotkey="d"/>
+</h:panelGroup>
+<h:panelGroup styleClass="footer" role="contentinfo" layout="block">
+	<h:panelGroup styleClass="copyright" layout="block">
+        <p>
+            <h:outputText value="Designed and built by ºÌÄÂ"/>
+            <h:outputLink value="http://www.google.com" target="_blank"/>
+        </p>
+        <p>
+            <h:outputText value="Code licensed under "/>
+            <h:outputLink value="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">
+                <h:outputText value="MIT"/>
+            </h:outputLink>
+            <h:outputText value=", documentation under "/>
+            <h:outputLink value="http://creativecommons.org/licenses/by/3.0/" target="_blank">
+                <h:outputText value="CC BY 3.0"/>
+            </h:outputLink>
+        </p>
+	</h:panelGroup>
+</h:panelGroup>
+</ui:composition>

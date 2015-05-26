@@ -16,7 +16,6 @@
         <element id="library" level="application" name="ejb-3.2" />
         <element id="library" level="application" name="apache" />
       </element>
-      <element id="jpa-descriptors" facet="ment/jpa/JPA" />
     </root>
   </artifact>
 </component>

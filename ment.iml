@@ -53,7 +53,8 @@
     <orderEntry type="library" name="hibernate" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="JSF" level="application" />
     <orderEntry type="library" name="ejb-3.2" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="JBoss 7.5.0.Final-redhat-21" level="application_server_libraries" />
     <orderEntry type="library" name="apache" level="application" />
+    <orderEntry type="library" name="javaee-api-7.0" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="JBoss 9.0.0.CR1" level="application_server_libraries" />
   </component>
 </module>

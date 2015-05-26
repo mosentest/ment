@@ -1,0 +1,80 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:panelGroup styleClass="navbar navbar-static-top" id="top" role="banner" style="background-color:#ffffff;">
+    <h:panelGroup styleClass="container">
+        <h:panelGroup styleClass="navbar-header">
+            <h:outputLink value="/" styleClass="navbar-brand">
+                <h:outputText value="Hemu Enterprise Console"/>
+            </h:outputLink>
+        </h:panelGroup>
+    </h:panelGroup>
+</h:panelGroup>
+<h:panelGroup id="response-message"></h:panelGroup>
+	<!--
+<h:panelGroup id="header" layout="block">
+	<h:panelGroup id="header-site" layout="block">
+		<h:graphicImage styleClass="imglink" value="resources/img/codehome_logo.png" width="60px" height="60px" />
+		<h:panelGroup class="site-title"><h:outputText value="#{site.codeoffice}"/></h:panelGroup>
+	</h:panelGroup>
+	<h:panelGroup id="header-main" layout="block">
+		<h:panelGroup id="top" layout="block">
+			<h:form>
+				<h:panelGroup rendered="#{currentEmployee != null}" styleClass="link" layout="block" style="float: right;">
+					<h:commandLink value="#{site.logout}" action="#{loginBean.logout}"/>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{currentEmployee != null}" styleClass="link" layout="block" style="float: right;">
+					<h:commandLink value="#{currentEmployee.fullName}" action="#{employeeBean.navEmployee}"/>
+				</h:panelGroup>
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup layout="block" rendered="#{currentEmployee != null}">
+			<h:form>
+				<ui:repeat value="#{currentEmployee.accountSetting.topMenu}" var="menuObject">
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'DAS'}">
+						<h:commandLink value="#{site.dashboard}" action="dashboard"/>
+					</h:panelGroup>
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'MSG'}">
+						<h:commandLink rendered="#{unreadMessage le 0}" value="#{site.message}" action="#{messageListBean.navInbox}">
+							<f:param name="menu" value="inbox"/>
+						</h:commandLink>
+						<h:commandLink rendered="#{unreadMessage gt 0}" value="#{site.message}(#{unreadMessage})" action="#{messageListBean.navInbox}">
+							<f:param name="menu" value="inbox"/>
+						</h:commandLink>
+					</h:panelGroup>
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'MAI'}">
+						<h:commandLink value="#{site.mailbox}" action="mails"/>
+					</h:panelGroup>
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'OFF'}">
+						<h:commandLink value="#{site.office}" action="#{officeBean.navMain}"/>
+					</h:panelGroup>
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'TAS'}">
+						<h:commandLink value="#{site.task}" action="task"/>
+					</h:panelGroup>
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'HR_'}">
+						<h:commandLink value="#{site.hr}" action="#{hRBean.main}"/>
+					</h:panelGroup>
+					<h:panelGroup styleClass="link" layout="block" rendered="#{menuObject.menuLink eq 'PRO'}">
+						<h:commandLink value="#{empty menuObject.linkName ? site.project : menuObject.linkName}" action="#{projectBean.navProjectSummary}">
+							//should be comment here <c:forEach items="#{menuObject.menuParam}" var="parameter">
+								<f:param name="#{parameter.paramKey}" value="#{parameter.paramValue}"/>
+							</c:forEach> //should be comment here
+							<f:param name="#{menuObject.menuParam[0].paramKey}" value="#{menuObject.menuParam[0].paramValue}"/>
+						</h:commandLink>
+					</h:panelGroup>
+				</ui:repeat>
+			</h:form>
+		</h:panelGroup>
+	</h:panelGroup>
+</h:panelGroup>
+<h:panelGroup id="middle" layout="block">
+	<h:panelGroup layout="block" rendered="#{!disableGlobalMessage}">
+		<h:messages fatalClass="fatalMessage" errorClass="hidden" warnClass="hidden" infoClass="hidden" globalOnly="true"/>
+		<h:messages errorClass="errorMessage" fatalClass="hidden" warnClass="hidden" infoClass="hidden" globalOnly="true"/>
+		<h:messages warnClass="warnMessage" fatalClass="hidden" errorClass="hidden" infoClass="hidden" globalOnly="true"/>
+		<h:messages infoClass="infoMessage" fatalClass="hidden" errorClass="hidden" warnClass="hidden" globalOnly="true"/>
+	</h:panelGroup>
+</h:panelGroup> -->
+</ui:composition>
