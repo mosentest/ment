@@ -13,6 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_enterprise", schema = "ment_core")
+@NamedQueries(@NamedQuery(name = "Enterprise.GetAllActive", query = "SELECT e FROM Enterprise e WHERE e.enabled = true"))
 public class Enterprise implements Serializable {
 
 	private static final long serialVersionUID = 782680675742454535L;

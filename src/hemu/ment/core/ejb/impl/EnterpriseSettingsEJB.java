@@ -2,31 +2,38 @@ package hemu.ment.core.ejb.impl;
 
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
 import hemu.ment.core.ejb.remote.EnterpriseSettingsRemote;
+import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.settings.EmailSettings;
 import hemu.ment.core.entity.settings.GlobalSettings;
 import hemu.ment.core.entity.settings.InternationalizationSettings;
 
-import javax.annotation.Resource;
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
+import javax.persistence.Query;
+import java.util.List;
 
-/**
- * Created by muu on 2015/5/25.
- */
 @Stateless
-@Remote(EnterpriseSettingsRemote.class)
-@Local(EnterpriseSettingsLocal.class)
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class EnterpriseSettingsEJB implements EnterpriseSettingsLocal, EnterpriseSettingsRemote {
 
     @PersistenceContext(unitName = "ment_core")
     private EntityManager entityManager;
 
-    @Resource
-    private UserTransaction transaction;
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public List<Enterprise> getAllSettings() {
+        Query query = entityManager.createNamedQuery("Enterprise.GetAllActive");
+        List<Enterprise> enterpriseList = query.getResultList();
+        for (Enterprise enterprise : enterpriseList) {
+            enterprise.getInternationalizationSettings().getId();
+            enterprise.getGlobalSettings().getId();
+            enterprise.getEmailSettings().getId();
+            enterprise.getModules().size();
+        }
+        return enterpriseList;
+    }
 
     @Override
     public EmailSettings updateEmailSettings(EmailSettings emailSettings) {

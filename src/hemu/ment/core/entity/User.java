@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_user", schema = "ment_core")
-@NamedQueries(@NamedQuery(name = "User.GetByEMail", query = "SELECT u FROM User u WHERE u.email = :email"))
+@NamedQueries(@NamedQuery(name = "User.GetByEmail", query = "SELECT u FROM User u WHERE u.email = :email"))
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7445898962052022294L;

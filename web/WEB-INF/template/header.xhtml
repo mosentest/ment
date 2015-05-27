@@ -2,46 +2,56 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" role="banner" style="background-color:#ffffff;">
-    <h:panelGroup styleClass="container" layout="block" rendered="#{not user.authenticated}">
-        <h:panelGroup styleClass="navbar-header" layout="block">
-            <h:outputLink value="index.xhtml" styleClass="navbar-brand">
-                <h:outputText value="Enterprise Console"/>
-            </h:outputLink>
+    <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" role="banner" style="background-color:#ffffff;">
+        <h:panelGroup styleClass="container" layout="block" rendered="#{not user.authenticated}">
+            <h:panelGroup styleClass="navbar-header" layout="block">
+                <h:outputLink value="index.xhtml" styleClass="navbar-brand">
+                    <h:outputText value="Enterprise Console"/>
+                </h:outputLink>
+            </h:panelGroup>
+        </h:panelGroup>
+        <h:panelGroup styleClass="container" layout="block" rendered="#{user.authenticated}">
+            <h:panelGroup styleClass="navbar-header" layout="block">
+                <h:outputLink styleClass="navbar-brand" value="console/dashboard.xhtml">
+                    <h:outputText value="Enterprise Console"/>
+                </h:outputLink>
+            </h:panelGroup>
+            <h:form>
+            <h:panelGroup styleClass="collapse navbar-collapse bs-navbar-collapse" role="navigation" layout="block">
+                <ul class="nav navbar-nav">
+                    <li class="#{nav eq 'dashboard' ? 'active' : ''}">
+                        <h:outputLink value="console/dashboard.html"><h:outputText value="Dashboard"/></h:outputLink>
+                    </li>
+                    <li class="#{nav eq 'backoffice' ? 'active' : ''}">
+                        <h:outputLink value="console/dashboard.html"><h:outputText value="Back Office"/></h:outputLink>
+                    </li>
+                    <li class="#{nav eq 'development' ? 'active' : ''}">
+                        <h:outputLink value="console/dashboard.html"><h:outputText value="Development"/></h:outputLink>
+                    </li>
+                    <li class="#{nav eq 'support' ? 'active' : ''}">
+                        <h:outputLink value="console/dashboard.html"><h:outputText value="Support"/></h:outputLink>
+                    </li>
+                    <li class="#{nav eq 'settings' ? 'active' : ''}">
+                        <h:outputLink value="console/settings/global.xhtml"><h:outputText value="Settings"/></h:outputLink>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><h:outputLink value="#"><h:graphicImage styleClass="profile-small" value="resources/img/default/profile.png"/></h:outputLink></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" >
+                            <h:outputText value="#{user.fullName}"/>
+                            <h:panelGroup styleClass="caret"></h:panelGroup>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><h:commandLink action="#{user.logout}"><h:outputText value="Settings"/></h:commandLink></li>
+                            <li class="divider"></li>
+                            <li><h:commandLink action="#{user.logout}"><h:outputText value="Log out"/></h:commandLink></li>
+                        </ul>
+                    </li>
+                </ul>
+            </h:panelGroup>
+            </h:form>
         </h:panelGroup>
     </h:panelGroup>
-    <h:panelGroup styleClass="container" layout="block" rendered="#{user.authenticated}">
-        <h:panelGroup styleClass="navbar-header" layout="block">
-            <h:outputLink styleClass="navbar-brand" value="console/dashboard.xhtml">
-                <h:outputText value="Enterprise Console"/>
-            </h:outputLink>
-        </h:panelGroup>
-        <h:form>
-        <h:panelGroup styleClass="collapse navbar-collapse bs-navbar-collapse" role="navigation" layout="block">
-            <ul class="nav navbar-nav">
-                <li class="active"><h:outputLink value="console/dashboard.html"><h:outputText value="Dashboard"/></h:outputLink></li>
-                <li><h:outputLink value="console/dashboard.html"><h:outputText value="Back Office"/></h:outputLink></li>
-                <li><h:outputLink value="console/dashboard.html"><h:outputText value="Development"/></h:outputLink></li>
-                <li><h:outputLink value="console/dashboard.html"><h:outputText value="Support"/></h:outputLink></li>
-                <li><h:outputLink value="console/dashboard.html"><h:outputText value="Settings"/></h:outputLink></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><h:outputLink value="#"><h:graphicImage styleClass="profile-small" value="resources/img/default/profile.png"/></h:outputLink></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" >
-                        <h:outputText value="#{user.fullName}"/>
-                        <h:panelGroup styleClass="caret"></h:panelGroup>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><h:commandLink action="#{user.logout}"><h:outputText value="Settings"/></h:commandLink></li>
-                        <li class="divider"></li>
-                        <li><h:commandLink action="#{user.logout}"><h:outputText value="Log out"/></h:commandLink></li>
-                    </ul>
-                </li>
-            </ul>
-        </h:panelGroup>
-        </h:form>
-    </h:panelGroup>
-</h:panelGroup>
-<h:panelGroup id="response-message" layout="block"></h:panelGroup>
+    <h:panelGroup id="response-message" layout="block"></h:panelGroup>
 </ui:composition>

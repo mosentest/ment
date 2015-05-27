@@ -25,7 +25,7 @@ public class UserEJB implements UserLocal, UserRemote {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public User login(String email, String password) throws InformationException {
-        Query query = entityManager.createNamedQuery("User.GetByEMail");
+        Query query = entityManager.createNamedQuery("User.GetByEmail");
         query.setParameter("email", email);
         List result = query.getResultList();
         if (result == null || result.size() == 0) {
