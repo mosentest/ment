@@ -4,18 +4,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<base href="#{request.contextPath}/"/>
-	<title>Hemu Enterprise Console</title>
+	<title>Enterprise Console</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <h:outputStylesheet rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
-    <h:outputStylesheet rel="stylesheet" href="assets/css/bootstrap.css" media="all"/>
-    <h:outputStylesheet rel="stylesheet" href="assets/css/common.css" media="all"/>
-    <h:outputStylesheet rel="stylesheet" href="assets/css/defaults.css"/>
-    <h:outputStylesheet rel="stylesheet" href="assets/css/sprites.css"/>
-    <h:outputStylesheet rel="stylesheet" href="assets/css/custom-theme/jquery-ui-1.10.3.custom.css"/>
-    <h:outputScript src="assets/js/jquery-2.0.3.js"/>
-    <h:outputScript src="http://code.jquery.com/jquery-migrate-1.1.1.js"/>
-    <h:outputScript src="assets/js/common.js"/>
-    <h:outputScript src="assets/js/bootstrap.js"/>
+    <link rel="icon" type="image/x-icon" href="#{resource['img/favicon.ico']}" />
+    <h:outputStylesheet name="css/bootstrap.css" media="all"/>
+    <h:outputStylesheet name="css/common.css" media="all"/>
+    <h:outputScript name="js/jquery-2.0.3.js"/>
+    <h:outputScript name="js/common.js"/>
+    <h:outputScript name="js/bootstrap.js"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
 		});

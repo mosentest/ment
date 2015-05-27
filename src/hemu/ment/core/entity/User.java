@@ -6,22 +6,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_user", schema = "ment_core")
+@NamedQueries(@NamedQuery(name = "User.GetByEMail", query = "SELECT u FROM User u WHERE u.email = :email"))
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7445898962052022294L;
@@ -39,9 +28,6 @@ public class User implements Serializable {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "enterprise_id")
 	private Enterprise enterprise;
-
-    @Column(name = "account", nullable = false, unique = true)
-	private String account;
 
     @Column(name = "email", nullable = false, unique = true)
 	private String email;
@@ -176,14 +162,6 @@ public class User implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
 	}
 
 	public String getEmail() {

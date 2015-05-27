@@ -2,7 +2,6 @@ package hemu.ment.core.ejb.impl;
 
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
 import hemu.ment.core.ejb.remote.EnterpriseSettingsRemote;
-import hemu.ment.core.entity.settings.AdvancedGlobalSettings;
 import hemu.ment.core.entity.settings.EmailSettings;
 import hemu.ment.core.entity.settings.GlobalSettings;
 import hemu.ment.core.entity.settings.InternationalizationSettings;
@@ -28,11 +27,6 @@ public class EnterpriseSettingsEJB implements EnterpriseSettingsLocal, Enterpris
 
     @Resource
     private UserTransaction transaction;
-
-    @Override
-    public AdvancedGlobalSettings updateAdvancedGlobalSettings(AdvancedGlobalSettings advancedGlobalSettings) {
-        return null;
-    }
 
     @Override
     public EmailSettings updateEmailSettings(EmailSettings emailSettings) {

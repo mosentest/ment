@@ -1,6 +1,5 @@
 package hemu.ment.core.entity;
 
-import hemu.ment.core.entity.settings.AdvancedGlobalSettings;
 import hemu.ment.core.entity.settings.EmailSettings;
 import hemu.ment.core.entity.settings.GlobalSettings;
 import hemu.ment.core.entity.settings.InternationalizationSettings;
@@ -48,16 +47,9 @@ public class Enterprise implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "n_user")
-    private int nUser;
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "email_settings_id")
     private EmailSettings emailSettings;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "advanced_settings_id")
-    private AdvancedGlobalSettings advancedGlobalSettings;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "global_settings_id")
@@ -159,28 +151,12 @@ public class Enterprise implements Serializable {
         this.email = email;
     }
 
-    public int getnUser() {
-        return nUser;
-    }
-
-    public void setnUser(int nUser) {
-        this.nUser = nUser;
-    }
-
     public EmailSettings getEmailSettings() {
         return emailSettings;
     }
 
     public void setEmailSettings(EmailSettings emailSettings) {
         this.emailSettings = emailSettings;
-    }
-
-    public AdvancedGlobalSettings getAdvancedGlobalSettings() {
-        return advancedGlobalSettings;
-    }
-
-    public void setAdvancedGlobalSettings(AdvancedGlobalSettings advancedGlobalSettings) {
-        this.advancedGlobalSettings = advancedGlobalSettings;
     }
 
     public GlobalSettings getGlobalSettings() {

@@ -1,11 +1,11 @@
 package hemu.ment.core.ejb.impl;
 
 import hemu.ment.core.ejb.remote.TestRemote;
-import hemu.ment.core.entity.Enterprise;
 
 import javax.annotation.Resource;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
@@ -14,7 +14,7 @@ import javax.transaction.UserTransaction;
  * Created by muu on 2015/5/25.
  */
 @Stateless
-@Remote(TestRemote.class)
+@TransactionManagement(TransactionManagementType.BEAN)
 public class TestEJB implements TestRemote {
 
     @PersistenceContext(unitName = "ment_core")

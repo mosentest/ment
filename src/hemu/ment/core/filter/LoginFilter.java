@@ -1,5 +1,7 @@
 package hemu.ment.core.filter;
 
+import hemu.ment.core.controller.UserBean;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -13,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebFilter("/*")
+@WebFilter("/console/*")
 public class LoginFilter implements Filter {
 	
 	@Override
@@ -27,32 +29,13 @@ public class LoginFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-//		Employee user = SessionUtil.getEmployee(req);
-//		boolean loginPage = req.getRequestURI().endsWith("/index.jsf");
-//		boolean login = false;
-//
-//		if (user == null) {
-//			String uuid = CookieUtil.getCookie(request, LoginBean.COOKIE_NAME);
-//			if (uuid != null) {
-//				LoginCookie cookie = loginService.getLoginCookie(uuid);
-//				if (cookie != null) {
-//					SessionUtil.setObject(request, "currentEmployee", cookie.getEmployee());
-//					SessionUtil.setObject(request, "unreadMessage", messageService.getUnreadCount(user));
-//					CookieUtil.addCookie(response, LoginBean.COOKIE_NAME, uuid, LoginBean.COOKIE_AGE);
-//					login = true;
-//				}
-//			}
-//		} else {
-//			login = true;
-//		}
-//		if (!login && !loginPage) {
-//			res.sendRedirect(req.getContextPath() + "/index.jsf");
-//		} else if (login && loginPage) {//login page and already logged in
-//			res.sendRedirect(req.getContextPath() + "/dashboard.jsf");
-//		} else {
-//			chain.doFilter(request, response);
-//		}
-		chain.doFilter(request, response);
+		UserBean userBean = (UserBean) req.getSession().getAttribute("user");
+
+		if (userBean == null || !userBean.isAuthenticated()) {
+			res.sendRedirect(req.getContextPath() + "/index.xhtml");
+		} else {
+			chain.doFilter(request, response);
+		}
 	}
 
 	@Override

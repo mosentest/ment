@@ -32,8 +32,6 @@ public class EnterpriseEJB implements EnterpriseRemote {
             coreManager.persist(enterprise);
             //create settings, role, user group etc...
 
-            enterprise.getAdvancedGlobalSettings().setEnterprise(enterprise);
-            coreManager.persist(enterprise.getAdvancedGlobalSettings());
             enterprise.getEmailSettings().setEnterprise(enterprise);
             coreManager.persist(enterprise.getEmailSettings());
             enterprise.getGlobalSettings().setEnterprise(enterprise);

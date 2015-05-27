@@ -1,0 +1,31 @@
+
+#15-05-25 INSERT ROLES INTO DATABASE
+INSERT INTO ment_core.t_role (name) VALUES ('sys_admin');
+INSERT INTO ment_core.t_role (name) VALUES ('sys_dev');
+INSERT INTO ment_core.t_role (name) VALUES ('owner');
+INSERT INTO ment_core.t_role (name) VALUES ('admin');
+INSERT INTO ment_core.t_role (name) VALUES ('dev');
+INSERT INTO ment_core.t_role (name) VALUES ('support');
+INSERT INTO ment_core.t_role (name) VALUES ('user');
+INSERT INTO ment_core.t_role (name) VALUES ('unauth');
+INSERT INTO ment_core.t_enterprise (id, code, create_date, description, name, enabled, confirm_key, email, default_user_id, email_settings_id, global_settings_id, i18n_settings_id)
+VALUES (1, 'HEMUI', CURDATE(), 'Hemu Inc.', 'Hemu Inc.', true, 'key', 'leiyangx2000@hotmail.com', null, null, null, null);
+INSERT INTO ment_core.t_settings_internationalization (id, date_format, datetime_format, default_locale, default_timezone_id, time_format)
+VALUES (1, 'yyyy-MM-dd', 'yy-MM-dd HH:mm:ss', 'zh_CN', 'CET', '');
+INSERT INTO ment_core.t_settings_global (id, email_format, title, enable_logout_confirmation, enable_personal_settings, max_authentication_allowed)
+VALUES (1, '', 'Enterprise Console', true, true, 3);
+INSERT INTO ment_core.t_settings_email (id, banned_adresses, banned_domains, connection_prefix, enable_email_notification, sender_mail, sender_name, smtp_auth, smtp_host, smtp_password, smtp_port, smtp_username, support_template, ticket_template)
+VALUES (1, '', '', '', true, '', '', true, '', '', 1000, '', '', '');
+INSERT INTO ment_core.t_user(id, address, confirm_key, country, create_date, email, enable_personal_settings,enabled,first_name,password_hash,last_name,login_date,password_text,phone,enterprise_id )
+VALUES (1, '', '', 'CN', CURDATE(), 'admin@admin.com', true, true, 'Yang', 'ZrEme7hRDUNfu33Ri6KVkQ==', 'Lei', CURDATE(), 'HFQnBkfc8hig3ccBODK9NbBIbhINOzFYp120mFTt498NoTHLCebErGYGb2QuFzM9c0ktk+CNWf34
+rdS0Zd7LKw==', '+', 1);
+update ment_core.t_enterprise SET email_settings_id = 1, i18n_settings_id = 1, global_settings_id = 1, default_user_id = 1 WHERE id = 1;
+#CLEAR DATABASE
+#SET foreign_key_checks = 0;
+#drop schema ment_core;
+#drop schema ment_develop;
+#drop schema ment_support;
+#CREATE SCHEMA `ment_core` ;
+#CREATE SCHEMA `ment_develop` ;
+#CREATE SCHEMA `ment_support` ;
+#SET foreign_key_checks = 1;
