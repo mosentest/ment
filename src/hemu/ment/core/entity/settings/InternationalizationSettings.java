@@ -1,5 +1,6 @@
 package hemu.ment.core.entity.settings;
 
+import hemu.ment.core.constant.SupportedConstant;
 import hemu.ment.core.entity.Enterprise;
 
 import java.io.Serializable;
@@ -15,18 +16,6 @@ import javax.persistence.*;
 public class InternationalizationSettings implements SettingsEntity, Serializable {
 
 	private static final long serialVersionUID = 4720358394692523462L;
-	
-	public static final TimeZone[] SUPPORTED_TIMEZONE = {
-		TimeZone.getTimeZone("CET"),
-		TimeZone.getTimeZone("CTT"),
-		TimeZone.getTimeZone("PST")
-	};
-	
-	public static final Locale[] SUPPORTED_LOCALE = {
-		Locale.US,
-		Locale.CHINA,
-		new Locale("sv", "SE")
-	};
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -66,25 +55,6 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 	@Transient
 	private SimpleDateFormat dateTimeFormat;
 	public InternationalizationSettings() {}
-	
-	public static boolean isSupportedLocale(String localeString) {
-		for (Locale locale : SUPPORTED_LOCALE) {
-			System.out.println(locale.toString());
-			if (locale.toString().equals(localeString)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean isSupportedTimeZone(String timeZoneID) {
-		for (TimeZone timeZone : SUPPORTED_TIMEZONE) {
-			if (timeZone.getID().equals(timeZoneID)) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	@Override
 	public void setDefaultSettings(Properties properties) {
@@ -117,7 +87,10 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 	}
 
 	public Locale getDefaultLocale() {
-		return defaultLocale;
+        if (defaultLocale == null && SupportedConstant.isSupportedLocale(defaultLocaleString)) {
+            defaultLocale = SupportedConstant.LOCALE_MAP.get(defaultLocaleString);
+        }
+        return defaultLocale;
 	}
 
 	public void setDefaultLocale(Locale defaultLocale) {
@@ -133,7 +106,10 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 	}
 
 	public TimeZone getDefaultTimeZone() {
-		return defaultTimeZone;
+        if (defaultTimeZone == null && SupportedConstant.isSupportedTimeZone(defaultTimeZoneID)) {
+            defaultTimeZone = SupportedConstant.TIME_ZONE_MAP.get(defaultTimeZoneID);
+        }
+        return defaultTimeZone;
 	}
 
 	public void setDefaultTimeZone(TimeZone defaultTimeZone) {

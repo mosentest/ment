@@ -1,0 +1,35 @@
+<ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:param name="nav" value="settings"/>
+    <ui:param name="subnav" value="internationalization"/>
+    <ui:define name="settings-main">
+        <c:set var="internationalization" value="#{applicationScope['i18n-' += user.enterprise.code]}"/>
+        <h2><h:outputText value="Internationalization Settings"/></h2>
+        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label, form-value">
+            <h:outputText value="Default time zone"/>
+            <h:outputText value="#{internationalization.defaultTimeZone.displayName}"/>
+
+            <h:outputText value="Default locale"/>
+            <h:outputText value="#{internationalization.defaultLocale}"/>
+
+            <h:outputText value="Date format"/>
+            <h:outputText value="#{now}" >
+                <f:convertDateTime pattern="#{internationalization.dateFormatString}" />
+            </h:outputText>
+
+            <h:outputText value="Time format"/>
+            <h:outputText value="#{now}" >
+                <f:convertDateTime pattern="#{internationalization.timeFormatString}" />
+            </h:outputText>
+
+            <h:outputText value="Date time format"/>
+            <h:outputText value="#{now}" >
+                <f:convertDateTime pattern="#{internationalization.dateTimeFormatString}" />
+            </h:outputText>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>
