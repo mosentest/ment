@@ -34,7 +34,7 @@ public class UserBean implements Serializable {
         try {
             user = userEJB.login(email, password);
             enterprise = user.getEnterprise();
-            return "console/dashboard.xhtml?faces-redirect=true";
+            return "/console/dashboard.xhtml?faces-redirect=true";
         } catch (InformationException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
             return (email = password = null);
@@ -43,8 +43,12 @@ public class UserBean implements Serializable {
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "index.xhtml?faces-redirect=true";
+		return "/index.xhtml?faces-redirect=true";
 	}
+
+	public String getFullName() {
+        return user.getFullName();
+    }
 
 	public boolean isAuthenticated() {
 		return user != null;

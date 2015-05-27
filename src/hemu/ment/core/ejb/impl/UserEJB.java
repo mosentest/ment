@@ -43,7 +43,7 @@ public class UserEJB implements UserLocal, UserRemote {
         } catch (Exception e) {
             throw new InformationException("Password is incorrect");
         }
-        user.getEnterprise();
+        user.getEnterprise().getId();
         user.setLogin(new Date());
         entityManager.persist(user);
         return user;
