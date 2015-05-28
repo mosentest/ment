@@ -1,74 +1,42 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:c="http://java.sun.com/jstl/core"
-    xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="internationalization"/>
     <ui:define name="settings-main">
-        <c:set var="internationalization" value="#{applicationScope['i18n-' += user.enterprise.code]}"/>
+        <f:event listener="#{globalSettings.fetchI18N}" type="preRenderView"/>
         <h2><h:outputText value="Internationalization Settings"/></h2>
+        <h:form>
+            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label,form-value">
+                <h:outputText value="Default time zone"/>
+                <h:selectOneMenu styleClass="form-control" value="#{globalSettings.i18nSettings.defaultTimeZoneID}">
+                    <f:selectItems value="#{globalSettings.value['timeZoneList']}"
+                                   var="timeZone" itemLabel="#{timeZone.displayName}" itemValue="#{timeZone.ID}"/>
+                </h:selectOneMenu>
 
-        <h:form styleClass="form-horizontal" role="form">
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:panelGroup styleClass="col-sm-offset-3 col-sm-7 color-danger" layout="block">
-                    <h:messages showDetail="false" showSummary="true" layout="table"/>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:outputLabel styleClass="col-sm-3 control-label" for="email" value="Email"/>
-                <h:panelGroup styleClass="col-sm-7" layout="block">
-                    <h:inputText id="email" styleClass="form-control" value="#{user.email}"/>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:outputLabel styleClass="col-sm-3 control-label" for="password" value="Password"/>
-                <h:panelGroup styleClass="col-sm-7" layout="block">
-                    <h:inputSecret id="password" styleClass="form-control" value="#{user.password}"/>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:panelGroup styleClass="col-sm-offset-3 col-sm-6" layout="block">
-                    <h:panelGroup styleClass="checkbox" layout="block">
-                        <h:outputLabel>
-                            <h:selectBooleanCheckbox value="#{user.rememberMe}"/>
-                            <h:outputText value="Remember me on this computer"/>
-                        </h:outputLabel>
-                    </h:panelGroup>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:panelGroup styleClass="col-sm-offset-3 col-sm-6" layout="block">
-                    <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateI18N}"/>
-                </h:panelGroup>
-            </h:panelGroup>
+                <h:outputText value="Default locale"/>
+                <h:selectOneMenu styleClass="form-control" value="#{globalSettings.i18nSettings.defaultLocaleString}">
+                    <f:selectItems value="#{globalSettings.value['localeList']}"
+                                   var="locale" itemLabel="#{locale}" itemValue="#{locale}"/>
+                </h:selectOneMenu>
+
+                <h:outputText value="Date format"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.i18nSettings.dateFormatString}"/>
+
+                <h:outputText value="Time format"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.i18nSettings.timeFormatString}"/>
+
+                <h:outputText value="Date time format"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.i18nSettings.dateTimeFormatString}"/>
+
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+
+                <h:outputText value=""/>
+                <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/internationalizationform.xhtml"/>
+            </h:panelGrid>
         </h:form>
-
-        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label, form-value">
-            <h:outputText value="Default time zone"/>
-            <h:outputText value="#{internationalization.defaultTimeZone.displayName}"/>
-
-            <h:outputText value="Default locale"/>
-            <h:outputText value="#{internationalization.defaultLocale}"/>
-
-            <h:outputText value="Date format"/>
-            <h:outputText value="#{now}" >
-                <f:convertDateTime pattern="#{internationalization.dateFormatString}" />
-            </h:outputText>
-
-            <h:outputText value="Time format"/>
-            <h:outputText value="#{now}" >
-                <f:convertDateTime pattern="#{internationalization.timeFormatString}" />
-            </h:outputText>
-
-            <h:outputText value="Date time format"/>
-            <h:outputText value="#{now}" >
-                <f:convertDateTime pattern="#{internationalization.dateTimeFormatString}" />
-            </h:outputText>
-
-            <h:outputText value=""/>
-            <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/internationalizationform.xhtml"/>
-        </h:panelGrid>
     </ui:define>
 </ui:composition>

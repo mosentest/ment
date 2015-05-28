@@ -1,92 +1,58 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:util="http://java.sun.com/jsf/composite/util">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="email"/>
     <ui:define name="settings-main">
-        <c:set var="email" value="#{applicationScope['email-' += user.enterprise.code]}"/>
+        <f:event listener="#{globalSettings.fetchEmail}" type="preRenderView"/>
         <h2><h:outputText value="Email Settings"/></h2>
+        <h:form>
+            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label,form-value">
+                <h:outputText value="Enable email notification"/>
+                <h:selectBooleanCheckbox value="#{globalSettings.emailSettings.enableEmailNotification}"/>
 
-        <h:form styleClass="form-horizontal" role="form">
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:panelGroup styleClass="col-sm-offset-3 col-sm-7 color-danger" layout="block">
-                    <h:messages showDetail="false" showSummary="true" layout="table"/>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:outputLabel styleClass="col-sm-3 control-label" for="email" value="Email"/>
-                <h:panelGroup styleClass="col-sm-7" layout="block">
-                    <h:inputText id="email" styleClass="form-control" value="#{user.email}"/>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:outputLabel styleClass="col-sm-3 control-label" for="password" value="Password"/>
-                <h:panelGroup styleClass="col-sm-7" layout="block">
-                    <h:inputSecret id="password" styleClass="form-control" value="#{user.password}"/>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:panelGroup styleClass="col-sm-offset-3 col-sm-6" layout="block">
-                    <h:panelGroup styleClass="checkbox" layout="block">
-                        <h:outputLabel>
-                            <h:selectBooleanCheckbox value="#{user.rememberMe}"/>
-                            <h:outputText value="Remember me on this computer"/>
-                        </h:outputLabel>
-                    </h:panelGroup>
-                </h:panelGroup>
-            </h:panelGroup>
-            <h:panelGroup styleClass="form-group" layout="block">
-                <h:panelGroup styleClass="col-sm-offset-3 col-sm-6" layout="block">
-                    <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateEmail}"/>
-                </h:panelGroup>
-            </h:panelGroup>
+                <h:outputText value="SMTP host"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.smtpHost}"/>
+
+                <h:outputText value="SMTP port"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.smtpPort}"/>
+
+                <h:outputText value="SMTP auth"/>
+                <h:selectBooleanCheckbox value="#{globalSettings.emailSettings.smtpAuth}"/>
+
+                <h:outputText value="SMTP username"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.smtpUsername}"/>
+
+                <h:outputText value="SMTP password"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.smtpPassword}"/>
+
+                <h:outputText value="Sender name"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.senderName}"/>
+
+                <h:outputText value="Sender mail"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.senderMail}"/>
+
+                <h:outputText value="Connection prefix"/>
+                <h:inputText styleClass="form-control" value="#{globalSettings.emailSettings.connectionPrefix}"/>
+
+                <h:outputText value="Ticket template"/>
+                <h:inputTextarea styleClass="form-control" cols="60" rows="6" value="#{globalSettings.emailSettings.ticketTemplate}" />
+
+                <h:outputText value="Support template"/>
+                <h:inputTextarea styleClass="form-control" cols="60" rows="6" value="#{globalSettings.emailSettings.supportTemplate}" />
+
+                <h:outputText value="Banned domains"/>
+                <h:inputTextarea styleClass="form-control" cols="60" rows="6" value="#{globalSettings.emailSettings.bannedDomains}" />
+
+                <h:outputText value="Banned adresses"/>
+                <h:inputTextarea styleClass="form-control" cols="60" rows="6" value="#{globalSettings.emailSettings.bannedAdresses}" />
+
+                <h:outputText value=""/>
+                <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/emailform.xhtml"/>
+            </h:panelGrid>
         </h:form>
-
-        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label, form-value">
-            <h:outputText value="Enable email notification"/>
-            <util:toggle value="#{email.smtpAuth}"/>
-
-            <h:outputText value="SMTP host"/>
-            <h:outputText value="#{email.smtpHost}"/>
-
-            <h:outputText value="SMTP port"/>
-            <h:outputText value="#{email.smtpPort}"/>
-
-            <h:outputText value="SMTP auth"/>
-            <util:toggle value="#{email.smtpAuth}" enabledText="On" disabledText="Off"/>
-
-            <h:outputText value="SMTP username"/>
-            <h:outputText value="#{email.smtpUsername}"/>
-
-            <h:outputText value="SMTP password"/>
-            <h:outputText value="#{email.smtpPassword}"/>
-
-            <h:outputText value="Sender name"/>
-            <h:outputText value="#{email.senderName}"/>
-
-            <h:outputText value="Sender mail"/>
-            <h:outputText value="#{email.senderMail}"/>
-
-            <h:outputText value="Connection prefix"/>
-            <h:outputText value="#{email.connectionPrefix}"/>
-
-            <h:outputText value="Ticket template"/>
-            <h:outputText value="#{email.ticketTemplate}"/>
-
-            <h:outputText value="Support template"/>
-            <h:outputText value="#{email.supportTemplate}"/>
-
-            <h:outputText value="Banned domains"/>
-            <h:outputText value="#{email.bannedDomains}"/>
-
-            <h:outputText value="Banned adresses"/>
-            <h:outputText value="#{email.bannedAdresses}"/>
-
-            <h:outputText value=""/>
-            <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/emailform.xhtml"/>
-        </h:panelGrid>
     </ui:define>
 </ui:composition>

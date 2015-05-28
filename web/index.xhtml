@@ -1,6 +1,7 @@
 <ui:composition template="/WEB-INF/template/default.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="main">
         <h:panelGroup id="content" layout="block">
@@ -24,7 +25,9 @@
                                 <h:panelGroup styleClass="form-group" layout="block">
                                     <h:outputLabel styleClass="col-sm-3 control-label" for="password" value="Password"/>
                                     <h:panelGroup styleClass="col-sm-7" layout="block">
-                                        <h:inputSecret id="password" styleClass="form-control" value="#{user.password}"/>
+                                        <h:inputSecret id="password" styleClass="form-control" value="#{user.password}">
+                                            <f:validateLength minimum="6" maximum="20"/>
+                                        </h:inputSecret>
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <h:panelGroup styleClass="form-group" layout="block">
@@ -43,7 +46,7 @@
                                     </h:panelGroup>
                                 </h:panelGroup>
                             </h:form>
-                         </h:panelGroup>
+                        </h:panelGroup>
                     </h:panelGroup>
                 </h:panelGroup>
             </h:panelGroup>

@@ -7,5 +7,5 @@ public class ApplicationVariable {
 
     public static final String I18N = "i18n-";
     public static final String GLOBAL = "global-";
-    public static final String email = "email-";
+    public static final String EMAIL = "email-";
 }

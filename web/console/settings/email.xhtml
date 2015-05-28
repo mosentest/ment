@@ -1,53 +1,56 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:util="http://java.sun.com/jsf/composite/util">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="email"/>
     <ui:define name="settings-main">
-        <c:set var="email" value="#{applicationScope['email-' += user.enterprise.code]}"/>
+        <f:event listener="#{globalSettings.fetchEmail}" type="preRenderView"/>
         <h2><h:outputText value="Email Settings"/></h2>
-        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label, form-value">
+        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label,form-value">
             <h:outputText value="Enable email notification"/>
-            <util:toggle value="#{email.smtpAuth}"/>
+            <util:toggle value="#{globalSettings.emailSettings.smtpAuth}"/>
 
             <h:outputText value="SMTP host"/>
-            <h:outputText value="#{email.smtpHost}"/>
+            <h:outputText value="#{globalSettings.emailSettings.smtpHost}"/>
 
             <h:outputText value="SMTP port"/>
-            <h:outputText value="#{email.smtpPort}"/>
+            <h:outputText value="#{globalSettings.emailSettings.smtpPort}"/>
 
             <h:outputText value="SMTP auth"/>
-            <util:toggle value="#{email.smtpAuth}" enabledText="On" disabledText="Off"/>
+            <util:toggle value="#{globalSettings.emailSettings.smtpAuth}" enabledText="On" disabledText="Off"/>
 
             <h:outputText value="SMTP username"/>
-            <h:outputText value="#{email.smtpUsername}"/>
+            <h:outputText value="#{globalSettings.emailSettings.smtpUsername}"/>
 
             <h:outputText value="SMTP password"/>
-            <h:outputText value="#{email.smtpPassword}"/>
+            <h:outputText value="#{globalSettings.emailSettings.smtpPassword}"/>
 
             <h:outputText value="Sender name"/>
-            <h:outputText value="#{email.senderName}"/>
+            <h:outputText value="#{globalSettings.emailSettings.senderName}"/>
 
             <h:outputText value="Sender mail"/>
-            <h:outputText value="#{email.senderMail}"/>
+            <h:outputText value="#{globalSettings.emailSettings.senderMail}"/>
 
             <h:outputText value="Connection prefix"/>
-            <h:outputText value="#{email.connectionPrefix}"/>
+            <h:outputText value="#{globalSettings.emailSettings.connectionPrefix}"/>
 
             <h:outputText value="Ticket template"/>
-            <h:outputText value="#{email.ticketTemplate}"/>
+            <h:outputText value="#{globalSettings.emailSettings.ticketTemplate}"/>
 
             <h:outputText value="Support template"/>
-            <h:outputText value="#{email.supportTemplate}"/>
+            <h:outputText value="#{globalSettings.emailSettings.supportTemplate}"/>
 
             <h:outputText value="Banned domains"/>
-            <h:outputText value="#{email.bannedDomains}"/>
+            <h:outputText value="#{globalSettings.emailSettings.bannedDomains}"/>
 
             <h:outputText value="Banned adresses"/>
-            <h:outputText value="#{email.bannedAdresses}"/>
+            <h:outputText value="#{globalSettings.emailSettings.bannedAdresses}"/>
+
+            <h:outputText value=""/>
+            <h:outputText value=""/>
 
             <h:outputText value=""/>
             <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/emailform.xhtml"/>

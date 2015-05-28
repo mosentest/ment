@@ -22,7 +22,7 @@ public class ContextListener implements ServletContextListener {
         List<Enterprise> enterpriseList = enterpriseSettingsEJB.getAllSettings();
         for (Enterprise enterprise : enterpriseList) {
             event.getServletContext().setAttribute(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
-            event.getServletContext().setAttribute(ApplicationVariable.email + enterprise.getCode(), enterprise.getEmailSettings());
+            event.getServletContext().setAttribute(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
             event.getServletContext().setAttribute(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
         }
     }

@@ -12,7 +12,7 @@
 			<property name="hibernate.archive.autodetection" value="class"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="none"/>
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="ment_support" transaction-type="JTA">
@@ -23,7 +23,7 @@
 			<property name="hibernate.archive.autodetection" value="class"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="none"/>
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="ment_develop" transaction-type="JTA">
@@ -34,7 +34,7 @@
 			<property name="hibernate.archive.autodetection" value="class"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="none"/>
 		</properties>
 	</persistence-unit>
 </persistence>

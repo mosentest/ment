@@ -11,4 +11,9 @@
         <function-class>hemu.ment.core.utility.Functions</function-class>
         <function-signature>int[] intArray(int, int)</function-signature>
     </function>
+    <function>
+        <function-name>dateFormat</function-name>
+        <function-class>hemu.ment.core.utility.Functions</function-class>
+        <function-signature>java.lang.String dateFormat(java.util.Date,java.lang.String)</function-signature>
+    </function>
 </facelet-taglib>

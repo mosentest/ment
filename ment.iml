@@ -58,5 +58,6 @@
     <orderEntry type="library" name="apache" level="application" />
     <orderEntry type="library" name="javaee-api-7.0" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="JBoss 9.0.0.CR1" level="application_server_libraries" />
+    <orderEntry type="library" name="javaee-api-7.0" level="application" />
   </component>
 </module>

@@ -29,9 +29,6 @@ public class GlobalSettings implements SettingsEntity, Serializable {
 	
 	@Column(name = "enable_personal_settings")
 	private boolean enablePersonalSettings;
-	
-	@Column(name = "email_format")
-	private String emailFormat;
 
 	@Column(name = "enable_logout_confirmation")
 	private boolean enableLogoutConfirmation;
@@ -41,7 +38,6 @@ public class GlobalSettings implements SettingsEntity, Serializable {
 	@Override
 	public void setDefaultSettings(Properties properties) {
 		maxAuthenticationAllowed = Integer.parseInt(properties.getProperty("settings.global.default.maxAuthenticationAllowed"));
-		emailFormat = properties.getProperty("settings.global.default.emailFormat");
 		enableLogoutConfirmation = Boolean.parseBoolean(properties.getProperty("settings.global.default.enableLogoutConfirmation"));
 	}
 
@@ -75,14 +71,6 @@ public class GlobalSettings implements SettingsEntity, Serializable {
 
 	public void setMaxAuthenticationAllowed(int maxAuthenticationAllowed) {
 		this.maxAuthenticationAllowed = maxAuthenticationAllowed;
-	}
-
-	public String getEmailFormat() {
-		return emailFormat;
-	}
-
-	public void setEmailFormat(String emailFormat) {
-		this.emailFormat = emailFormat;
 	}
 
 	public boolean isEnableLogoutConfirmation() {

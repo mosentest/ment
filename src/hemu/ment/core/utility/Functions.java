@@ -1,5 +1,8 @@
 package hemu.ment.core.utility;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by muu on 2015/5/28.
  */
@@ -14,5 +17,10 @@ public final class Functions {
         }
         return array;
     }
+
+    public static String dateFormat(Date date, String pattern) {
+        return new SimpleDateFormat(pattern).format(date);
+    }
+
 
 }
