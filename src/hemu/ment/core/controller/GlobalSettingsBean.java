@@ -10,7 +10,7 @@ import hemu.ment.core.utility.ApplicationUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by muu on 2015/5/28.
  */
 @ManagedBean(name = "globalSettings")
-@RequestScoped
+@ViewScoped
 public class GlobalSettingsBean {
 
     @ManagedProperty(value="#{user.enterprise}")

@@ -28,7 +28,7 @@
     </filter>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
-        <url-pattern>/console/*</url-pattern>
+        <url-pattern>/c/*</url-pattern>
     </filter-mapping>
     <filter>
         <filter-name>securityFilter</filter-name>
@@ -36,7 +36,7 @@
     </filter>
     <filter-mapping>
         <filter-name>securityFilter</filter-name>
-        <url-pattern>/console/*</url-pattern>
+        <url-pattern>/c/*</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
