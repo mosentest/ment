@@ -34,7 +34,7 @@ public class UserBean implements Serializable {
         try {
             user = userEJB.login(email, password);
             enterprise = user.getEnterprise();
-            return "/console/dashboard.xhtml?faces-redirect=true";
+            return "/c/dashboard.xhtml?faces-redirect=true";
         } catch (InformationException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
             return (email = password = null);

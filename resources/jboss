@@ -1,0 +1,1 @@
+changed <socket-binding name="http" port="${jboss.http.port:8080}"/> to <socket-binding name="http" port="${jboss.http.port:80}"/>

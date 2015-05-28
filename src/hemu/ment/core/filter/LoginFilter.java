@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
         boolean isLoggedIn = userBean != null && userBean.isAuthenticated();
         if (isLoginPage(req.getRequestURI())) {
             if (isLoggedIn) {
-                res.sendRedirect(req.getContextPath() + "/console/dashboard.xhtml");
+                res.sendRedirect(req.getContextPath() + "/c/dashboard.xhtml");
             } else {
                 chain.doFilter(request, response);
             }

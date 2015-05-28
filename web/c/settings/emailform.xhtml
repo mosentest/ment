@@ -51,7 +51,7 @@
                 <h:inputTextarea styleClass="form-control" cols="60" rows="6" value="#{globalSettings.emailSettings.bannedAdresses}" />
 
                 <h:outputText value=""/>
-                <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/emailform.xhtml"/>
+                <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateEmail}"/>
             </h:panelGrid>
         </h:form>
     </ui:define>
