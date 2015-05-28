@@ -1,6 +1,11 @@
 package hemu.ment.core.utility;
 
+import hemu.ment.core.controller.UserBean;
+import hemu.ment.core.entity.Enterprise;
+import hemu.ment.core.entity.User;
+
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 public class SessionUtil {
@@ -33,5 +38,22 @@ public class SessionUtil {
 	public static Object getObject(HttpServletRequest request, String key) {
 		return request.getSession().getAttribute(key);
 	}
+
+	public static UserBean getUserBean(HttpServletRequest request) {
+		return (UserBean) request.getSession().getAttribute("user");
+	}
+
+    public static User getUser(ServletRequest request) {
+        return getUser((HttpServletRequest) request);
+    }
+
+    public static User getUser(HttpServletRequest request) {
+        return getUserBean(request).getUser();
+    }
+
+    public static Enterprise getEnterprise(HttpServletRequest request) {
+        return ((UserBean) request.getSession().getAttribute("user")).getEnterprise();
+    }
+
 	
 }

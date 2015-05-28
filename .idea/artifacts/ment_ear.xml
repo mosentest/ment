@@ -4,7 +4,7 @@
     <root id="root">
       <element id="javaee-facet-resources" facet="ment/javaeeApplication/javaEEApplication" />
       <element id="directory" name="web.war">
-        <element id="artifact" artifact-name="ment:war" />
+        <element id="artifact" artifact-name="console:war" />
       </element>
       <element id="directory" name="ejb.jar">
         <element id="artifact" artifact-name="ment:ejb" />

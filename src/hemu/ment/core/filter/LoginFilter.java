@@ -1,21 +1,13 @@
 package hemu.ment.core.filter;
 
 import hemu.ment.core.controller.UserBean;
+import hemu.ment.core.utility.SessionUtil;
 
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-
-@WebFilter("/console/*")
 public class LoginFilter implements Filter {
 	
 	@Override
@@ -29,13 +21,25 @@ public class LoginFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		UserBean userBean = (UserBean) req.getSession().getAttribute("user");
+		UserBean userBean = SessionUtil.getUserBean(req);
+        boolean isLoggedIn = userBean != null && userBean.isAuthenticated();
+        if (isLoginPage(req.getRequestURI())) {
+            if (isLoggedIn) {
+                res.sendRedirect(req.getContextPath() + "/console/dashboard.xhtml");
+            } else {
+                chain.doFilter(request, response);
+            }
+        } else {
+            if (isLoggedIn) {
+                chain.doFilter(request, response);
+            } else {
+                res.sendRedirect(req.getContextPath() + "/index.xhtml");
+            }
+        }
+	}
 
-		if (userBean == null || !userBean.isAuthenticated()) {
-			res.sendRedirect(req.getContextPath() + "/index.xhtml");
-		} else {
-			chain.doFilter(request, response);
-		}
+	private boolean isLoginPage(String url) {
+		return url.endsWith("index.html") || url.endsWith("index.xhtml") || url.endsWith("index.jsf");
 	}
 
 	@Override

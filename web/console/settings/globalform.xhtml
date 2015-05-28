@@ -1,38 +1,40 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:util="http://java.sun.com/jsf/composite/util">
+    xmlns:ment="http://www.hemu.com/ment/taglib">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="global"/>
     <ui:define name="settings-main">
         <c:set var="global" value="#{applicationScope['global-' += user.enterprise.code]}"/>
         <h2><h:outputText value="Global Settings"/></h2>
+        <h:form>
         <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label, form-value">
-            <h:outputText value=""/>
-            <h:messages showDetail="false" showSummary="true" layout="table"/>
-
             <h:outputText value="Title"/>
-            <h:outputText value="#{global.title}"/>
+            <h:inputText styleClass="form-control" value="#{global.title}"/>
 
             <h:outputText value="Max authentication allowed"/>
-            <h:outputText value="#{global.maxAuthenticationAllowed}"/>
+            <h:selectOneMenu value="#{global.maxAuthenticationAllowed}">
+                <f:selectItems value="#{ment:intArray(1, 5)}" />
+            </h:selectOneMenu>
 
             <h:outputText value="Enable personal settings"/>
-            <util:toggle value="#{global.enablePersonalSettings}"/>
+            <h:selectBooleanCheckbox value="#{global.enablePersonalSettings}"/>
 
             <h:outputText value="Email format"/>
-            <h:outputText value="#{global.emailFormat}"/>
+            <h:inputText styleClass="form-control" value="#{global.emailFormat}"/>
 
             <h:outputText value="Enable log out confirmation"/>
-            <util:toggle value="#{not global.enableLogoutConfirmation}"/>
+            <h:selectBooleanCheckbox value="#{global.enableLogoutConfirmation}"/>
 
             <h:outputText value=""/>
             <h:outputText value=""/>
 
             <h:outputText value=""/>
-            <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/console/settings/globalform.xhtml"/>
+            <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateGlobal}"/>
         </h:panelGrid>
+        </h:form>
     </ui:define>
 </ui:composition>
