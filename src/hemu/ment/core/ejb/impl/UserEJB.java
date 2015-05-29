@@ -4,6 +4,8 @@ package hemu.ment.core.ejb.impl;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.ejb.remote.UserRemote;
 import hemu.ment.core.entity.User;
+import hemu.ment.core.entity.UserGroup;
+import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.exception.InformationException;
 import hemu.ment.core.utility.EncryptionUtil;
 
@@ -43,8 +45,12 @@ public class UserEJB implements UserLocal, UserRemote {
         } catch (Exception e) {
             throw new InformationException("Password is incorrect");
         }
+        user.getUserGroups().size();
         user.getEnterprise().getId();
         user.setLogin(new Date());
+        for (UserGroup userGroup : user.getUserGroups()) {
+            user.getRoles().add(RoleConstant.getRoleConstant(userGroup.getRole()));
+        }
         entityManager.persist(user);
         return user;
     }

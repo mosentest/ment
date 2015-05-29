@@ -47,12 +47,8 @@ public class UserGroup implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(schema = "ment_core", name = "t_usergroup_role",
-			uniqueConstraints = @UniqueConstraint(columnNames = {"usergroup_id", "role_name"}),
-			joinColumns = @JoinColumn(name = "usergroup_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "role_name", referencedColumnName = "name"))
-	private List<Role> roles;
+	@Column(name = "role_name")
+	private String role;
 
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(schema = "ment_core", name = "t_usergroup_user",
@@ -129,12 +125,11 @@ public class UserGroup implements Serializable {
 		this.defaultGroup = defaultGroup;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
-
 }

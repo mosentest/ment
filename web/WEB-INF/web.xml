@@ -33,6 +33,10 @@
     <filter>
         <filter-name>securityFilter</filter-name>
         <filter-class>hemu.ment.core.filter.SecurityFilter</filter-class>
+        <init-param>
+            <param-name>SECURITY_CONFIG_LOCATION</param-name>
+            <param-value>/WEB-INF/security_config.properties</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>securityFilter</filter-name>

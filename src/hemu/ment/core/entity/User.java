@@ -1,10 +1,13 @@
 package hemu.ment.core.entity;
 
+import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.permission.GlobalPermission;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -72,6 +75,9 @@ public class User implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private List<UserGroup> userGroups;
+
+	@Transient
+	private Set<RoleConstant> roles = new HashSet<>();
 	
 	@Transient
 	private List<GlobalPermission> globalPermissions;
@@ -235,4 +241,12 @@ public class User implements Serializable {
     public void setEnablePersonalSettings(boolean enablePersonalSettings) {
         this.enablePersonalSettings = enablePersonalSettings;
     }
+
+	public Set<RoleConstant> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RoleConstant> roles) {
+		this.roles = roles;
+	}
 }

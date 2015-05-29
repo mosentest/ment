@@ -1,4 +1,15 @@
 
+#15-05-29 INSERT USER GROUP, ROLES, USERS
+INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_id, role_name)
+VALUES (1, true, 'default group', 'users', 1, 'user');
+INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_id, role_name)
+VALUES (2, false, '', 'system administrators', 1, 'sys_admin');
+INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_id, role_name)
+VALUES (3, false, '', 'administrators', 1, 'admin');
+INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (1, 1);
+INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (2, 1);
+INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (3, 1);
+
 #15-05-25 INSERT ROLES INTO DATABASE
 INSERT INTO ment_core.t_role (name) VALUES ('sys_admin');
 INSERT INTO ment_core.t_role (name) VALUES ('sys_dev');

@@ -2,6 +2,7 @@ package hemu.ment.core.utility;
 
 import hemu.ment.core.entity.Identifiable;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -24,6 +25,10 @@ public class ApplicationUtil {
 
     public static <T> T getAttribute(Class<T> classType, String key) {
         return (T) getServletContext().getAttribute(key);
+    }
+
+    public static ExternalContext getContext() {
+        return FacesContext.getCurrentInstance().getExternalContext();
     }
 
     public static ServletContext getServletContext() {
