@@ -7,29 +7,37 @@
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="internationalization"/>
     <ui:define name="settings-main">
+        <h:messages styleClass="color-success" showDetail="false" showSummary="true" layout="table"/>
         <f:event listener="#{globalSettings.fetchI18N}" type="preRenderView"/>
         <h2><h:outputText value="Internationalization Settings"/></h2>
-        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label,form-value">
+        <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
             <h:outputText value="Default time zone"/>
             <h:outputText value="#{globalSettings.i18nSettings.defaultTimeZone.displayName}"/>
+            <h:outputText value=""/>
 
             <h:outputText value="Default locale"/>
             <h:outputText value="#{globalSettings.i18nSettings.defaultLocale}"/>
+            <h:outputText value=""/>
 
             <h:outputText value="Date format"/>
             <h:outputText value="#{ment:dateFormat(now, globalSettings.i18nSettings.dateFormatString)}"/>
+            <h:outputText value=""/>
 
             <h:outputText value="Time format"/>
             <h:outputText value="#{ment:dateFormat(now, globalSettings.i18nSettings.timeFormatString)}"/>
+            <h:outputText value=""/>
 
             <h:outputText value="Date time format"/>
             <h:outputText value="#{ment:dateFormat(now, globalSettings.i18nSettings.dateTimeFormatString)}"/>
+            <h:outputText value=""/>
 
+            <h:outputText value=""/>
             <h:outputText value=""/>
             <h:outputText value=""/>
 
             <h:outputText value=""/>
             <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/c/settings/internationalizationform.xhtml"/>
+            <h:outputText value=""/>
         </h:panelGrid>
     </ui:define>
 </ui:composition>

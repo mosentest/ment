@@ -4,6 +4,7 @@ import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.exception.InformationException;
+import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -36,7 +37,7 @@ public class UserBean implements Serializable {
             enterprise = user.getEnterprise();
             return "/c/dashboard.xhtml?faces-redirect=true";
         } catch (InformationException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+			FacesMessageUtil.addErrorMessage(e.getMessage(), null);
             return (email = password = null);
         }
 	}

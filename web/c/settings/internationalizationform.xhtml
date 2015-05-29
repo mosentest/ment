@@ -8,34 +8,41 @@
     <ui:define name="settings-main">
         <f:event listener="#{globalSettings.fetchI18N}" type="preRenderView"/>
         <h2><h:outputText value="Internationalization Settings"/></h2>
-        <h:form>
-            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label,form-value">
+        <h:form id="form">
+            <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
                 <h:outputText value="Default time zone"/>
-                <h:selectOneMenu styleClass="form-control" value="#{globalSettings.i18nSettings.defaultTimeZoneID}">
-                    <f:selectItems value="#{globalSettings.value['timeZoneList']}"
+                <h:selectOneMenu id="default_timezone_id" styleClass="form-control" value="#{globalSettings.i18nSettings.defaultTimeZoneID}">
+                    <f:selectItems value="#{applicationScope['SUPPORTED_TIMEZONE']}"
                                    var="timeZone" itemLabel="#{timeZone.displayName}" itemValue="#{timeZone.ID}"/>
                 </h:selectOneMenu>
+                <h:message styleClass="color-danger" for="default_timezone_id"/>
 
                 <h:outputText value="Default locale"/>
-                <h:selectOneMenu styleClass="form-control" value="#{globalSettings.i18nSettings.defaultLocaleString}">
-                    <f:selectItems value="#{globalSettings.value['localeList']}"
+                <h:selectOneMenu id="default_locale_string" styleClass="form-control" value="#{globalSettings.i18nSettings.defaultLocaleString}">
+                    <f:selectItems value="#{applicationScope['SUPPORTED_LOCALE']}"
                                    var="locale" itemLabel="#{locale}" itemValue="#{locale}"/>
                 </h:selectOneMenu>
+                <h:message styleClass="color-danger" for="default_locale_string"/>
 
                 <h:outputText value="Date format"/>
-                <h:inputText styleClass="form-control" value="#{globalSettings.i18nSettings.dateFormatString}"/>
+                <h:inputText id="date_format_string" styleClass="form-control" value="#{globalSettings.i18nSettings.dateFormatString}"/>
+                <h:message styleClass="color-danger" for="date_format_string"/>
 
                 <h:outputText value="Time format"/>
-                <h:inputText styleClass="form-control" value="#{globalSettings.i18nSettings.timeFormatString}"/>
+                <h:inputText id="time_format_string" styleClass="form-control" value="#{globalSettings.i18nSettings.timeFormatString}"/>
+                <h:message styleClass="color-danger" for="time_format_string"/>
 
                 <h:outputText value="Date time format"/>
-                <h:inputText styleClass="form-control" value="#{globalSettings.i18nSettings.dateTimeFormatString}"/>
+                <h:inputText id="date_time_format_string" styleClass="form-control" value="#{globalSettings.i18nSettings.dateTimeFormatString}"/>
+                <h:message styleClass="color-danger" for="date_time_format_string"/>
 
+                <h:outputText value=""/>
                 <h:outputText value=""/>
                 <h:outputText value=""/>
 
                 <h:outputText value=""/>
                 <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateI18N}"/>
+                <h:outputText value=""/>
             </h:panelGrid>
         </h:form>
     </ui:define>

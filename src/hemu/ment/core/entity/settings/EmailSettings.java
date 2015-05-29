@@ -38,6 +38,9 @@ public class EmailSettings implements SettingsEntity, Serializable {
 	@Column(name = "smtp_password")
 	private String smtpPassword;
 
+	@Column(name = "smtp_password_hash")
+	private String smtpPasswordHash;
+
 	@Column(name = "smtp_auth")
 	private boolean smtpAuth;//for uname and password
 
@@ -73,6 +76,7 @@ public class EmailSettings implements SettingsEntity, Serializable {
 		
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -201,4 +205,11 @@ public class EmailSettings implements SettingsEntity, Serializable {
 		this.filters = filters;
 	}
 
+	public String getSmtpPasswordHash() {
+		return smtpPasswordHash;
+	}
+
+	public void setSmtpPasswordHash(String smtpPasswordHash) {
+		this.smtpPasswordHash = smtpPasswordHash;
+	}
 }

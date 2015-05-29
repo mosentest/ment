@@ -9,30 +9,33 @@
     <ui:define name="settings-main">
         <f:event listener="#{globalSettings.fetchGlobal}" type="preRenderView"/>
         <h2><h:outputText value="Global Settings"/></h2>
-        <h:form>
-        <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-label,form-value">
+        <h:form id="form">
+        <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
             <h:outputText value="Title"/>
-            <h:inputText styleClass="form-control" value="#{globalSettings.globalSettings.title}">
-                <f:validateLength minimum="5" maximum="30"/>
-            </h:inputText>
+            <h:inputText styleClass="form-control" id="title" value="#{globalSettings.globalSettings.title}"/>
+            <h:message styleClass="color-danger" for="title"/>
 
             <h:outputText value="Max authentication allowed"/>
-            <h:selectOneMenu styleClass="form-control" value="#{globalSettings.globalSettings.maxAuthenticationAllowed}">
+            <h:selectOneMenu id="max_authentication_allowed" styleClass="form-control" value="#{globalSettings.globalSettings.maxAuthenticationAllowed}">
                 <f:selectItems value="#{ment:intArray(1, 5)}" />
-                <f:validateLongRange minimum="1" maximum="5"/>
             </h:selectOneMenu>
+            <h:message styleClass="color-danger" for="max_authentication_allowed"/>
 
             <h:outputText value="Enable personal settings"/>
-            <h:selectBooleanCheckbox value="#{globalSettings.globalSettings.enablePersonalSettings}"/>
+            <h:selectBooleanCheckbox id="enable_personal_settings" value="#{globalSettings.globalSettings.enablePersonalSettings}"/>
+            <h:message styleClass="color-danger" for="enable_personal_settings"/>
 
             <h:outputText value="Enable log out confirmation"/>
-            <h:selectBooleanCheckbox value="#{globalSettings.globalSettings.enableLogoutConfirmation}"/>
+            <h:selectBooleanCheckbox id="enable_logout_confirmation" value="#{globalSettings.globalSettings.enableLogoutConfirmation}"/>
+            <h:message styleClass="color-danger" for="enable_logout_confirmation"/>
 
+            <h:outputText value=""/>
             <h:outputText value=""/>
             <h:outputText value=""/>
 
             <h:outputText value=""/>
             <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateGlobal}"/>
+            <h:outputText value=""/>
         </h:panelGrid>
         </h:form>
     </ui:define>

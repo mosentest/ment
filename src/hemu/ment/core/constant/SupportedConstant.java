@@ -39,7 +39,7 @@ public class SupportedConstant {
         TIME_ZONE_MAP.put("CTT", TimeZone.getTimeZone("CTT"));
         TIME_ZONE_MAP.put("PST", TimeZone.getTimeZone("PST"));
 
-        LOCALE_MAP.put("us_EN", Locale.US);
+        LOCALE_MAP.put("en_US", Locale.US);
         LOCALE_MAP.put("zh_CN", Locale.CHINA);
         LOCALE_MAP.put("sv_SE", new Locale("sv", "SE"));
     }

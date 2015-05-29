@@ -1,5 +1,7 @@
 package hemu.ment.core.utility;
 
+import hemu.ment.core.entity.Identifiable;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -8,12 +10,20 @@ import javax.servlet.ServletContext;
  */
 public class ApplicationUtil {
 
-    public static <T> T getObject(Class<T> classType, String key) {
-        return (T) getServletContext().getAttribute(key);
+    public static void setAttribute(String key, Object object) {
+        getServletContext().setAttribute(key, object);
     }
 
-    public static Object getObject(String key) {
+    public static Long getIdentifier(String key) {
+        return ((Identifiable) getAttribute(key)).getId();
+    }
+
+    public static Object getAttribute(String key) {
         return getServletContext().getAttribute(key);
+    }
+
+    public static <T> T getAttribute(Class<T> classType, String key) {
+        return (T) getServletContext().getAttribute(key);
     }
 
     public static ServletContext getServletContext() {

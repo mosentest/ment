@@ -103,5 +103,9 @@ a.negative {
 }
 .form-table .form-value {
 	padding-left: 10px;
-	width: 75%;
+	width: 50%;
+}
+.form-table .form-error {
+	padding-left: 15px;
+	width: 25%;
 }

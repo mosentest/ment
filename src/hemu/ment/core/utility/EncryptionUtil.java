@@ -30,6 +30,28 @@ public class EncryptionUtil {
         System.out.println(decrypted + "  [][][][][][");
     }
 
+    public static boolean unchanged(String originalPassword, String encodedHash, String newPassword) {
+        try {
+            boolean unchanged = decrypt(encodedHash, newPassword).equals(decrypt(encodedHash, originalPassword));
+            return unchanged;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static String encodeKey(byte[] key) {
+        return new BASE64Encoder().encode(key);
+    }
+
+    public static byte[] decodeKey(String encodedKey) {
+        try {
+            byte[] key = new BASE64Decoder().decodeBuffer(encodedKey);
+            return key;
+        } catch (Exception e) {
+            return new byte[0];
+        }
+    }
+
     public static String getEncodedKey() {
         return new BASE64Encoder().encode(createKey());
     }

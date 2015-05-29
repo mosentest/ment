@@ -16,10 +16,10 @@ public interface EnterpriseSettingsLocal {
 
     public List<Enterprise> getAllSettings();
 
-    public EmailSettings updateEmailSettings(EmailSettings emailSettings);
+    public EmailSettings updateEmailSettings(Long id, EmailSettings settings);
 
-    public GlobalSettings updateGlobalSettings(GlobalSettings globalSettings);
+    public GlobalSettings updateGlobalSettings(Long id, GlobalSettings settings);
 
-    public InternationalizationSettings updateInternationalizationSettings(InternationalizationSettings internationalizationSettings);
+    public InternationalizationSettings updateInternationalizationSettings(Long id, InternationalizationSettings settings);
 
 }

@@ -2,10 +2,9 @@ package hemu.ment.core.entity.settings;
 
 import hemu.ment.core.entity.Enterprise;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Properties;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "t_settings_global", schema = "ment_core")
@@ -41,6 +40,7 @@ public class GlobalSettings implements SettingsEntity, Serializable {
 		enableLogoutConfirmation = Boolean.parseBoolean(properties.getProperty("settings.global.default.enableLogoutConfirmation"));
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}

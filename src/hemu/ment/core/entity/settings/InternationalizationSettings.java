@@ -62,6 +62,7 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 		defaultLocaleString = properties.getProperty("settings.i18n.default.defaultLocaleString");
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
