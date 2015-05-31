@@ -1,7 +1,5 @@
 package hemu.ment.core.permission;
 
-import hemu.ment.core.cache.CacheManager;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,16 +79,16 @@ public enum ProjectPermission implements Permission {
 	}
 	
 	public static List<ProjectPermission> getPermissions(int fullAuthority) {
-		if (CacheManager.PROJECTPERMISSION_CACHE.containsKey(fullAuthority)) {
-			return CacheManager.PROJECTPERMISSION_CACHE.get(fullAuthority);
-		}
+//		if (CacheConsole.PROJECTPERMISSION_CACHE.containsKey(fullAuthority)) {
+//			return CacheConsole.PROJECTPERMISSION_CACHE.get(fullAuthority);
+//		}
 		List<ProjectPermission> permissions = new ArrayList<>();
-		for (ProjectPermission permission : values()) {
-			if ((permission.getAuthority() & fullAuthority) == permission.getAuthority()) {
-				permissions.add(permission);
-			}
-		}
-		CacheManager.PROJECTPERMISSION_CACHE.put(fullAuthority, permissions);
+//		for (ProjectPermission permission : values()) {
+//			if ((permission.getAuthority() & fullAuthority) == permission.getAuthority()) {
+//				permissions.add(permission);
+//			}
+//		}
+//		CacheConsole.PROJECTPERMISSION_CACHE.put(fullAuthority, permissions);
 		return permissions;
 	}
 

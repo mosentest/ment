@@ -1,7 +1,5 @@
 package hemu.ment.core.permission;
 
-import hemu.ment.core.cache.CacheManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,16 +40,16 @@ public enum GlobalPermission implements Permission {
 	}
 	
 	public static List<GlobalPermission> getPermissions(int fullAuthority) {
-		if (CacheManager.GLOBALPERMISSION_CACHE.containsKey(fullAuthority)) {
-			return CacheManager.GLOBALPERMISSION_CACHE.get(fullAuthority);
-		}
+//		if (CacheConsole.GLOBALPERMISSION_CACHE.containsKey(fullAuthority)) {
+//			return CacheConsole.GLOBALPERMISSION_CACHE.get(fullAuthority);
+//		}
 		List<GlobalPermission> permissions = new ArrayList<>();
-		for (GlobalPermission permission : values()) {
-			if ((permission.getAuthority() & fullAuthority) == permission.getAuthority()) {
-				permissions.add(permission);
-			}
-		}
-		CacheManager.GLOBALPERMISSION_CACHE.put(fullAuthority, permissions);
+//		for (GlobalPermission permission : values()) {
+//			if ((permission.getAuthority() & fullAuthority) == permission.getAuthority()) {
+//				permissions.add(permission);
+//			}
+//		}
+//		CacheConsole.GLOBALPERMISSION_CACHE.put(fullAuthority, permissions);
 		return permissions;
 	}
 

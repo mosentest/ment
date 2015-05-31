@@ -73,6 +73,9 @@ public class User implements Serializable {
 	@Column(name = "country")
 	private String country;
 
+	@Column(name = "avatar")
+	private String avatar;
+
 	@Column(name = "enable_personal_settings")
 	private boolean enablePersonalSettings;
 
@@ -240,5 +243,13 @@ public class User implements Serializable {
 
 	public void setRoles(Set<RoleConstant> roles) {
 		this.roles = roles;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 }

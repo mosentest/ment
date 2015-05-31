@@ -15,7 +15,7 @@
         <element id="library" level="application" name="hibernate" />
         <element id="library" level="application" name="ejb-3.2" />
         <element id="library" level="application" name="apache" />
-        <element id="library" level="application" name="jedis" />
+        <element id="library" level="application" name="ehcache" />
       </element>
     </root>
   </artifact>

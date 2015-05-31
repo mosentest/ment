@@ -12,4 +12,6 @@ public class ApplicationVariable {
     public static final String FILE_DIRECTORY = "E:\\entconsole\\{enterprise}\\";
 
     public static final String IMAGE_PATH = FILE_DIRECTORY + "profile\\";
+
+    public static final String MASTER_ENT = "HEMUI";
 }

@@ -9,6 +9,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="application" name="primefaces-5.2" />
+          <element id="library" level="application" name="ehcache" />
         </element>
       </element>
     </root>

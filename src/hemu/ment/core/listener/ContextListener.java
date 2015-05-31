@@ -29,10 +29,9 @@ public class ContextListener implements ServletContextListener {
             context.setAttribute(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
             context.setAttribute(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
         }
+        //add supported constants
         context.setAttribute("SUPPORTED_LOCALE", SupportedConstant.SUPPORTED_LOCALE);
         context.setAttribute("SUPPORTED_TIMEZONE", SupportedConstant.SUPPORTED_TIMEZONE);
-        //add supported constants
-
     }
 
     @Override
