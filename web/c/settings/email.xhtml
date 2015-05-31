@@ -6,29 +6,29 @@
     xmlns:util="http://java.sun.com/jsf/composite/util">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="email"/>
+    <ui:define name="page-header-title"><h:outputText value="Email Settings"/></ui:define>
     <ui:define name="settings-main">
         <h:messages styleClass="color-success" showDetail="false" showSummary="true" layout="table"/>
-        <f:event listener="#{globalSettings.fetchEmail}" type="preRenderView"/>
-        <h2><h:outputText value="Email Settings"/></h2>
+        <f:event listener="#{globalSettingsBean.fetchEmail}" type="preRenderView"/>
         <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
             <h:outputText value="Enable email notification"/>
-            <util:toggle value="#{globalSettings.emailSettings.smtpAuth}"/>
+            <util:toggle value="#{globalSettingsBean.emailSettings.smtpAuth}"/>
             <h:outputText value=""/>
 
             <h:outputText value="SMTP host"/>
-            <h:outputText value="#{globalSettings.emailSettings.smtpHost}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.smtpHost}"/>
             <h:outputText value=""/>
 
             <h:outputText value="SMTP port"/>
-            <h:outputText value="#{globalSettings.emailSettings.smtpPort}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.smtpPort}"/>
             <h:outputText value=""/>
 
             <h:outputText value="SMTP auth"/>
-            <util:toggle value="#{globalSettings.emailSettings.smtpAuth}" enabledText="On" disabledText="Off"/>
+            <util:toggle value="#{globalSettingsBean.emailSettings.smtpAuth}" enabledText="On" disabledText="Off"/>
             <h:outputText value=""/>
 
             <h:outputText value="SMTP username"/>
-            <h:outputText value="#{globalSettings.emailSettings.smtpUsername}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.smtpUsername}"/>
             <h:outputText value=""/>
 
             <h:outputText value="SMTP password"/>
@@ -36,31 +36,31 @@
             <h:outputText value=""/>
 
             <h:outputText value="Sender name"/>
-            <h:outputText value="#{globalSettings.emailSettings.senderName}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.senderName}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Sender mail"/>
-            <h:outputText value="#{globalSettings.emailSettings.senderMail}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.senderMail}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Connection prefix"/>
-            <h:outputText value="#{globalSettings.emailSettings.connectionPrefix}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.connectionPrefix}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Ticket template"/>
-            <h:outputText value="#{globalSettings.emailSettings.ticketTemplate}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.ticketTemplate}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Support template"/>
-            <h:outputText value="#{globalSettings.emailSettings.supportTemplate}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.supportTemplate}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Banned domains"/>
-            <h:outputText value="#{globalSettings.emailSettings.bannedDomains}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.bannedDomains}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Banned adresses"/>
-            <h:outputText value="#{globalSettings.emailSettings.bannedAdresses}"/>
+            <h:outputText value="#{globalSettingsBean.emailSettings.bannedAdresses}"/>
             <h:outputText value=""/>
 
             <h:outputText value=""/>

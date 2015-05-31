@@ -13,33 +13,36 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_user", schema = "ment_core")
-@NamedQueries(@NamedQuery(name = "User.GetByEmail", query = "SELECT u FROM User u WHERE u.email = :email"))
+@NamedQueries({
+		@NamedQuery(name = "User.Accessible", query = "SELECT COUNT(u) > 0 FROM User u WHERE u.id = :user AND u.enterprise.id = :enterprise"),
+		@NamedQuery(name = "User.GetByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+		@NamedQuery(name = "User.GetEnterprise", query = "SELECT u.enterprise FROM User u WHERE u.id = :user")})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7445898962052022294L;
-	
+
 	private static final String[] SORTABLE_COLUMNS = {
-		"firstName", "lastName", "account", "email", "globalPermissionValue", "projectPermissionValue"
+			"firstName", "lastName", "account", "email", "globalPermissionValue", "projectPermissionValue"
 	};
-	
+
 	private static final String DEFAULT_COLUMN = "firstName";
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "enterprise_id")
 	private Enterprise enterprise;
 
-    @Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 
-    @Column(name = "password_text")
+	@Column(name = "password_text")
 	private String password;
-    
-    @Column(name = "password_hash")
-    private String hash;
+
+	@Column(name = "password_hash")
+	private String hash;
 
 	@Column(name = "create_date")
 	@Temporal(value = TemporalType.TIMESTAMP)
@@ -48,42 +51,39 @@ public class User implements Serializable {
 	@Column(name = "login_date")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date login;
-	
+
 	@Column(name = "confirm_key")
 	private String confirmKey;
 
 	@Column(name = "enabled")
 	private boolean enabled;
 
-    @Column(name = "first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
-    @Column(name = "last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
-    @Column(name = "phone")
+	@Column(name = "phone")
 	private String phone;
 
-    @Column(name = "address")
+	@Column(name = "address")
 	private String address;
-    
-    @Column(name = "country")
-    private String country;
 
-    @Column(name = "enable_personal_settings")
-    private boolean enablePersonalSettings;
+	@Column(name = "country")
+	private String country;
+
+	@Column(name = "enable_personal_settings")
+	private boolean enablePersonalSettings;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private List<UserGroup> userGroups;
 
 	@Transient
 	private Set<RoleConstant> roles = new HashSet<>();
-	
-	@Transient
-	private List<GlobalPermission> globalPermissions;
-    
-    public User() {}
-	
+
+	public User() {}
+
 	public static String getSortColumn(String column) {
 		for (String c : SORTABLE_COLUMNS) {
 			if (c.equals(column)) {
@@ -91,22 +91,6 @@ public class User implements Serializable {
 			}
 		}
 		return DEFAULT_COLUMN;
-	}
-	
-	public void setGlobalPermissions(List<GlobalPermission> globalPermissions) {
-		this.globalPermissions = globalPermissions;
-	}
-    
-    public List<GlobalPermission> getGlobalPermissions() {
-    	return globalPermissions;
-    }
-	
-	public List<UserGroup> getUserGroups() {
-		return userGroups;
-	}
-
-	public void setUserGroups(List<UserGroup> userGroups) {
-		this.userGroups = userGroups;
 	}
 
 	@Override
@@ -118,9 +102,17 @@ public class User implements Serializable {
 		return e.id != null && this.id != null && e.id.equals(this.id);
 	}
 
-    public String getFullName() {
-    	return lastName + " " + firstName;
-    }
+	public List<UserGroup> getUserGroups() {
+		return userGroups;
+	}
+
+	public void setUserGroups(List<UserGroup> userGroups) {
+		this.userGroups = userGroups;
+	}
+
+	public String getFullName() {
+		return lastName + " " + firstName;
+	}
 
 	public Long getId() {
 		return id;
@@ -202,45 +194,45 @@ public class User implements Serializable {
 		this.login = login;
 	}
 
-    public String getHash() {
-        return hash;
-    }
+	public String getHash() {
+		return hash;
+	}
 
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
 
-    public String getConfirmKey() {
-        return confirmKey;
-    }
+	public String getConfirmKey() {
+		return confirmKey;
+	}
 
-    public void setConfirmKey(String confirmKey) {
-        this.confirmKey = confirmKey;
-    }
+	public void setConfirmKey(String confirmKey) {
+		this.confirmKey = confirmKey;
+	}
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public String getCountry() {
+		return country;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public boolean isEnablePersonalSettings() {
-        return enablePersonalSettings;
-    }
+	public boolean isEnablePersonalSettings() {
+		return enablePersonalSettings;
+	}
 
-    public void setEnablePersonalSettings(boolean enablePersonalSettings) {
-        this.enablePersonalSettings = enablePersonalSettings;
-    }
+	public void setEnablePersonalSettings(boolean enablePersonalSettings) {
+		this.enablePersonalSettings = enablePersonalSettings;
+	}
 
 	public Set<RoleConstant> getRoles() {
 		return roles;

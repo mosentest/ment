@@ -3,6 +3,7 @@ package hemu.ment.core.ejb.impl;
 
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.ejb.remote.UserRemote;
+import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.entity.UserGroup;
 import hemu.ment.core.enums.RoleConstant;
@@ -29,11 +30,11 @@ public class UserEJB implements UserLocal, UserRemote {
     public User login(String email, String password) throws InformationException {
         Query query = entityManager.createNamedQuery("User.GetByEmail");
         query.setParameter("email", email);
-        List result = query.getResultList();
+        List<User> result = query.getResultList();
         if (result == null || result.size() == 0) {
             throw new InformationException("Account does not exist");
         }
-        User user = (User) result.get(0);
+        User user = result.get(0);
         if (!user.isEnabled()) {
             throw new InformationException("User is not activated");
         }
@@ -54,5 +55,20 @@ public class UserEJB implements UserLocal, UserRemote {
         entityManager.persist(user);
         return user;
     }
-	
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean accessible(Long user, Long enterprise) {
+        Query query = entityManager.createNamedQuery("User.Accessible");
+        query.setParameter("user", user);
+        query.setParameter("enterprise", enterprise);
+        return (boolean) query.getSingleResult();
+    }
+
+    @Override
+    public Enterprise getEnterprise(Long user) {
+        Query query = entityManager.createNamedQuery("User.GetEnterprise");
+        query.setParameter("user", user);
+        return (Enterprise) query.getSingleResult();
+    }
 }

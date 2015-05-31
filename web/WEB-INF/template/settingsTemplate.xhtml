@@ -16,9 +16,15 @@
                         <li class="#{subnav eq 'internationalization' ? 'active' : ''}">
                             <h:outputLink value="c/settings/internationalization.xhtml"><h:outputText value="Internationalization Settings"/></h:outputLink>
                         </li>
+                        <li class="#{subnav eq 'usergroup' ? 'active' : ''}">
+                            <h:outputLink value="c/settings/usergrouplist.xhtml"><h:outputText value="User groups"/></h:outputLink>
+                        </li>
                     </ul>
                 </h:panelGroup>
                 <h:panelGroup class="col-lg-9" layout="block">
+                    <h:panelGroup styleClass="page-header" layout="block">
+                        <h1><ui:insert name="page-header-title"/> <small> <ui:insert name="page-header-description"/></small></h1>
+                    </h:panelGroup>
                     <ui:insert name="settings-main"/>
                 </h:panelGroup>
             </h:panelGroup>

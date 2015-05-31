@@ -109,3 +109,15 @@ a.negative {
 	padding-left: 15px;
 	width: 25%;
 }
+.col-centered {
+	float: none;
+	margin: 0 auto;
+}
+.panel-header-title {
+	font-size: 16px;
+	font-weight: bold;
+}
+.panel-header-description {
+	font-size: 13px;
+	color: #666666;
+}

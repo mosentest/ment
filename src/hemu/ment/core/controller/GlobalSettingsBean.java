@@ -7,30 +7,24 @@ import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.settings.EmailSettings;
 import hemu.ment.core.entity.settings.GlobalSettings;
 import hemu.ment.core.entity.settings.InternationalizationSettings;
-import hemu.ment.core.exception.ValidationException;
 import hemu.ment.core.utility.ApplicationUtil;
 import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
-import javax.validation.constraints.Null;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by muu on 2015/5/28.
  */
-@ManagedBean(name = "globalSettings")
+@ManagedBean(name = "globalSettingsBean")
 @RequestScoped
 public class GlobalSettingsBean {
 
-    @ManagedProperty(value="#{user.enterprise}")
+    @ManagedProperty(value="#{current.enterprise}")
     private Enterprise enterprise;
 
     @EJB

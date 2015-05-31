@@ -6,6 +6,8 @@ INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_i
 VALUES (2, false, '', 'system administrators', 1, 'sys_admin');
 INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_id, role_name)
 VALUES (3, false, '', 'administrators', 1, 'admin');
+INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_id, role_name)
+VALUES (4, false, '', 'system developer', 1, 'sys_dev');
 INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (1, 1);
 INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (2, 1);
 INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (3, 1);

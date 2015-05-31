@@ -1,25 +1,16 @@
 package hemu.ment.core.entity;
 
 import hemu.ment.core.entity.system.Role;
+import hemu.ment.core.enums.RoleConstant;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_usergroup", schema = "ment_core")
+@NamedQueries(@NamedQuery(name = "UserGroup.GetList", query = "SELECT ug FROM UserGroup ug WHERE ug.enterprise.id = :enterprise"))
 public class UserGroup implements Serializable {
 
 	private static final long serialVersionUID = -1838588996310300202L;
@@ -49,6 +40,9 @@ public class UserGroup implements Serializable {
 
 	@Column(name = "role_name")
 	private String role;
+
+	@Transient
+	private RoleConstant roleConstant;
 
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(schema = "ment_core", name = "t_usergroup_user",
@@ -131,5 +125,13 @@ public class UserGroup implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public RoleConstant getRoleConstant() {
+		return roleConstant;
+	}
+
+	public void setRoleConstant(RoleConstant roleConstant) {
+		this.roleConstant = roleConstant;
 	}
 }

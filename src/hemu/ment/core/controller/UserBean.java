@@ -7,13 +7,12 @@ import hemu.ment.core.exception.InformationException;
 import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
-@ManagedBean(name = "user")
+@ManagedBean(name = "current")
 @SessionScoped
 public class UserBean implements Serializable {
 

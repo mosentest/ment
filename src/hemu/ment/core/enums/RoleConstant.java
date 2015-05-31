@@ -36,4 +36,16 @@ public enum RoleConstant {
 	public static RoleConstant getRoleConstant(String role) {
 		return cache.get(role);
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
 }

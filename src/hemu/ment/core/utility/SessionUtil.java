@@ -40,7 +40,7 @@ public class SessionUtil {
 	}
 
 	public static UserBean getUserBean(HttpServletRequest request) {
-		return (UserBean) request.getSession().getAttribute("user");
+		return (UserBean) request.getSession().getAttribute("current");
 	}
 
     public static User getUser(ServletRequest request) {
@@ -52,7 +52,7 @@ public class SessionUtil {
     }
 
     public static Enterprise getEnterprise(HttpServletRequest request) {
-        return ((UserBean) request.getSession().getAttribute("user")).getEnterprise();
+        return ((UserBean) request.getSession().getAttribute("current")).getEnterprise();
     }
 
 	

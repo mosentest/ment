@@ -8,25 +8,25 @@
     <ui:param name="subnav" value="global"/>
     <ui:define name="page-header-title"><h:outputText value="Global Settings"/></ui:define>
     <ui:define name="settings-main">
-        <f:event listener="#{globalSettingsBean.fetchGlobal}" type="preRenderView"/>
+        <f:event listener="#{globalSettings.fetchGlobal}" type="preRenderView"/>
         <h:form id="form">
         <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
             <h:outputText value="Title"/>
-            <h:inputText styleClass="form-control" id="title" value="#{globalSettingsBean.globalSettings.title}"/>
+            <h:inputText styleClass="form-control" id="title" value="#{globalSettings.globalSettings.title}"/>
             <h:message styleClass="color-danger" for="title"/>
 
             <h:outputText value="Max authentication allowed"/>
-            <h:selectOneMenu id="max_authentication_allowed" styleClass="form-control" value="#{globalSettingsBean.globalSettings.maxAuthenticationAllowed}">
+            <h:selectOneMenu id="max_authentication_allowed" styleClass="form-control" value="#{globalSettings.globalSettings.maxAuthenticationAllowed}">
                 <f:selectItems value="#{ment:intArray(1, 5)}" />
             </h:selectOneMenu>
             <h:message styleClass="color-danger" for="max_authentication_allowed"/>
 
             <h:outputText value="Enable personal settings"/>
-            <h:selectBooleanCheckbox id="enable_personal_settings" value="#{globalSettingsBean.globalSettings.enablePersonalSettings}"/>
+            <h:selectBooleanCheckbox id="enable_personal_settings" value="#{globalSettings.globalSettings.enablePersonalSettings}"/>
             <h:message styleClass="color-danger" for="enable_personal_settings"/>
 
             <h:outputText value="Enable log out confirmation"/>
-            <h:selectBooleanCheckbox id="enable_logout_confirmation" value="#{globalSettingsBean.globalSettings.enableLogoutConfirmation}"/>
+            <h:selectBooleanCheckbox id="enable_logout_confirmation" value="#{globalSettings.globalSettings.enableLogoutConfirmation}"/>
             <h:message styleClass="color-danger" for="enable_logout_confirmation"/>
 
             <h:outputText value=""/>
@@ -34,7 +34,7 @@
             <h:outputText value=""/>
 
             <h:outputText value=""/>
-            <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettingsBean.updateGlobal}"/>
+            <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateGlobal}"/>
             <h:outputText value=""/>
         </h:panelGrid>
         </h:form>

@@ -77,6 +77,10 @@ public class Enterprise implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "enterprise")
     private SupportConfig supportConfig;
+
+    public boolean isMaster() {
+        return id == 1l;
+    }
     
     public Enterprise() {}
 

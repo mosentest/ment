@@ -3,14 +3,14 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" role="banner" style="background-color:#ffffff;">
-        <h:panelGroup styleClass="container" layout="block" rendered="#{not user.authenticated}">
+        <h:panelGroup styleClass="container" layout="block" rendered="#{not current.authenticated}">
             <h:panelGroup styleClass="navbar-header" layout="block">
                 <h:outputLink value="index.xhtml" styleClass="navbar-brand">
                     <h:outputText value="Enterprise Console"/>
                 </h:outputLink>
             </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup styleClass="container" layout="block" rendered="#{user.authenticated}">
+        <h:panelGroup styleClass="container" layout="block" rendered="#{current.authenticated}">
             <h:panelGroup styleClass="navbar-header" layout="block">
                 <h:outputLink styleClass="navbar-brand" value="c/dashboard.xhtml">
                     <h:outputText value="Enterprise Console"/>
@@ -36,16 +36,16 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><h:outputLink value="#"><h:graphicImage styleClass="profile-small" value="resources/img/default/profile.png"/></h:outputLink></li>
+                    <li><h:outputLink value="#"><h:graphicImage styleClass="profile-small" value="/image/profile/#{current.user.id}.png"/></h:outputLink></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" >
-                            <h:outputText value="#{user.fullName}"/>
+                            <h:outputText value="#{current.fullName}"/>
                             <h:panelGroup styleClass="caret"></h:panelGroup>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><h:commandLink action="#{user.logout}"><h:outputText value="Settings"/></h:commandLink></li>
+                            <li><h:commandLink action="#{current.logout}"><h:outputText value="Settings"/></h:commandLink></li>
                             <li class="divider"></li>
-                            <li><h:commandLink action="#{user.logout}"><h:outputText value="Log out"/></h:commandLink></li>
+                            <li><h:commandLink action="#{current.logout}"><h:outputText value="Log out"/></h:commandLink></li>
                         </ul>
                     </li>
                 </ul>

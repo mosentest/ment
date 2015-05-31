@@ -9,22 +9,22 @@
     <ui:define name="page-header-title"><h:outputText value="Global Settings"/></ui:define>
     <ui:define name="settings-main">
         <h:messages styleClass="color-success" showDetail="false" showSummary="true" layout="table"/>
-        <f:event listener="#{globalSettingsBean.fetchGlobal}" type="preRenderView"/>
+        <f:event listener="#{globalSettings.fetchGlobal}" type="preRenderView"/>
         <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
             <h:outputText value="Title"/>
-            <h:outputText value="#{globalSettingsBean.globalSettings.title}"/>
+            <h:outputText value="#{globalSettings.globalSettings.title}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Max authentication allowed"/>
-            <h:outputText value="#{globalSettingsBean.globalSettings.maxAuthenticationAllowed}"/>
+            <h:outputText value="#{globalSettings.globalSettings.maxAuthenticationAllowed}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Enable personal settings"/>
-            <util:toggle value="#{globalSettingsBean.globalSettings.enablePersonalSettings}"/>
+            <util:toggle value="#{globalSettings.globalSettings.enablePersonalSettings}"/>
             <h:outputText value=""/>
 
             <h:outputText value="Enable log out confirmation"/>
-            <util:toggle value="#{globalSettingsBean.globalSettings.enableLogoutConfirmation}"/>
+            <util:toggle value="#{globalSettings.globalSettings.enableLogoutConfirmation}"/>
             <h:outputText value=""/>
 
             <h:outputText value=""/>
