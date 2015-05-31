@@ -2,6 +2,8 @@ package hemu.ment.core.controller;
 
 import hemu.ment.core.ejb.local.UserGroupLocal;
 import hemu.ment.core.entity.UserGroup;
+import hemu.ment.core.utility.FacesMessageUtil;
+import hemu.ment.core.utility.StringUtil;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -37,8 +39,24 @@ public class UserGroupBean {
         userGroup = userGroupEJB.getUserGroup(enterprise, role);
     }
 
+    private void validateUserGroup() {
+        if (userGroup == null) {
+            FacesMessageUtil.addErrorMessage("Error occurred");
+        }
+        if (StringUtil.empty(userGroup.getName())) {
+            FacesMessageUtil.validationError("form", "name", "Group name can not be null");
+        }
+        //check for duplicated name
+
+    }
+
     public String update() {
-        return null;
+        validateUserGroup();
+        if (FacesMessageUtil.containsValidationError()) {
+            return "/c/settings/usergroupform.xhtml?role=" + role;
+        }
+        FacesMessageUtil.addInfoMessage("User group has been updated");
+        return "/c/settings/usergrouplist.xhtml";
     }
 
     public Long getEnterprise() {
