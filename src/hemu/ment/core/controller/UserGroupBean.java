@@ -19,13 +19,26 @@ public class UserGroupBean {
     @EJB
     private UserGroupLocal userGroupEJB;
 
-    @ManagedProperty(value="#{current.enterprise.id}")
+    @ManagedProperty(value = "#{current.enterprise.id}")
     private Long enterprise;
+
+    @ManagedProperty(value = "#{param.role}")
+    private String role;
 
     private List<UserGroup> list;
 
+    private UserGroup userGroup;
+
     public void list() {
         list = userGroupEJB.getList(enterprise);
+    }
+
+    public void get() {
+        userGroup = userGroupEJB.getUserGroup(enterprise, role);
+    }
+
+    public String update() {
+        return null;
     }
 
     public Long getEnterprise() {
@@ -42,5 +55,21 @@ public class UserGroupBean {
 
     public List<UserGroup> getList() {
         return list;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 }

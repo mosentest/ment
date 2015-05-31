@@ -36,8 +36,19 @@ public class UserGroupEJB implements UserGroupLocal {
     }
 
     @Override
-    public UserGroup getUserGroup(Long userGroup) {
-        return null;
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public UserGroup getUserGroup(Long enterprise, String role) {
+        Query query = entityManager.createNamedQuery("UserGroup.Get");
+        query.setParameter("enterprise", enterprise);
+        query.setParameter("role", role);
+        List<UserGroup> list = query.getResultList();
+        if (list.size() == 0) {
+            return null;
+        }
+        UserGroup userGroup = list.get(0);
+        userGroup.setRoleConstant(RoleConstant.getRoleConstant(userGroup.getRole()));
+        userGroup.getUsers().size();
+        return userGroup;
     }
 
     @Override

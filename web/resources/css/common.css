@@ -121,3 +121,23 @@ a.negative {
 	font-size: 13px;
 	color: #666666;
 }
+.panel-header-link {
+	font-size: 16px;
+	padding-left: 12px;
+	padding-right: 6px;
+}
+.user-link {
+	padding: 5px 8px;
+}
+.user-avatar {
+
+}
+.user-name {
+	padding: 0px 5px;
+}
+.nav-title {
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 15px;
+}

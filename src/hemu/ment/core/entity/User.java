@@ -4,10 +4,7 @@ import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.permission.GlobalPermission;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -20,6 +17,22 @@ import javax.persistence.*;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7445898962052022294L;
+
+	public static final Comparator<User> COMPARATOR_NAME = new Comparator<User>() {
+		@Override
+		public int compare(User o1, User o2) {
+			int result = 0;
+			result = o1.firstName.compareToIgnoreCase(o2.firstName);
+			if (result != 0) {
+				return result;
+			}
+			result = o1.firstName.compareToIgnoreCase(o2.firstName);
+			if (result != 0) {
+				return result;
+			}
+			return o1.id.compareTo(o2.id);
+		}
+	};
 
 	private static final String[] SORTABLE_COLUMNS = {
 			"firstName", "lastName", "account", "email", "globalPermissionValue", "projectPermissionValue"
@@ -103,6 +116,11 @@ public class User implements Serializable {
 		}
 		User e = (User) o;
 		return e.id != null && this.id != null && e.id.equals(this.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return getFullName().hashCode();
 	}
 
 	public List<UserGroup> getUserGroups() {

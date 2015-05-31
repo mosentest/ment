@@ -23,8 +23,6 @@ import java.nio.file.Files;
 @WebServlet("/image/profile/*")
 public class ImageServlet extends HttpServlet {
 
-    //profile : image/profile/id.png
-
     @EJB
     private UserLocal userEJB;
 

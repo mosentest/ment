@@ -13,7 +13,7 @@ public interface UserGroupLocal {
 
     public List<UserGroup> getList(Long enterprise);
 
-    public UserGroup getUserGroup(Long userGroup);
+    public UserGroup getUserGroup(Long enterprise, String role);
 
     public UserGroup update(UserGroup userGroup);
 

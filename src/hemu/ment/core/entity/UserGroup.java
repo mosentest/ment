@@ -5,12 +5,16 @@ import hemu.ment.core.enums.RoleConstant;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "t_usergroup", schema = "ment_core")
-@NamedQueries(@NamedQuery(name = "UserGroup.GetList", query = "SELECT ug FROM UserGroup ug WHERE ug.enterprise.id = :enterprise"))
+@NamedQueries({
+		@NamedQuery(name = "UserGroup.GetList", query = "SELECT ug FROM UserGroup ug WHERE ug.enterprise.id = :enterprise"),
+		@NamedQuery(name = "UserGroup.Get", query = "SELECT ug FROM UserGroup ug WHERE ug.enterprise.id = :enterprise AND ug.role = :role")
+})
 public class UserGroup implements Serializable {
 
 	private static final long serialVersionUID = -1838588996310300202L;
@@ -45,6 +49,7 @@ public class UserGroup implements Serializable {
 	private RoleConstant roleConstant;
 
 	@ManyToMany(fetch = FetchType.LAZY)
+	@OrderBy("firstName, lastName")
     @JoinTable(schema = "ment_core", name = "t_usergroup_user",
 		uniqueConstraints = @UniqueConstraint(columnNames = {"usergroup_id", "user_id"}),
     	joinColumns = @JoinColumn(name = "usergroup_id", referencedColumnName = "id"),

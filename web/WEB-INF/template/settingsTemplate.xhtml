@@ -7,6 +7,7 @@
             <h:panelGroup styleClass="row" layout="block">
                 <h:panelGroup styleClass="col-lg-3" layout="block">
                     <ul class="nav nav-pills nav-stacked" role="tablist">
+                        <li class="nav-title"><h:outputText value="Settings"/></li>
                         <li class="#{subnav eq 'global' ? 'active' : ''}">
                             <h:outputLink value="c/settings/global.xhtml"><h:outputText value="Global Settings"/></h:outputLink>
                         </li>
@@ -16,6 +17,7 @@
                         <li class="#{subnav eq 'internationalization' ? 'active' : ''}">
                             <h:outputLink value="c/settings/internationalization.xhtml"><h:outputText value="Internationalization Settings"/></h:outputLink>
                         </li>
+                        <li class="nav-title"><h:outputText value="Users"/></li>
                         <li class="#{subnav eq 'usergroup' ? 'active' : ''}">
                             <h:outputLink value="c/settings/usergrouplist.xhtml"><h:outputText value="User groups"/></h:outputLink>
                         </li>

@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 @RequestScoped
 public class GlobalSettingsBean {
 
-    @ManagedProperty(value="#{current.enterprise}")
+    @ManagedProperty(value = "#{current.enterprise}")
     private Enterprise enterprise;
 
     @EJB

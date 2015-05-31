@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+    <composite:attribute name="user" required="true"/>
+    <composite:attribute name="enabledText" default="Enabled"/>
+    <composite:attribute name="disabledText" default="Disabled"/>
+</composite:interface>
+<composite:implementation>
+    <h:outputLink value="" styleClass="user-link">
+        <h:panelGroup styleClass="user-avatar">
+            <h:graphicImage styleClass="profile-small" value="/image/profile/#{cc.attrs.user.avatar}"/>
+        </h:panelGroup>
+        <h:panelGroup styleClass="user-name">
+            <h:outputText value="#{cc.attrs.user.fullName}"/>
+        </h:panelGroup>
+    </h:outputLink>
+</composite:implementation>
+</html>
