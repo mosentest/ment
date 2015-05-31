@@ -1,6 +1,7 @@
 package hemu.ment.core.cache;
 
 import hemu.ment.core.constant.ApplicationVariable;
+import hemu.ment.core.entity.Identifiable;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -47,24 +48,36 @@ public class CacheConsole implements Serializable {
 		}
 	}
 
-	public Element getAppCache(String key) {
-		return appCache.get(key);
+	public void appCache(String key, Object value) {
+		appCache.put(new Element(key, value));
+	}
+
+	public <T> T getAppCache(Class<T> classType, String key) {
+		return (T) appCache.get(key).getObjectValue();
+	}
+
+	public Long getIdentifier(String key) {
+		return ((Identifiable) appCache.get(key).getObjectValue()).getId();
+	}
+
+	public Object getAppCache(String key) {
+		return appCache.get(key).getObjectValue();
 	}
 
 	public String appCacheString(String key) {
-		return (String) getAppCache(key).getObjectValue();
+		return (String) getAppCache(key);
 	}
 
 	public byte[] appCacheByteArray(String key) {
-		return (byte[]) getAppCache(key).getObjectValue();
+		return (byte[]) getAppCache(key);
 	}
 
 	public int appCacheInt(String key) {
-		return (int) getAppCache(key).getObjectValue();
+		return (int) getAppCache(key);
 	}
 
 	public boolean appCacheBoolean(String key) {
-		return (boolean) getAppCache(key).getObjectValue();
+		return (boolean) getAppCache(key);
 	}
 
 }

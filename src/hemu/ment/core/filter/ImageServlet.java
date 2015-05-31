@@ -4,7 +4,7 @@ import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.constant.ApplicationVariable;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.Enterprise;
-import hemu.ment.core.utility.SessionUtil;
+import hemu.ment.core.utility.ContextUtil;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -33,7 +33,7 @@ public class ImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Enterprise enterprise = SessionUtil.getEnterprise(request);
+        Enterprise enterprise = ContextUtil.getEnterprise(request);
         String fileName = request.getPathInfo().substring(1);
         if (fileName.equals("default.png")) {
             byte[] array = cacheConsole.appCacheByteArray("default-profile");

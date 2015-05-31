@@ -3,7 +3,7 @@ package hemu.ment.core.filter;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.utility.LinkedProperties;
-import hemu.ment.core.utility.SessionUtil;
+import hemu.ment.core.utility.ContextUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +58,7 @@ public class SecurityFilter implements Filter {
             } else if (filterPattern.isAuthenticated()) {//is always true cuz filter is called after login filter
                 authorized = true;
             } else {
-                User user = SessionUtil.getUser(req);
+                User user = ContextUtil.getUser(req);
                 for (RoleConstant role : user.getRoles()) {
                     if (role.code.equals(filterPattern.getRole())) {
                         authorized = true;

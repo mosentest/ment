@@ -1,11 +1,13 @@
 package hemu.ment.core.listener;
 
+import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.constant.ApplicationVariable;
 import hemu.ment.core.constant.SupportedConstant;
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
 import hemu.ment.core.entity.Enterprise;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -19,15 +21,18 @@ public class ContextListener implements ServletContextListener {
     @EJB
     private EnterpriseSettingsLocal enterpriseSettingsEJB;
 
+    @Inject
+    private CacheConsole cacheConsole;
+
     @Override
     public void contextInitialized(ServletContextEvent event) {
         ServletContext context = event.getServletContext();
         //add enterprise settings
         List<Enterprise> enterpriseList = enterpriseSettingsEJB.getAllSettings();
         for (Enterprise enterprise : enterpriseList) {
-            context.setAttribute(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
-            context.setAttribute(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
-            context.setAttribute(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
+            cacheConsole.appCache(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
+            cacheConsole.appCache(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
+            cacheConsole.appCache(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
         }
         //add supported constants
         context.setAttribute("SUPPORTED_LOCALE", SupportedConstant.SUPPORTED_LOCALE);

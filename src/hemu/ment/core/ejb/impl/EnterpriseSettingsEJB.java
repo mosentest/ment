@@ -1,15 +1,12 @@
 package hemu.ment.core.ejb.impl;
 
-import hemu.ment.core.constant.ApplicationVariable;
 import hemu.ment.core.constant.SupportedConstant;
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.settings.EmailSettings;
 import hemu.ment.core.entity.settings.GlobalSettings;
 import hemu.ment.core.entity.settings.InternationalizationSettings;
-import hemu.ment.core.utility.ApplicationUtil;
 import hemu.ment.core.utility.EncryptionUtil;
-import jdk.nashorn.internal.objects.Global;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;

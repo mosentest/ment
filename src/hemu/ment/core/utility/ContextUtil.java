@@ -4,11 +4,22 @@ import hemu.ment.core.controller.UserBean;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
-public class SessionUtil {
+public class ContextUtil {
+
+	public static ExternalContext getContext() {
+		return FacesContext.getCurrentInstance().getExternalContext();
+	}
+
+	public static ServletContext getServletContext() {
+		return (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+	}
 	
 	public static void setObject(String key, Object value) {
 		setObject(ControllerUtil.getRequest(), key, value);

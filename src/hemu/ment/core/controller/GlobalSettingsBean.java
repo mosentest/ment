@@ -1,5 +1,6 @@
 package hemu.ment.core.controller;
 
+import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.constant.ApplicationVariable;
 import hemu.ment.core.constant.SupportedConstant;
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
@@ -7,7 +8,6 @@ import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.settings.EmailSettings;
 import hemu.ment.core.entity.settings.GlobalSettings;
 import hemu.ment.core.entity.settings.InternationalizationSettings;
-import hemu.ment.core.utility.ApplicationUtil;
 import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 
 /**
@@ -30,6 +31,9 @@ public class GlobalSettingsBean {
     @EJB
     private EnterpriseSettingsLocal enterpriseSettingsEJB;
 
+    @Inject
+    private CacheConsole cacheConsole;
+
     private InternationalizationSettings i18nSettings;
 
     private EmailSettings emailSettings;
@@ -44,15 +48,15 @@ public class GlobalSettingsBean {
     }
 
     public void fetchI18N() {
-        i18nSettings = ApplicationUtil.getAttribute(InternationalizationSettings.class, ApplicationVariable.I18N + enterprise.getCode());
+        i18nSettings = cacheConsole.getAppCache(InternationalizationSettings.class, ApplicationVariable.I18N + enterprise.getCode());
     }
 
     public void fetchGlobal() {
-        globalSettings =  ApplicationUtil.getAttribute(GlobalSettings.class, ApplicationVariable.GLOBAL + enterprise.getCode());
+        globalSettings =  cacheConsole.getAppCache(GlobalSettings.class, ApplicationVariable.GLOBAL + enterprise.getCode());
     }
 
     public void fetchEmail() {
-        emailSettings = ApplicationUtil.getAttribute(EmailSettings.class, ApplicationVariable.EMAIL + enterprise.getCode());
+        emailSettings = cacheConsole.getAppCache(EmailSettings.class, ApplicationVariable.EMAIL + enterprise.getCode());
     }
 
     private void validateI18N() {
@@ -108,9 +112,9 @@ public class GlobalSettingsBean {
         if (FacesMessageUtil.containsValidationError()) {
             return "/c/settings/internationalizationform.xhtml";
         }
-        Long id = ApplicationUtil.getIdentifier(ApplicationVariable.I18N + enterprise.getCode());
+        Long id = cacheConsole.getIdentifier(ApplicationVariable.I18N + enterprise.getCode());
         InternationalizationSettings settings = enterpriseSettingsEJB.updateInternationalizationSettings(id, i18nSettings);
-        ApplicationUtil.setAttribute(ApplicationVariable.I18N + enterprise.getCode(), settings);
+        cacheConsole.appCache(ApplicationVariable.I18N + enterprise.getCode(), settings);
         FacesMessageUtil.addInfoMessage("Internationalization Settings has been updated");
         return "/c/settings/internationalization.xhtml";
     }
@@ -120,9 +124,9 @@ public class GlobalSettingsBean {
         if (FacesMessageUtil.containsValidationError()) {
             return "/c/settings/globalform.xhtml";
         }
-        Long id = ApplicationUtil.getIdentifier(ApplicationVariable.GLOBAL + enterprise.getCode());
+        Long id = cacheConsole.getIdentifier(ApplicationVariable.GLOBAL + enterprise.getCode());
         GlobalSettings settings = enterpriseSettingsEJB.updateGlobalSettings(id, globalSettings);
-        ApplicationUtil.setAttribute(ApplicationVariable.GLOBAL + enterprise.getCode(), settings);
+        cacheConsole.appCache(ApplicationVariable.GLOBAL + enterprise.getCode(), settings);
         FacesMessageUtil.addInfoMessage("Global Settings has been updated");
         return "/c/settings/global.xhtml";
     }
@@ -132,9 +136,9 @@ public class GlobalSettingsBean {
         if (FacesMessageUtil.containsValidationError()) {
             return "/c/settings/emailform.xhtml";
         }
-        Long id = ApplicationUtil.getIdentifier(ApplicationVariable.EMAIL + enterprise.getCode());
+        Long id = cacheConsole.getIdentifier(ApplicationVariable.EMAIL + enterprise.getCode());
         EmailSettings settings = enterpriseSettingsEJB.updateEmailSettings(id, emailSettings);
-        ApplicationUtil.setAttribute(ApplicationVariable.EMAIL + enterprise.getCode(), settings);
+        cacheConsole.appCache(ApplicationVariable.EMAIL + enterprise.getCode(), settings);
         FacesMessageUtil.addInfoMessage("Email Settings has been updated");
         return "/c/settings/email.xhtml";
     }
