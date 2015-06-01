@@ -1,6 +1,6 @@
 package hemu.ment.core.filter;
 
-import hemu.ment.core.controller.UserBean;
+import hemu.ment.core.controller.LoginBean;
 import hemu.ment.core.utility.ContextUtil;
 
 import javax.servlet.*;
@@ -21,8 +21,8 @@ public class LoginFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		UserBean userBean = ContextUtil.getUserBean(req);
-        boolean isLoggedIn = userBean != null && userBean.isAuthenticated();
+		LoginBean loginBean = ContextUtil.getUserBean(req);
+        boolean isLoggedIn = loginBean != null && loginBean.isAuthenticated();
         if (isLoginPage(req.getRequestURI())) {
             if (isLoggedIn) {
                 res.sendRedirect(req.getContextPath() + "/c/dashboard.xhtml");

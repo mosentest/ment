@@ -1,6 +1,6 @@
 package hemu.ment.core.utility;
 
-import hemu.ment.core.controller.UserBean;
+import hemu.ment.core.controller.LoginBean;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
 
@@ -8,7 +8,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 public class ContextUtil {
@@ -50,8 +49,8 @@ public class ContextUtil {
 		return request.getSession().getAttribute(key);
 	}
 
-	public static UserBean getUserBean(HttpServletRequest request) {
-		return (UserBean) request.getSession().getAttribute("current");
+	public static LoginBean getUserBean(HttpServletRequest request) {
+		return (LoginBean) request.getSession().getAttribute("current");
 	}
 
     public static User getUser(ServletRequest request) {
@@ -63,7 +62,7 @@ public class ContextUtil {
     }
 
     public static Enterprise getEnterprise(HttpServletRequest request) {
-        return ((UserBean) request.getSession().getAttribute("current")).getEnterprise();
+        return ((LoginBean) request.getSession().getAttribute("current")).getEnterprise();
     }
 
 	

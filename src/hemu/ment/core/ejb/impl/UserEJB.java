@@ -8,12 +8,15 @@ import hemu.ment.core.entity.User;
 import hemu.ment.core.entity.UserGroup;
 import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.exception.InformationException;
+import hemu.ment.core.query.Order;
+import hemu.ment.core.query.Page;
 import hemu.ment.core.utility.EncryptionUtil;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,9 +69,49 @@ public class UserEJB implements UserLocal, UserRemote {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Enterprise getEnterprise(Long user) {
         Query query = entityManager.createNamedQuery("User.GetEnterprise");
         query.setParameter("user", user);
         return (Enterprise) query.getSingleResult();
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public User create(User user) {
+        return null;
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public Page<User> list(Long enterprise, String order, int page, int size) {
+        Page<User> collection = new Page<>();
+        Query query = entityManager.createNamedQuery("User.Size");
+        query.setParameter("enterprise", enterprise);
+        long total = (long) query.getSingleResult();
+        if (total != 0) {
+            collection.setCurrentPage(page);
+            collection.setTotalElement(total, size);
+
+            query = entityManager.createNamedQuery("User.List");
+            query.setParameter("enterprise", enterprise);
+            query.setParameter("order", order);
+            query.setFirstResult(page * size);
+            query.setMaxResults(size);
+            collection.setContent(query.getResultList());
+        }
+        return collection;
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public User get(Long enterprise, Long user) {
+        return null;
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public User update(User user) {
+        return null;
     }
 }

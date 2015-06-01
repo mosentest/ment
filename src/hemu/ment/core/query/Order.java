@@ -1,23 +1,50 @@
 package hemu.ment.core.query;
 
+/**
+ * Created by muu on 2015/6/1.
+ */
 public class Order {
 
-	public static final String ASCENDING = "ASC";
-	public static final String DESCENDING = "DESC";
-	
-	private final String column;
-	private final String order;
-	
-	public Order(String column, String order) {
-		this.column = column;
-		this.order = order;
-	}
+    private String name;
 
-	public String getOrder() {
-		return order;
-	}
+    private String column;
 
-	public String getColumn() {
-		return column;
-	}
+    private boolean ascending;
+
+    public Order(String name, String column, boolean ascending) {
+        this.name = name;
+        this.column = column;
+        this.ascending = ascending;
+    }
+
+    public Order() {}
+
+    @Override
+    public String toString() {
+        return column + " " + (ascending ? "ASC" : "DESC");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColumn() {
+        return column;
+    }
+
+    public void setColumn(String column) {
+        this.column = column;
+    }
+
+    public boolean isAscending() {
+        return ascending;
+    }
+
+    public void setAscending(boolean ascending) {
+        this.ascending = ascending;
+    }
 }

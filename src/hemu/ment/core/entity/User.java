@@ -2,6 +2,7 @@ package hemu.ment.core.entity;
 
 import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.permission.GlobalPermission;
+import hemu.ment.core.query.Order;
 
 import java.io.Serializable;
 import java.util.*;
@@ -13,7 +14,9 @@ import javax.persistence.*;
 @NamedQueries({
 		@NamedQuery(name = "User.Accessible", query = "SELECT COUNT(u) > 0 FROM User u WHERE u.id = :user AND u.enterprise.id = :enterprise"),
 		@NamedQuery(name = "User.GetByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-		@NamedQuery(name = "User.GetEnterprise", query = "SELECT u.enterprise FROM User u WHERE u.id = :user")})
+		@NamedQuery(name = "User.GetEnterprise", query = "SELECT u.enterprise FROM User u WHERE u.id = :user"),
+		@NamedQuery(name = "User.List", query = "SELECT u FROM User u WHERE u.enterprise.id = :enterprise ORDER BY :order"),
+		@NamedQuery(name = "User.Size", query = "SELECT COUNT(u) FROM User u WHERE u.enterprise.id = :enterprise")})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7445898962052022294L;
@@ -34,11 +37,19 @@ public class User implements Serializable {
 		}
 	};
 
+	public static final Map<String, String> ORDER_MAP = new HashMap<>();
+
+	static {
+		ORDER_MAP.put("firstName", "u.firstName");
+		ORDER_MAP.put("lastName", "u.lastName");
+		ORDER_MAP.put("email", "u.email");
+	}
+
 	private static final String[] SORTABLE_COLUMNS = {
-			"firstName", "lastName", "account", "email", "globalPermissionValue", "projectPermissionValue"
+		"firstName", "lastName", "email"
 	};
 
-	private static final String DEFAULT_COLUMN = "firstName";
+	public static final String DEFAULT_COLUMN = "firstName";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -64,9 +75,6 @@ public class User implements Serializable {
 	@Column(name = "login_date")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date login;
-
-	@Column(name = "confirm_key")
-	private String confirmKey;
 
 	@Column(name = "enabled")
 	private boolean enabled;
@@ -221,14 +229,6 @@ public class User implements Serializable {
 
 	public void setHash(String hash) {
 		this.hash = hash;
-	}
-
-	public String getConfirmKey() {
-		return confirmKey;
-	}
-
-	public void setConfirmKey(String confirmKey) {
-		this.confirmKey = confirmKey;
 	}
 
 	public boolean isEnabled() {

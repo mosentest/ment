@@ -1,0 +1,4 @@
+for unsupported attributes in jsf:
+<html ... xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+...
+<h:inputText ... a:role="xxx" />

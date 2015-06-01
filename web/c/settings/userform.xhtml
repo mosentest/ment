@@ -16,9 +16,6 @@
             <h:message styleClass="color-danger" for="title"/>
 
             <h:outputText value="Max authentication allowed"/>
-            <h:selectOneMenu id="max_authentication_allowed" styleClass="form-control" value="#{globalSettings.globalSettings.maxAuthenticationAllowed}">
-                <f:selectItems value="#{ment:intArray(1, 5)}" />
-            </h:selectOneMenu>
             <h:message styleClass="color-danger" for="max_authentication_allowed"/>
 
             <h:outputText value="Enable personal settings"/>

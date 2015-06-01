@@ -1,88 +1,157 @@
 package hemu.ment.core.controller;
 
 import hemu.ment.core.ejb.local.UserLocal;
-import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
-import hemu.ment.core.exception.InformationException;
-import hemu.ment.core.utility.FacesMessageUtil;
+import hemu.ment.core.query.Page;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import java.io.Serializable;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import java.util.HashMap;
+import java.util.Map;
 
-@ManagedBean(name = "current")
-@SessionScoped
-public class UserBean implements Serializable {
+/**
+ * Created by muu on 2015/6/1.
+ */
+@ManagedBean(name = "userBean")
+@RequestScoped
+public class UserBean {
 
-	private static final long serialVersionUID = -2228271739572661055L;
-
-	private String email;
-	private String password;
-	private boolean rememberMe;
-
-	private User user;
-	private Enterprise enterprise;
+    private static final int SIZE = 30;
 
     @EJB
     private UserLocal userEJB;
 
-	public UserBean() {}
-	
-	public String login() {
-        try {
-            user = userEJB.login(email, password);
-            enterprise = user.getEnterprise();
-            return "/c/dashboard.xhtml?faces-redirect=true";
-        } catch (InformationException e) {
-			FacesMessageUtil.addErrorMessage(e.getMessage(), null);
-            return (email = password = null);
-        }
-	}
+    private Page<User> list;
 
-	public String logout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/index.xhtml?faces-redirect=true";
-	}
+    private User user;
 
-	public String getFullName() {
-        return user.getFullName();
+    @ManagedProperty(value = "#{current.enterprise.id}")
+    private Long enterprise;
+
+    @ManagedProperty(value = "#{param.sort}")
+    private String sort;
+
+    @ManagedProperty(value = "#{param.query}")
+    private String query;
+
+    @ManagedProperty(value = "#{param.pn}")
+    private int pn;
+
+    @ManagedProperty(value = "#{param.lim}")
+    private int lim;
+
+    @ManagedProperty(value = "#{param.id}")
+    private Long id;
+
+    private Map<String, Object> values = new HashMap<>();
+
+    private String url;
+
+    public void list() {
+        pn = pn < 0 ? 0 : pn;
+        lim = lim < 10 || lim > 50 ? lim = SIZE : lim;
+        sort = sort == null ? User.DEFAULT_COLUMN : sort;
+        list = userEJB.list(enterprise, User.ORDER_MAP.get(sort), pn, lim);
+
+        url = buildUrl();
+        values.put("orders", User.ORDER_MAP);
     }
 
-	public boolean isAuthenticated() {
-		return user != null;
-	}
-	
-	public boolean isRememberMe() {
-		return rememberMe;
-	}
-
-	public void setRememberMe(boolean rememberMe) {
-		this.rememberMe = rememberMe;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public Enterprise getEnterprise() {
-		return enterprise;
-	}
-
-    public String getPassword() {
-        return password;
+    private String buildUrl() {
+        StringBuilder buffer = new StringBuilder("c/settings/userlist.xhtml?");
+        if (query != null) buffer.append("query=" + query + "&");
+        if (lim != SIZE) buffer.append("lim=" + lim + "&");
+        if (sort != null && !sort.equals(User.DEFAULT_COLUMN)) buffer.append("sort=" + sort + "&");
+        return buffer.toString();
     }
 
-    public String getEmail() {
-        return email;
+    public void get() {}
+
+    public UserLocal getUserEJB() {
+        return userEJB;
+    }
+
+    public void setUserEJB(UserLocal userEJB) {
+        this.userEJB = userEJB;
+    }
+
+    public Page<User> getList() {
+        return list;
+    }
+
+    public void setList(Page<User> list) {
+        this.list = list;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Long enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getPn() {
+        return pn;
+    }
+
+    public void setPn(int pn) {
+        this.pn = pn;
+    }
+
+    public Map<String, Object> getValues() {
+        return values;
+    }
+
+    public void setValues(Map<String, Object> values) {
+        this.values = values;
+    }
+
+    public String getUrl() { return url; }
+
+    public int getLim() {
+        return lim;
+    }
+
+    public void setLim(int lim) {
+        this.lim = lim;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

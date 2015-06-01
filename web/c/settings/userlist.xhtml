@@ -3,37 +3,51 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:util="http://java.sun.com/jsf/composite/util">
+    xmlns:util="http://java.sun.com/jsf/composite/util"
+    xmlns:ment="http://www.hemu.com/ment/taglib">
     <ui:param name="nav" value="settings"/>
-    <ui:param name="subnav" value="global"/>
-    <ui:define name="page-header-title"><h:outputText value="Global Settings"/></ui:define>
+    <ui:param name="subnav" value="user"/>
+    <ui:define name="page-header-title"><h:outputText value="Users"/></ui:define>
+    <ui:define name="page-header-description"><h:outputText value="Description omitted....."/></ui:define>
     <ui:define name="settings-main">
-        <h:messages styleClass="color-success" showDetail="false" showSummary="true" layout="table"/>
-        <f:event listener="#{globalSettings.fetchGlobal}" type="preRenderView"/>
-        <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
-            <h:outputText value="Title"/>
-            <h:outputText value="#{globalSettings.globalSettings.title}"/>
-            <h:outputText value=""/>
-
-            <h:outputText value="Max authentication allowed"/>
-            <h:outputText value="#{globalSettings.globalSettings.maxAuthenticationAllowed}"/>
-            <h:outputText value=""/>
-
-            <h:outputText value="Enable personal settings"/>
-            <util:toggle value="#{globalSettings.globalSettings.enablePersonalSettings}"/>
-            <h:outputText value=""/>
-
-            <h:outputText value="Enable log out confirmation"/>
-            <util:toggle value="#{globalSettings.globalSettings.enableLogoutConfirmation}"/>
-            <h:outputText value=""/>
-
-            <h:outputText value=""/>
-            <h:outputText value=""/>
-            <h:outputText value=""/>
-
-            <h:outputText value=""/>
-            <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/c/settings/globalform.xhtml"/>
-            <h:outputText value=""/>
-        </h:panelGrid>
+        <f:event listener="#{userBean.list}" type="preRenderView"/>
+        <h:panelGroup styleClass="alert alert-warning" layout="block" rendered="#{userBean.list == null || userBean.list.totalElement == 0}">
+            <h:outputText value="No result found."/>
+        </h:panelGroup>
+        <h:panelGroup styleClass="col-lg-12" layout="block" rendered="#{userBean.list.totalElement > 0}">
+            <h:button styleClass="btn btn-primary" value="Create User" outcome="/c/settings/userform.xhtml"/>
+            <h:panelGroup styleClass="separator" layout="block"/>
+            <h:dataTable value="#{userBean.list.content}" var="user" styleClass="table table-hover">
+                <h:column>
+                    <f:facet name="header"><h:outputText value="#"/></f:facet>
+                    <h:graphicImage styleClass="profile-small" value="/image/profile/#{user.avatar}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="First name"/></f:facet>
+                    <h:outputText value="#{user.firstName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Last name"/></f:facet>
+                    <h:outputText value="#{user.lastName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Email"/></f:facet>
+                    <h:outputText value="#{user.email}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Roles"/></f:facet>
+                    <h:outputText value="#{user.firstName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Actions"/></f:facet>
+                    <h:outputText value="#{user.firstName}"/>
+                </h:column>
+                <f:facet name="footer">
+                    <h:panelGroup styleClass="pull-right" layout="block">
+                        <h:outputText value="#{ment:printPage(userBean.list, userBean.url)}" escape="false"/>
+                    </h:panelGroup>
+                </f:facet>
+            </h:dataTable>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
