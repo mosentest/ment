@@ -99,6 +99,9 @@ public class UserEJB implements UserLocal, UserRemote {
             query.setFirstResult(page * size);
             query.setMaxResults(size);
             collection.setContent(query.getResultList());
+            if (collection.getContent().size() == 0) {
+                collection.setTotalElement(0, size);
+            }
         }
         return collection;
     }

@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
  * Created by muu on 2015/6/1.
  */
 @ManagedBean(name = "userBean")
-@RequestScoped
+@ViewScoped
 public class UserBean {
 
     private static final int SIZE = 30;
@@ -30,19 +31,14 @@ public class UserBean {
     @ManagedProperty(value = "#{current.enterprise.id}")
     private Long enterprise;
 
-    @ManagedProperty(value = "#{param.sort}")
     private String sort;
 
-    @ManagedProperty(value = "#{param.query}")
     private String query;
 
-    @ManagedProperty(value = "#{param.pn}")
     private int pn;
 
-    @ManagedProperty(value = "#{param.lim}")
     private int lim;
 
-    @ManagedProperty(value = "#{param.id}")
     private Long id;
 
     private Map<String, Object> values = new HashMap<>();
