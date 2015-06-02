@@ -2,16 +2,19 @@
   <artifact type="exploded-war" name="console:war">
     <output-path>$PROJECT_DIR$/out/artifacts/console.war</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="ment/web/Web" />
+      <element id="javaee-facet-resources" facet="consoleModule/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ment" />
+          <element id="module-output" name="consoleModule" />
+          <element id="module-output" name="coreModule" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="primefaces-5.2" />
           <element id="library" level="application" name="ehcache" />
           <element id="library" level="application" name="hibernate" />
-          <element id="library" level="application" name="solr-solrj-5.1.0" />
+          <element id="library" level="application" name="primefaces-5.2" />
+          <element id="library" level="application" name="apache" />
+          <element id="library" level="application" name="javax.transaction-api-1.2" />
+          <element id="library" level="application" name="JPA 2.1-2.1" />
         </element>
       </element>
     </root>

@@ -1,0 +1,33 @@
+<ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:util="http://java.sun.com/jsf/composite/util">
+    <ui:param name="nav" value="settings"/>
+    <ui:param name="subnav" value="usergroup"/>
+    <ui:define name="page-header-title"><h:outputText value="User groups"/></ui:define>
+    <ui:define name="page-header-description"><h:outputText value="Description omitted....."/></ui:define>
+    <ui:define name="settings-main">
+        <f:event listener="#{userGroupBean.list}" type="preRenderView"/>
+        <ui:repeat var="userGroup" value="#{userGroupBean.list}">
+            <h:panelGroup styleClass="col-lg-12" layout="block">
+                <h:panelGroup styleClass="panel panel-default" layout="block">
+                    <h:panelGroup styleClass="panel-heading" layout="block">
+                        <h:panelGroup styleClass="panel-header-title"><h:outputText value="#{userGroup.roleConstant.name}"/></h:panelGroup>
+                        <h:panelGroup styleClass="panel-header-link">
+                            <h:outputLink value="c/settings/usergroupform.xhtml?role=#{userGroup.role}"><h:outputText value="Edit"/></h:outputLink>
+                        </h:panelGroup>
+                        <br />
+                        <h:panelGroup styleClass="panel-header-description"><h:outputText value="#{userGroup.roleConstant.description}"/></h:panelGroup>
+                    </h:panelGroup>
+                    <h:panelGroup styleClass="panel-body" layout="block">
+                        <ui:repeat var="user" value="#{userGroup.users}">
+                            <h:panelGroup styleClass="col-lg-3"><util:user user="#{user}"/></h:panelGroup>
+                        </ui:repeat>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+        </ui:repeat>
+    </ui:define>
+</ui:composition>
