@@ -6,10 +6,16 @@
     xmlns:ment="http://www.hemu.com/ment/taglib">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="global"/>
-    <ui:define name="page-header-title"><h:outputText value="Global Settings"/></ui:define>
+    <ui:define name="page-header-title">
+        <h:outputText value="Create user" rendered="#{param.id == 0}"/>
+        <h:outputText value="Edit user" rendered="#{param.id != 0}"/>
+    </ui:define>
     <ui:define name="settings-main">
-        <f:event listener="#{globalSettings.fetchGlobal}" type="preRenderView"/>
-        <h:form id="form">
+        <f:event listener="#{userBean.get}" type="preRenderView"/>
+        <h:panelGroup styleClass="alert alert-danger" layout="block" rendered="#{userBean.user == null}">
+            <h:outputText value="User found"/>
+        </h:panelGroup>
+        <h:form id="form" rendered="#{userBean.user != null}">
         <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
             <h:outputText value="Title"/>
             <h:inputText styleClass="form-control" id="title" value="#{globalSettings.globalSettings.title}"/>
@@ -31,7 +37,7 @@
             <h:outputText value=""/>
 
             <h:outputText value=""/>
-            <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettings.updateGlobal}"/>
+            <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{id == 0 ? userBean.create : userBean.update}"/>
             <h:outputText value=""/>
         </h:panelGrid>
         </h:form>

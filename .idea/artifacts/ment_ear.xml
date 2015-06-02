@@ -16,6 +16,7 @@
         <element id="library" level="application" name="ejb-3.2" />
         <element id="library" level="application" name="apache" />
         <element id="library" level="application" name="ehcache" />
+        <element id="library" level="application" name="solr-solrj-5.1.0" />
       </element>
     </root>
   </artifact>

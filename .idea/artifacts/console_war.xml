@@ -11,6 +11,7 @@
           <element id="library" level="application" name="primefaces-5.2" />
           <element id="library" level="application" name="ehcache" />
           <element id="library" level="application" name="hibernate" />
+          <element id="library" level="application" name="solr-solrj-5.1.0" />
         </element>
       </element>
     </root>

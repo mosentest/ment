@@ -84,7 +84,7 @@ public class UserEJB implements UserLocal, UserRemote {
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public Page<User> list(Long enterprise, String order, int page, int size) {
+    public Page<User> list(Long enterprise, String queryString, int page, int size) {
         Page<User> collection = new Page<>();
         Query query = entityManager.createNamedQuery("User.Size");
         query.setParameter("enterprise", enterprise);
@@ -95,7 +95,6 @@ public class UserEJB implements UserLocal, UserRemote {
 
             query = entityManager.createNamedQuery("User.List");
             query.setParameter("enterprise", enterprise);
-            query.setParameter("order", order);
             query.setFirstResult(page * size);
             query.setMaxResults(size);
             collection.setContent(query.getResultList());

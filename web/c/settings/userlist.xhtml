@@ -13,7 +13,6 @@
             <f:viewParam name="query" value="#{userBean.query}"/>
             <f:viewParam name="lim" value="#{userBean.lim}"/>
             <f:viewParam name="pn" value="#{userBean.pn}"/>
-            <f:viewParam name="sort" value="#{userBean.sort}"/>
         </f:metadata>
         <f:event listener="#{userBean.list}" type="preRenderView"/>
         <h:panelGroup styleClass="alert alert-warning" layout="block" rendered="#{userBean.list == null || userBean.list.totalElement == 0}">
@@ -24,12 +23,12 @@
             <h:panelGroup styleClass="separator" layout="block"/>
             <h:form styleClass="form-inline">
                 <h:panelGroup styleClass="form-group" layout="block">
-                    <h:outputLabel for="q" value="Query"/>
-                    <h:inputText styleClass="form-control" value="#{userBean.query}"/>
+                    <h:outputLabel for="query" value="Query"/>
+                    <h:inputText id="query" styleClass="form-control" value="#{userBean.query}"/>
                 </h:panelGroup>
                 <h:panelGroup styleClass="form-group" layout="block">
-                    <h:outputLabel for="l" value="Limit"/>
-                    <h:selectOneMenu value="#{userBean.lim}" styleClass="form-control">
+                    <h:outputLabel for="lim" value="Limit"/>
+                    <h:selectOneMenu id="lim" value="#{userBean.lim}" styleClass="form-control">
                         <f:selectItem itemValue="20" itemLabel="20" />
                         <f:selectItem itemValue="30" itemLabel="30" />
                         <f:selectItem itemValue="50" itemLabel="50" />
@@ -46,7 +45,7 @@
                     <h:graphicImage styleClass="profile-small" value="/image/profile/#{user.avatar}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header"><h:outputText value="First name"/></f:facet>
+                    <f:facet name="header"><h:link styleClass="dropdown-toggle" outcome="/c/settings/userlist.xhtml"><h:outputText value="First name"/></h:link></f:facet>
                     <h:outputText value="#{user.firstName}"/>
                 </h:column>
                 <h:column>

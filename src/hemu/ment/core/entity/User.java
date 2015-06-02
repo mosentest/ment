@@ -15,7 +15,7 @@ import javax.persistence.*;
 		@NamedQuery(name = "User.Accessible", query = "SELECT COUNT(u) > 0 FROM User u WHERE u.id = :user AND u.enterprise.id = :enterprise"),
 		@NamedQuery(name = "User.GetByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
 		@NamedQuery(name = "User.GetEnterprise", query = "SELECT u.enterprise FROM User u WHERE u.id = :user"),
-		@NamedQuery(name = "User.List", query = "SELECT u FROM User u WHERE u.enterprise.id = :enterprise ORDER BY :order"),
+		@NamedQuery(name = "User.List", query = "SELECT u FROM User u WHERE u.enterprise.id = :enterprise"),
 		@NamedQuery(name = "User.Size", query = "SELECT COUNT(u) FROM User u WHERE u.enterprise.id = :enterprise")})
 public class User implements Serializable {
 
@@ -36,20 +36,6 @@ public class User implements Serializable {
 			return o1.id.compareTo(o2.id);
 		}
 	};
-
-	public static final Map<String, String> ORDER_MAP = new HashMap<>();
-
-	static {
-		ORDER_MAP.put("firstName", "u.firstName");
-		ORDER_MAP.put("lastName", "u.lastName");
-		ORDER_MAP.put("email", "u.email");
-	}
-
-	private static final String[] SORTABLE_COLUMNS = {
-		"firstName", "lastName", "email"
-	};
-
-	public static final String DEFAULT_COLUMN = "firstName";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -107,15 +93,6 @@ public class User implements Serializable {
 	private Set<RoleConstant> roles = new HashSet<>();
 
 	public User() {}
-
-	public static String getSortColumn(String column) {
-		for (String c : SORTABLE_COLUMNS) {
-			if (c.equals(column)) {
-				return c;
-			}
-		}
-		return DEFAULT_COLUMN;
-	}
 
 	@Override
 	public boolean equals(Object o) {

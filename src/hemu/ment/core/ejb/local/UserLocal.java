@@ -20,7 +20,7 @@ public interface UserLocal {
 
     public User create(User user);
 
-    public Page<User> list(Long enterprise, String order, int page, int size);
+    public Page<User> list(Long enterprise, String query, int page, int size);
 
     public User get(Long enterprise, Long user);
 

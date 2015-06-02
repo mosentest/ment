@@ -3,14 +3,12 @@ package hemu.ment.core.controller;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.query.Page;
+import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by muu on 2015/6/1.
@@ -31,8 +29,6 @@ public class UserBean {
     @ManagedProperty(value = "#{current.enterprise.id}")
     private Long enterprise;
 
-    private String sort;
-
     private String query;
 
     private int pn;
@@ -41,29 +37,35 @@ public class UserBean {
 
     private Long id;
 
-    private Map<String, Object> values = new HashMap<>();
-
     private String url;
 
     public void list() {
         pn = pn < 0 ? 0 : pn;
         lim = lim < 10 || lim > 50 ? lim = SIZE : lim;
-        sort = sort == null ? User.DEFAULT_COLUMN : sort;
-        list = userEJB.list(enterprise, User.ORDER_MAP.get(sort), pn, lim);
+        list = userEJB.list(enterprise, query, pn, lim);
 
-        url = buildUrl();
-        values.put("orders", User.ORDER_MAP);
     }
 
     private String buildUrl() {
         StringBuilder buffer = new StringBuilder("c/settings/userlist.xhtml?");
         if (query != null) buffer.append("query=" + query + "&");
         if (lim != SIZE) buffer.append("lim=" + lim + "&");
-        if (sort != null && !sort.equals(User.DEFAULT_COLUMN)) buffer.append("sort=" + sort + "&");
         return buffer.toString();
     }
 
-    public void get() {}
+    public void get() {
+        if (id != 0) {
+            user = userEJB.get(enterprise, id);
+        }
+    }
+
+    public String create() {
+        return null;
+    }
+
+    public String update() {
+        return null;
+    }
 
     public UserLocal getUserEJB() {
         return userEJB;
@@ -97,14 +99,6 @@ public class UserBean {
         this.enterprise = enterprise;
     }
 
-    public String getSort() {
-        return sort;
-    }
-
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
-
     public String getQuery() {
         return query;
     }
@@ -127,14 +121,6 @@ public class UserBean {
 
     public void setPn(int pn) {
         this.pn = pn;
-    }
-
-    public Map<String, Object> getValues() {
-        return values;
-    }
-
-    public void setValues(Map<String, Object> values) {
-        this.values = values;
     }
 
     public String getUrl() { return url; }
