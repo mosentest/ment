@@ -22,7 +22,7 @@ public interface UserLocal {
 
     public Page<User> list(Long enterprise, String query, int page, int size);
 
-    public User get(Long enterprise, Long user);
+    public User get(Long enterprise, Long user) throws InformationException;
 
     public User update(User user);
 

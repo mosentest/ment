@@ -8,7 +8,7 @@
     <composite:attribute name="disabledText" default="Disabled"/>
 </composite:interface>
 <composite:implementation>
-    <h:outputLink value="" styleClass="user-link">
+    <h:outputLink value="c/userinfo.xhtml?id=#{cc.attrs.user.id}" styleClass="user-link">
         <h:panelGroup styleClass="user-avatar">
             <h:graphicImage styleClass="profile-small" value="/image/profile/#{cc.attrs.user.avatar}"/>
         </h:panelGroup>

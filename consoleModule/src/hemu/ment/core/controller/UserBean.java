@@ -27,7 +27,7 @@ public class UserBean {
     private User user;
 
     @ManagedProperty(value = "#{current.enterprise.id}")
-    private Long enterprise;
+    private long enterprise;
 
     private String query;
 
@@ -35,7 +35,7 @@ public class UserBean {
 
     private int lim;
 
-    private Long id;
+    private long id;
 
     private String url;
 
@@ -55,7 +55,11 @@ public class UserBean {
 
     public void get() {
         if (id != 0) {
-            user = userEJB.get(enterprise, id);
+            try {
+                user = userEJB.get(enterprise, id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -91,11 +95,11 @@ public class UserBean {
         this.user = user;
     }
 
-    public Long getEnterprise() {
+    public long getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(Long enterprise) {
+    public void setEnterprise(long enterprise) {
         this.enterprise = enterprise;
     }
 
@@ -107,11 +111,11 @@ public class UserBean {
         this.query = query;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

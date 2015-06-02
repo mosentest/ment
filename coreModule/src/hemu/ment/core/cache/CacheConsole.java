@@ -37,7 +37,7 @@ public class CacheConsole implements Serializable {
 	public void destroy() {
 		appCache.removeAll();
 		entCache.removeAll();
-		CacheManager.getInstance().removalAll();
+		CacheManager.getInstance().clearAll();
 	}
 
 	private void initCacheManager() {

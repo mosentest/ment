@@ -42,7 +42,7 @@
             <h:dataTable value="#{userBean.list.content}" var="user" styleClass="table table-hover">
                 <h:column>
                     <f:facet name="header"><h:outputText value="#"/></f:facet>
-                    <h:graphicImage styleClass="profile-small" value="/image/profile/#{user.avatar}"/>
+                    <h:outputLink value="c/userinfo.xhtml?id=#{user.id}"><h:graphicImage styleClass="profile-small" value="/image/profile/#{user.avatar}"/></h:outputLink>
                 </h:column>
                 <h:column>
                     <f:facet name="header"><h:link styleClass="dropdown-toggle" outcome="/c/settings/userlist.xhtml"><h:outputText value="First name"/></h:link></f:facet>

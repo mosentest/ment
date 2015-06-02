@@ -14,6 +14,7 @@ import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.sound.midi.MidiDevice;
 import java.util.Date;
 import java.util.List;
 
@@ -104,8 +105,16 @@ public class UserEJB implements UserLocal {
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public User get(Long enterprise, Long user) {
-        return null;
+    public User get(Long enterprise, Long user) throws InformationException {
+        Query query = entityManager.createNamedQuery("User.Accessible");
+        query.setParameter("user", user);
+        query.setParameter("enterprise", enterprise);
+        boolean accessible = (boolean) query.getSingleResult();
+        if (!accessible) {
+            throw new InformationException("User does not exist");
+        } else {
+            return entityManager.find(User.class, user);
+        }
     }
 
     @Override
