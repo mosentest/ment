@@ -3,7 +3,6 @@ package hemu.ment.core.controller;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.query.Page;
-import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

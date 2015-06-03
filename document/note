@@ -2,3 +2,5 @@ for unsupported attributes in jsf:
 <html ... xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 ...
 <h:inputText ... a:role="xxx" />
+
+f:metadata tag only works on the top level page, not inside the template client

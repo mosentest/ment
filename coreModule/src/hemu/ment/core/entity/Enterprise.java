@@ -8,7 +8,29 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+/**
 
+ 　　　　　　　　┏┓　　　┏┓
+ 　　　　　　　┏┛┻━━━┛┻┓
+ 　　　　　　　┃　　　　　　　┃ 　
+ 　　　　　　　┃　　　━　　　┃
+ 　　　　　　　┃　＞　　　＜　┃
+ 　　　　　　　┃　　　　　　　┃
+ 　　　　　　　┃...　⌒　...　┃
+ 　　　　　　　┃　　　　　　　┃
+ 　　　　　　　┗━┓　　　┏━┛
+ 　　　　　　　　　┃　　　┃　Code is far away from bug with the animal protecting　　　　　　　　　　
+ 　　　　　　　　　┃　　　┃ 神兽保佑,代码无bug
+ 　　　　　　　　　┃　　　┃　　　　　　　　　　　
+ 　　　　　　　　　┃　　　┃ 　　　　　　
+ 　　　　　　　　　┃　　　┃
+ 　　　　　　　　　┃　　　┃　　　　　　　　　　　
+ 　　　　　　　　　┃　　　┗━━━┓
+ 　　　　　　　　　┃　　　　　　　┣┓
+ 　　　　　　　　　┃　　　　　　　┏┛
+ 　　　　　　　　　┗┓┓┏━┳┓┏┛
+ 　　　　　　　　　　┃┫┫　┃┫┫
+ 　　　　　　　　　　┗┻┛　┗┻┛ */
 @Entity
 @Table(name = "t_enterprise", schema = "ment_core")
 @NamedQueries(@NamedQuery(name = "Enterprise.GetAllActive", query = "SELECT e FROM Enterprise e WHERE e.enabled = true"))

@@ -3,9 +3,13 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="main">
-        <h:panelGroup id="content" layout="block">
-            <f:event listener="#{userBean.get}" type="preRenderView"/>
+    <ui:param name="subnav" value="summary"/>
+    <ui:define name="user-main">
+        <f:metadata>
+            <f:viewParam name="id" value="#{userBean.id}"/>
+        </f:metadata>
+        <f:event listener="#{userBean.get}" type="preRenderView"/>
+        <h:panelGroup layout="block">
             <h:panelGroup styleClass="alert alert-warning" layout="block" rendered="#{userBean.user == null}">
                 <h:outputText value="User does not exist"/>
             </h:panelGroup>
