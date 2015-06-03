@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/communicationModule/communicationModule.iml" filepath="$PROJECT_DIR$/communicationModule/communicationModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/consoleModule/consoleModule.iml" filepath="$PROJECT_DIR$/consoleModule/consoleModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/coreModule/coreModule.iml" filepath="$PROJECT_DIR$/coreModule/coreModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/ment.iml" filepath="$PROJECT_DIR$/ment.iml" />

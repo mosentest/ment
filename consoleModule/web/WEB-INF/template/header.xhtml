@@ -1,8 +1,9 @@
 <ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" role="banner" style="background-color:#ffffff;">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" a:role="banner" style="background-color:#ffffff;">
         <h:panelGroup styleClass="container" layout="block" rendered="#{not current.authenticated}">
             <h:panelGroup styleClass="navbar-header" layout="block">
                 <h:outputLink value="index.xhtml" styleClass="navbar-brand">
@@ -17,7 +18,7 @@
                 </h:outputLink>
             </h:panelGroup>
             <h:form>
-            <h:panelGroup styleClass="collapse navbar-collapse bs-navbar-collapse" role="navigation" layout="block">
+            <h:panelGroup styleClass="collapse navbar-collapse bs-navbar-collapse" a:role="navigation" layout="block">
                 <ul class="nav navbar-nav">
                     <li class="#{nav eq 'dashboard' ? 'active' : ''}">
                         <h:outputLink value="c/dashboard.xhtml"><h:outputText value="Dashboard"/></h:outputLink>

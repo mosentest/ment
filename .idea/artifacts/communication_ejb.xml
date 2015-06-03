@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="communication:ejb">
+    <output-path>$PROJECT_DIR$/out/artifacts/communication.jar</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="communicationModule/ejb/EJB" />
+      <element id="module-output" name="communicationModule" />
+      <element id="module-output" name="coreModule" />
+    </root>
+  </artifact>
+</component>
