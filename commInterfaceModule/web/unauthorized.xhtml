@@ -1,0 +1,23 @@
+<ui:composition template="/WEB-INF/template/default.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="main">
+        <h:panelGroup id="content" layout="block">
+            <h:panelGroup styleClass="row" layout="block">
+                <h:panelGroup styleClass="col-sm-offset-3 col-lg-6" layout="block">
+                    <h:panelGroup styleClass="panel panel-default" layout="block">
+                        <h:panelGroup styleClass="panel-heading" layout="block">
+                            <h:outputText value="Unauthorized"/>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="panel-body" layout="block">
+                            <h:outputText value="Unauthorized......"/>
+                            <br />
+                            <h:link outcome="/c/dashboard.xhtml" value="Go back to dashboard"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

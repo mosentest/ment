@@ -2,10 +2,10 @@
   <artifact type="exploded-ejb" name="communication:ejb">
     <output-path>$PROJECT_DIR$/out/artifacts/communication.jar</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="communicationModule/ejb/EJB" />
-      <element id="module-output" name="communicationModule" />
+      <element id="javaee-facet-resources" facet="commModule/ejb/EJB" />
+      <element id="module-output" name="commModule" />
       <element id="module-output" name="coreModule" />
-      <element id="jpa-descriptors" facet="communicationModule/jpa/JPA" />
+      <element id="jpa-descriptors" facet="commModule/jpa/JPA" />
     </root>
   </artifact>
 </component>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<base href="#{request.contextPath}/"/>
+	<title>Enterprise Console</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" type="image/x-icon" href="#{resource['img/favicon.ico']}" />
+	<h:outputStylesheet name="css/bootstrap.css" media="all"/>
+	<h:outputStylesheet name="css/common.css" media="all"/>
+	<h:outputScript name="js/jquery-2.0.3.js"/>
+	<h:outputScript name="js/common.js"/>
+	<h:outputScript name="js/bootstrap.js"/>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var url = "ws://localhost:80/chat";
+			var ws = new WebSocket(url);
+			ws.onopen = function() {
+				console.log("connected");
+			};
+			ws.onmessage =  function(event) {
+				console.log("message: " + event.data);
+			};
+			ws.onclose = function() {
+				console.log("closed");
+			}
+			$('#send').click(function() {
+				ws.send('hahahahaha');
+				console.log('message sent');
+			});
+		});
+	</script>
+</h:head>
+<h:body>
+	<input type="button" id="send" value="send"/>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+	<ui:insert name="main"/>
+</h:body>
+<ui:insert name="footer">
+	<ui:include src="footer.xhtml" />
+</ui:insert>
+</html>
