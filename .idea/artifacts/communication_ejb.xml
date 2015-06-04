@@ -5,6 +5,7 @@
       <element id="javaee-facet-resources" facet="communicationModule/ejb/EJB" />
       <element id="module-output" name="communicationModule" />
       <element id="module-output" name="coreModule" />
+      <element id="jpa-descriptors" facet="communicationModule/jpa/JPA" />
     </root>
   </artifact>
 </component>

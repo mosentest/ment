@@ -5,8 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/communicationModule/communicationModule.iml" filepath="$PROJECT_DIR$/communicationModule/communicationModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/consoleModule/consoleModule.iml" filepath="$PROJECT_DIR$/consoleModule/consoleModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/coreModule/coreModule.iml" filepath="$PROJECT_DIR$/coreModule/coreModule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ment.iml" filepath="$PROJECT_DIR$/ment.iml" />
       <module fileurl="file://$PROJECT_DIR$/mentModule/mentModule.iml" filepath="$PROJECT_DIR$/mentModule/mentModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mentProject.iml" filepath="$PROJECT_DIR$/mentProject.iml" />
     </modules>
   </component>
 </project>

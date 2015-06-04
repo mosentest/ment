@@ -4,3 +4,5 @@ for unsupported attributes in jsf:
 <h:inputText ... a:role="xxx" />
 
 f:metadata tag only works on the top level page, not inside the template client
+
+use jboss-client : jboss-deployment-structure.xml, and add a module in jboss directory

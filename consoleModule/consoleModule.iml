@@ -14,6 +14,14 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -35,5 +43,6 @@
     <orderEntry type="library" scope="PROVIDED" name="JSF" level="application" />
     <orderEntry type="library" name="primefaces-5.2" level="application" />
     <orderEntry type="module" module-name="coreModule" />
+    <orderEntry type="library" name="jboss-client" level="application" />
   </component>
 </module>

@@ -9,7 +9,7 @@ import java.util.Properties;
 public class Client {
 
     private static final String CONNECTION_FACTORY = "jms/RemoteConnectionFactory";
-    private static final String DESTINATION = "queue/test";
+    private static final String DESTINATION = "queue/communication/chat";
     private static final String INITIAL_CONTEXT_FACTORY = "org.jboss.naming.remote.client.InitialContextFactory";
     private static final String PROVIDER_URL = "http-remoting://127.0.0.1:80";
     private static final String USERNAME = "admin";
