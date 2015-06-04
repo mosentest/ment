@@ -21,7 +21,7 @@ public class CommEndpoint {
     private Destination destination;
 
     private static final String CONNECTION_FACTORY = "jms/RemoteConnectionFactory";
-    private static final String DESTINATION = "queue/communication/comm";
+    private static final String DESTINATION = "queue/ment/comm";
     private static final String INITIAL_CONTEXT_FACTORY = "org.jboss.naming.remote.client.InitialContextFactory";
     private static final String PROVIDER_URL = "http-remoting://127.0.0.1:80";
     private static final String USERNAME = "admin";
@@ -31,7 +31,7 @@ public class CommEndpoint {
     public void postConstruct() throws Exception {
         Properties prop = new Properties();
         prop.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
-        //prop.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+        prop.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
         prop.put(Context.PROVIDER_URL, PROVIDER_URL);
         prop.put(Context.SECURITY_PRINCIPAL, USERNAME);
         prop.put(Context.SECURITY_CREDENTIALS, PASSWORD);
@@ -49,7 +49,7 @@ public class CommEndpoint {
     }
 
     @OnMessage
-    public void onMessage(final Session session, String message) {
+    public void onMessage(String message, final Session session) {
         Connection connection = null;
         javax.jms.Session jmsSession = null;
         MessageProducer producer = null;

@@ -995,7 +995,7 @@ h6,
 .h5,
 .h6 {
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.1;
   color: inherit;
 }
@@ -1033,7 +1033,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 10px;
 }
 h1 small,
@@ -1048,7 +1048,7 @@ h2 .small,
 .h2 .small,
 h3 .small,
 .h3 .small {
-  font-size: 65%;
+  font-size: 60%;
 }
 h4,
 .h4,
@@ -1075,19 +1075,19 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 36px;
+  /*font-size: 30px;*/
 }
 h2,
 .h2 {
-  font-size: 30px;
+  font-size: 24px;
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 18px;
 }
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 16px;
 }
 h5,
 .h5 {
@@ -1212,7 +1212,7 @@ a.bg-danger:hover {
   background-color: #e4b9b9;
 }
 .page-header {
-  margin: 0px 0px 20px 0px;
+  margin: 0px 0px 10px 0px;
   border-bottom: 1px solid #eeeeee;
 }
 ul,
@@ -2069,7 +2069,7 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 3px 6px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #dddddd;
@@ -2725,7 +2725,7 @@ select[multiple].input-lg {
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
-  padding: 6px 12px;
+  padding: 2px 18px;
   font-size: 14px;
   line-height: 1.42857143;
   border-radius: 4px;
@@ -3580,7 +3580,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 3px 9px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -3762,7 +3762,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
+  min-height: 30px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -3870,10 +3870,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
+  padding: 8px 12px 12px 12px;
   font-size: 18px;
   line-height: 20px;
-  height: 50px;
+  height: 35px;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -3918,8 +3918,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin: 7.5px -15px;
 }
 .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   line-height: 20px;
 }
 @media (max-width: 767px) {
@@ -3953,8 +3953,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
   }
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
@@ -4315,7 +4315,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span {
   position: relative;
   float: left;
-  padding: 6px 12px;
+  padding: 3px 12px;
   line-height: 1.42857143;
   text-decoration: none;
   color: #3b73af;
@@ -5049,10 +5049,10 @@ a.list-group-item-danger.active:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 .panel-body {
-  padding: 15px;
+  padding: 3px 10px;
 }
 .panel-heading {
-  padding: 10px 15px;
+  padding: 3px 10px;
   border-bottom: 1px solid transparent;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;

@@ -16,7 +16,7 @@ import javax.jms.TextMessage;
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
         @ActivationConfigProperty(propertyName = "user", propertyValue = "admin"),
         @ActivationConfigProperty(propertyName = "password", propertyValue = "123456y!")})
-public class ChatBean implements MessageListener {
+public class CommBean implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
