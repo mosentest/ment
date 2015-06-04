@@ -18,24 +18,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_module", schema = "ment_core")
-public class Module implements Serializable{
+public class Module implements Serializable {
 
 	private static final long serialVersionUID = -8412995696531047196L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@OneToMany(mappedBy = "module")
 	private List<EnterpriseModule> enterprises;
-	
-	public Module() {}
+
+	public Module() {
+	}
 
 	public Long getId() {
 		return id;
@@ -60,5 +61,5 @@ public class Module implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

@@ -1,9 +1,9 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:ment="http://www.hemu.com/ment/taglib">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ment="http://www.hemu.com/ment/taglib">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="user"/>
     <ui:define name="page-header-title"><h:outputText value="Users"/></ui:define>
@@ -15,7 +15,8 @@
             <f:viewParam name="pn" value="#{userBean.pn}"/>
         </f:metadata>
         <f:event listener="#{userBean.list}" type="preRenderView"/>
-        <h:panelGroup styleClass="alert alert-warning" layout="block" rendered="#{userBean.list == null || userBean.list.totalElement == 0}">
+        <h:panelGroup styleClass="alert alert-warning" layout="block"
+                      rendered="#{userBean.list == null || userBean.list.totalElement == 0}">
             <h:outputText value="No result found."/>
         </h:panelGroup>
         <h:panelGroup styleClass="col-lg-12" layout="block" rendered="#{userBean.list.totalElement > 0}">
@@ -29,23 +30,28 @@
                 <h:panelGroup styleClass="form-group" layout="block">
                     <h:outputLabel for="lim" value="Limit"/>
                     <h:selectOneMenu id="lim" value="#{userBean.lim}" styleClass="form-control">
-                        <f:selectItem itemValue="20" itemLabel="20" />
-                        <f:selectItem itemValue="30" itemLabel="30" />
-                        <f:selectItem itemValue="50" itemLabel="50" />
+                        <f:selectItem itemValue="20" itemLabel="20"/>
+                        <f:selectItem itemValue="30" itemLabel="30"/>
+                        <f:selectItem itemValue="50" itemLabel="50"/>
                     </h:selectOneMenu>
                 </h:panelGroup>
                 <h:panelGroup styleClass="form-group" layout="block">
-                    <h:commandButton styleClass="btn btn-default" action="/c/settings/userlist?faces-redirect=true&amp;includeViewParams=true" value="Search"/>
+                    <h:commandButton styleClass="btn btn-default"
+                                     action="/c/settings/userlist?faces-redirect=true&amp;includeViewParams=true"
+                                     value="Search"/>
                 </h:panelGroup>
             </h:form>
             <h:panelGroup styleClass="separator" layout="block"/>
             <h:dataTable value="#{userBean.list.content}" var="user" styleClass="table table-hover">
                 <h:column>
                     <f:facet name="header"><h:outputText value="#"/></f:facet>
-                    <h:outputLink value="c/userinfo.xhtml?id=#{user.id}"><h:graphicImage styleClass="profile-small" value="/image/profile/#{user.avatar}"/></h:outputLink>
+                    <h:outputLink value="c/userinfo.xhtml?id=#{user.id}"><h:graphicImage styleClass="profile-small"
+                                                                                         value="/image/profile/#{user.avatar}"/></h:outputLink>
                 </h:column>
                 <h:column>
-                    <f:facet name="header"><h:link styleClass="dropdown-toggle" outcome="/c/settings/userlist.xhtml"><h:outputText value="First name"/></h:link></f:facet>
+                    <f:facet name="header"><h:link styleClass="dropdown-toggle"
+                                                   outcome="/c/settings/userlist.xhtml"><h:outputText
+                            value="First name"/></h:link></f:facet>
                     <h:outputText value="#{user.firstName}"/>
                 </h:column>
                 <h:column>

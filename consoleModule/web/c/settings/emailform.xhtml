@@ -1,8 +1,8 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="email"/>
     <ui:define name="page-header-title"><h:outputText value="Email Settings"/></ui:define>
@@ -11,15 +11,18 @@
         <h:form id="form">
             <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
                 <h:outputText value="Enable email notification"/>
-                <h:selectBooleanCheckbox id="enable_email_notification" value="#{globalSettingsBean.emailSettings.enableEmailNotification}"/>
+                <h:selectBooleanCheckbox id="enable_email_notification"
+                                         value="#{globalSettingsBean.emailSettings.enableEmailNotification}"/>
                 <h:message styleClass="color-danger" for="enable_email_notification"/>
 
                 <h:outputText value="SMTP host"/>
-                <h:inputText id="smtp_host" styleClass="form-control" value="#{globalSettingsBean.emailSettings.smtpHost}"/>
+                <h:inputText id="smtp_host" styleClass="form-control"
+                             value="#{globalSettingsBean.emailSettings.smtpHost}"/>
                 <h:message styleClass="color-danger" for="smtp_host"/>
 
                 <h:outputText value="SMTP port"/>
-                <h:inputText id="smtp_port" styleClass="form-control" value="#{globalSettingsBean.emailSettings.smtpPort}"/>
+                <h:inputText id="smtp_port" styleClass="form-control"
+                             value="#{globalSettingsBean.emailSettings.smtpPort}"/>
                 <h:message styleClass="color-danger" for="smtp_port"/>
 
                 <h:outputText value="SMTP auth"/>
@@ -27,39 +30,48 @@
                 <h:message styleClass="color-danger" for="smtp_auth"/>
 
                 <h:outputText value="SMTP username"/>
-                <h:inputText id="smtp_username" styleClass="form-control" value="#{globalSettingsBean.emailSettings.smtpUsername}"/>
+                <h:inputText id="smtp_username" styleClass="form-control"
+                             value="#{globalSettingsBean.emailSettings.smtpUsername}"/>
                 <h:message styleClass="color-danger" for="smtp_username"/>
 
                 <h:outputText value="SMTP password"/>
-                <h:inputSecret id="smtp_password" styleClass="form-control" value="#{globalSettingsBean.emailSettings.smtpPassword}" redisplay="true"/>
+                <h:inputSecret id="smtp_password" styleClass="form-control"
+                               value="#{globalSettingsBean.emailSettings.smtpPassword}" redisplay="true"/>
                 <h:message styleClass="color-danger" for="smtp_password"/>
 
                 <h:outputText value="Sender name"/>
-                <h:inputText id="sender_name" styleClass="form-control" value="#{globalSettingsBean.emailSettings.senderName}"/>
+                <h:inputText id="sender_name" styleClass="form-control"
+                             value="#{globalSettingsBean.emailSettings.senderName}"/>
                 <h:message styleClass="color-danger" for="sender_name"/>
 
                 <h:outputText value="Sender mail"/>
-                <h:inputText id="sender_mail" styleClass="form-control" value="#{globalSettingsBean.emailSettings.senderMail}"/>
+                <h:inputText id="sender_mail" styleClass="form-control"
+                             value="#{globalSettingsBean.emailSettings.senderMail}"/>
                 <h:message styleClass="color-danger" for="sender_mail"/>
 
                 <h:outputText value="Connection prefix"/>
-                <h:inputText id="connection_prefix" styleClass="form-control" value="#{globalSettingsBean.emailSettings.connectionPrefix}"/>
+                <h:inputText id="connection_prefix" styleClass="form-control"
+                             value="#{globalSettingsBean.emailSettings.connectionPrefix}"/>
                 <h:message styleClass="color-danger" for="connection_prefix"/>
 
                 <h:outputText value="Ticket template"/>
-                <h:inputTextarea id="ticket_template" styleClass="form-control" cols="60" rows="6" value="#{globalSettingsBean.emailSettings.ticketTemplate}" />
+                <h:inputTextarea id="ticket_template" styleClass="form-control" cols="60" rows="6"
+                                 value="#{globalSettingsBean.emailSettings.ticketTemplate}"/>
                 <h:message styleClass="color-danger" for="ticket_template"/>
 
                 <h:outputText value="Support template"/>
-                <h:inputTextarea id="support_template" styleClass="form-control" cols="60" rows="6" value="#{globalSettingsBean.emailSettings.supportTemplate}" />
+                <h:inputTextarea id="support_template" styleClass="form-control" cols="60" rows="6"
+                                 value="#{globalSettingsBean.emailSettings.supportTemplate}"/>
                 <h:message styleClass="color-danger" for="support_template"/>
 
                 <h:outputText value="Banned domains"/>
-                <h:inputTextarea id="banned_domains" styleClass="form-control" cols="60" rows="6" value="#{globalSettingsBean.emailSettings.bannedDomains}" />
+                <h:inputTextarea id="banned_domains" styleClass="form-control" cols="60" rows="6"
+                                 value="#{globalSettingsBean.emailSettings.bannedDomains}"/>
                 <h:message styleClass="color-danger" for="banned_domains"/>
 
                 <h:outputText value="Banned adresses"/>
-                <h:inputTextarea id="banned_adresses" styleClass="form-control" cols="60" rows="6" value="#{globalSettingsBean.emailSettings.bannedAdresses}" />
+                <h:inputTextarea id="banned_adresses" styleClass="form-control" cols="60" rows="6"
+                                 value="#{globalSettingsBean.emailSettings.bannedAdresses}"/>
                 <h:message styleClass="color-danger" for="banned_adresses"/>
 
                 <h:outputText value=""/>
@@ -67,7 +79,8 @@
                 <h:outputText value=""/>
 
                 <h:outputText value=""/>
-                <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettingsBean.updateEmail}"/>
+                <h:commandButton type="submit" styleClass="btn btn-primary" value="Save"
+                                 action="#{globalSettingsBean.updateEmail}"/>
                 <h:outputText value=""/>
             </h:panelGrid>
         </h:form>

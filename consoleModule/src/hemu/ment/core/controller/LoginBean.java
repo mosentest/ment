@@ -25,20 +25,21 @@ public class LoginBean implements Serializable {
 	private User user;
 	private Enterprise enterprise;
 
-    @EJB
-    private UserLocal userEJB;
+	@EJB
+	private UserLocal userEJB;
 
-	public LoginBean() {}
-	
+	public LoginBean() {
+	}
+
 	public String login() {
-        try {
-            user = userEJB.login(email, password);
-            enterprise = user.getEnterprise();
-            return "/c/dashboard.xhtml?faces-redirect=true";
-        } catch (InformationException e) {
+		try {
+			user = userEJB.login(email, password);
+			enterprise = user.getEnterprise();
+			return "/c/dashboard.xhtml?faces-redirect=true";
+		} catch (InformationException e) {
 			FacesMessageUtil.addErrorMessage(e.getMessage(), null);
-            return (email = password = null);
-        }
+			return (email = password = null);
+		}
 	}
 
 	public String logout() {
@@ -47,13 +48,13 @@ public class LoginBean implements Serializable {
 	}
 
 	public String getFullName() {
-        return user.getFullName();
-    }
+		return user.getFullName();
+	}
 
 	public boolean isAuthenticated() {
 		return user != null;
 	}
-	
+
 	public boolean isRememberMe() {
 		return rememberMe;
 	}
@@ -78,11 +79,11 @@ public class LoginBean implements Serializable {
 		return enterprise;
 	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 }

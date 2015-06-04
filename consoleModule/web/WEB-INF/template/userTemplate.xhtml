@@ -1,20 +1,23 @@
 <ui:composition template="/WEB-INF/template/default.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="main">
         <h:panelGroup id="content" layout="block">
             <h:panelGroup styleClass="row" layout="block">
                 <h:panelGroup styleClass="col-lg-3" layout="block">
                     <ul class="nav nav-pills nav-stacked" role="tablist">
                         <li class="#{subnav eq 'summary' ? 'active' : ''}">
-                            <h:outputLink value="c/userinfo.xhtml?id=#{userBean.id}"><h:outputText value="Summary"/></h:outputLink>
+                            <h:outputLink value="c/userinfo.xhtml?id=#{userBean.id}"><h:outputText
+                                    value="Summary"/></h:outputLink>
                         </li>
                         <li class="#{subnav eq '123' ? 'active' : ''}">
-                            <h:outputLink value="c/userinfo.xhtml?id=#{userBean.id}"><h:outputText value="menu 1"/></h:outputLink>
+                            <h:outputLink value="c/userinfo.xhtml?id=#{userBean.id}"><h:outputText
+                                    value="menu 1"/></h:outputLink>
                         </li>
                         <li class="#{subnav eq '123' ? 'active' : ''}">
-                            <h:outputLink value="c/userinfo.xhtml?id=#{userBean.id}"><h:outputText value="menu 2"/></h:outputLink>
+                            <h:outputLink value="c/userinfo.xhtml?id=#{userBean.id}"><h:outputText
+                                    value="menu 2"/></h:outputLink>
                         </li>
                     </ul>
                 </h:panelGroup>

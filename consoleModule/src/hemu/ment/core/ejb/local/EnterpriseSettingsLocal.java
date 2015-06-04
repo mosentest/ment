@@ -14,12 +14,12 @@ import java.util.List;
 @Local
 public interface EnterpriseSettingsLocal {
 
-    public List<Enterprise> getAllSettings();
+	public List<Enterprise> getAllSettings();
 
-    public EmailSettings updateEmailSettings(Long id, EmailSettings settings);
+	public EmailSettings updateEmailSettings(Long id, EmailSettings settings);
 
-    public GlobalSettings updateGlobalSettings(Long id, GlobalSettings settings);
+	public GlobalSettings updateGlobalSettings(Long id, GlobalSettings settings);
 
-    public InternationalizationSettings updateInternationalizationSettings(Long id, InternationalizationSettings settings);
+	public InternationalizationSettings updateInternationalizationSettings(Long id, InternationalizationSettings settings);
 
 }

@@ -1,9 +1,9 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:ment="http://www.hemu.com/ment/taglib">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ment="http://www.hemu.com/ment/taglib">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="internationalization"/>
     <ui:define name="page-header-title"><h:outputText value="Internationalization Settings"/></ui:define>
@@ -36,7 +36,8 @@
             <h:outputText value=""/>
 
             <h:outputText value=""/>
-            <h:button type="submit" styleClass="btn btn-primary" value="Edit" outcome="/c/settings/internationalizationform.xhtml"/>
+            <h:button type="submit" styleClass="btn btn-primary" value="Edit"
+                      outcome="/c/settings/internationalizationform.xhtml"/>
             <h:outputText value=""/>
         </h:panelGrid>
     </ui:define>

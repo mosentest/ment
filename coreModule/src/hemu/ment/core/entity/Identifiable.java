@@ -5,6 +5,6 @@ package hemu.ment.core.entity;
  */
 public interface Identifiable {
 
-    public Long getId();
+	public Long getId();
 
 }

@@ -18,29 +18,29 @@ import java.util.List;
  */
 public class ContextListener implements ServletContextListener {
 
-    @EJB
-    private EnterpriseSettingsLocal enterpriseSettingsEJB;
+	@EJB
+	private EnterpriseSettingsLocal enterpriseSettingsEJB;
 
-    @Inject
-    private CacheConsole cacheConsole;
+	@Inject
+	private CacheConsole cacheConsole;
 
-    @Override
-    public void contextInitialized(ServletContextEvent event) {
-        ServletContext context = event.getServletContext();
-        //add enterprise settings
-        List<Enterprise> enterpriseList = enterpriseSettingsEJB.getAllSettings();
-        for (Enterprise enterprise : enterpriseList) {
-            cacheConsole.appCache(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
-            cacheConsole.appCache(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
-            cacheConsole.appCache(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
-        }
-        //add supported constants
-        context.setAttribute("SUPPORTED_LOCALE", SupportedConstant.SUPPORTED_LOCALE);
-        context.setAttribute("SUPPORTED_TIMEZONE", SupportedConstant.SUPPORTED_TIMEZONE);
-    }
+	@Override
+	public void contextInitialized(ServletContextEvent event) {
+		ServletContext context = event.getServletContext();
+		//add enterprise settings
+		List<Enterprise> enterpriseList = enterpriseSettingsEJB.getAllSettings();
+		for (Enterprise enterprise : enterpriseList) {
+			cacheConsole.appCache(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
+			cacheConsole.appCache(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
+			cacheConsole.appCache(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
+		}
+		//add supported constants
+		context.setAttribute("SUPPORTED_LOCALE", SupportedConstant.SUPPORTED_LOCALE);
+		context.setAttribute("SUPPORTED_TIMEZONE", SupportedConstant.SUPPORTED_TIMEZONE);
+	}
 
-    @Override
-    public void contextDestroyed(ServletContextEvent event) {
+	@Override
+	public void contextDestroyed(ServletContextEvent event) {
 
-    }
+	}
 }

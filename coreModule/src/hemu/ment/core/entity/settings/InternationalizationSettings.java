@@ -30,31 +30,33 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 
 	@Transient
 	private TimeZone defaultTimeZone;
-	
+
 	@Column(name = "default_locale")
 	private String defaultLocaleString;
-	
+
 	@Transient
 	private Locale defaultLocale;
-	
+
 	@Column(name = "date_format")
-	private String dateFormatString; 
-	
+	private String dateFormatString;
+
 	@Transient
 	private SimpleDateFormat dateFormat;
-	
+
 	@Column(name = "time_format")
 	private String timeFormatString;
-	
+
 	@Transient
 	private SimpleDateFormat timeFormat;
-	
+
 	@Column(name = "datetime_format")
 	private String dateTimeFormatString;
-	
+
 	@Transient
 	private SimpleDateFormat dateTimeFormat;
-	public InternationalizationSettings() {}
+
+	public InternationalizationSettings() {
+	}
 
 	@Override
 	public void setDefaultSettings(Properties properties) {
@@ -88,10 +90,10 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 	}
 
 	public Locale getDefaultLocale() {
-        if (defaultLocale == null && SupportedConstant.isSupportedLocale(defaultLocaleString)) {
-            defaultLocale = SupportedConstant.LOCALE_MAP.get(defaultLocaleString);
-        }
-        return defaultLocale;
+		if (defaultLocale == null && SupportedConstant.isSupportedLocale(defaultLocaleString)) {
+			defaultLocale = SupportedConstant.LOCALE_MAP.get(defaultLocaleString);
+		}
+		return defaultLocale;
 	}
 
 	public void setDefaultLocale(Locale defaultLocale) {
@@ -107,10 +109,10 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 	}
 
 	public TimeZone getDefaultTimeZone() {
-        if (defaultTimeZone == null && SupportedConstant.isSupportedTimeZone(defaultTimeZoneID)) {
-            defaultTimeZone = SupportedConstant.TIME_ZONE_MAP.get(defaultTimeZoneID);
-        }
-        return defaultTimeZone;
+		if (defaultTimeZone == null && SupportedConstant.isSupportedTimeZone(defaultTimeZoneID)) {
+			defaultTimeZone = SupportedConstant.TIME_ZONE_MAP.get(defaultTimeZoneID);
+		}
+		return defaultTimeZone;
 	}
 
 	public void setDefaultTimeZone(TimeZone defaultTimeZone) {
@@ -164,5 +166,5 @@ public class InternationalizationSettings implements SettingsEntity, Serializabl
 	public void setDateTimeFormat(SimpleDateFormat dateTimeFormat) {
 		this.dateTimeFormat = dateTimeFormat;
 	}
-	
+
 }

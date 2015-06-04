@@ -18,76 +18,76 @@ import java.util.List;
 @RequestScoped
 public class UserGroupBean {
 
-    @EJB
-    private UserGroupLocal userGroupEJB;
+	@EJB
+	private UserGroupLocal userGroupEJB;
 
-    @ManagedProperty(value = "#{current.enterprise.id}")
-    private Long enterprise;
+	@ManagedProperty(value = "#{current.enterprise.id}")
+	private Long enterprise;
 
-    @ManagedProperty(value = "#{param.role}")
-    private String role;
+	@ManagedProperty(value = "#{param.role}")
+	private String role;
 
-    private List<UserGroup> list;
+	private List<UserGroup> list;
 
-    private UserGroup userGroup;
+	private UserGroup userGroup;
 
-    public void list() {
-        list = userGroupEJB.getList(enterprise);
-    }
+	public void list() {
+		list = userGroupEJB.getList(enterprise);
+	}
 
-    public void get() {
-        userGroup = userGroupEJB.getUserGroup(enterprise, role);
-    }
+	public void get() {
+		userGroup = userGroupEJB.getUserGroup(enterprise, role);
+	}
 
-    private void validateUserGroup() {
-        if (userGroup == null) {
-            FacesMessageUtil.addErrorMessage("Error occurred");
-        }
-        if (StringUtil.empty(userGroup.getName())) {
-            FacesMessageUtil.validationError("form", "name", "Group name can not be null");
-        }
-        //check for duplicated name
+	private void validateUserGroup() {
+		if (userGroup == null) {
+			FacesMessageUtil.addErrorMessage("Error occurred");
+		}
+		if (StringUtil.empty(userGroup.getName())) {
+			FacesMessageUtil.validationError("form", "name", "Group name can not be null");
+		}
+		//check for duplicated name
 
-    }
+	}
 
-    public String update() {
-        validateUserGroup();
-        if (FacesMessageUtil.containsValidationError()) {
-            return "/c/settings/usergroupform.xhtml?role=" + role;
-        }
-        FacesMessageUtil.addInfoMessage("User group has been updated");
-        return "/c/settings/usergrouplist.xhtml";
-    }
+	public String update() {
+		validateUserGroup();
+		if (FacesMessageUtil.containsValidationError()) {
+			return "/c/settings/usergroupform.xhtml?role=" + role;
+		}
+		FacesMessageUtil.addInfoMessage("User group has been updated");
+		return "/c/settings/usergrouplist.xhtml";
+	}
 
-    public Long getEnterprise() {
-        return enterprise;
-    }
+	public Long getEnterprise() {
+		return enterprise;
+	}
 
-    public void setEnterprise(Long enterprise) {
-        this.enterprise = enterprise;
-    }
+	public void setEnterprise(Long enterprise) {
+		this.enterprise = enterprise;
+	}
 
-    public void setList(List<UserGroup> list) {
-        this.list = list;
-    }
+	public void setList(List<UserGroup> list) {
+		this.list = list;
+	}
 
-    public List<UserGroup> getList() {
-        return list;
-    }
+	public List<UserGroup> getList() {
+		return list;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public String getRole() {
+		return role;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public void setRole(String role) {
+		this.role = role;
+	}
 
-    public UserGroup getUserGroup() {
-        return userGroup;
-    }
+	public UserGroup getUserGroup() {
+		return userGroup;
+	}
 
-    public void setUserGroup(UserGroup userGroup) {
-        this.userGroup = userGroup;
-    }
+	public void setUserGroup(UserGroup userGroup) {
+		this.userGroup = userGroup;
+	}
 }

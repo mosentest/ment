@@ -25,12 +25,13 @@ public class ProjectCategory implements Serializable {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "enterprise_id")
 	private Enterprise enterprise;
-	
+
 	@Column(name = "name")
 	private String name;
-	
-	public ProjectCategory() {}
-	
+
+	public ProjectCategory() {
+	}
+
 	public static ProjectCategory getEmptyCategory() {
 		ProjectCategory category = new ProjectCategory();
 		category.setId(0l);

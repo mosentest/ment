@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class EnterpriseConfig implements Serializable {
 
 	private static final long serialVersionUID = 2937193425446241683L;
-	
+
 	@Id
 	@Column(name = "code")
 	private String code;
@@ -85,9 +85,10 @@ public class EnterpriseConfig implements Serializable {
 
 	@Column(name = "value16")
 	private String value16;
-	
-	public EnterpriseConfig() {}
-	
+
+	public EnterpriseConfig() {
+	}
+
 	public String stringValue(int value) {
 		switch (value) {
 			case 1:
@@ -126,7 +127,7 @@ public class EnterpriseConfig implements Serializable {
 				return null;
 		}
 	}
-	
+
 	public int intValue(int value) {
 		switch (value) {
 			case 1:
@@ -165,7 +166,7 @@ public class EnterpriseConfig implements Serializable {
 				return -1;
 		}
 	}
-	
+
 	public boolean booleanValue(int value) {
 		switch (value) {
 			case 1:
@@ -204,7 +205,7 @@ public class EnterpriseConfig implements Serializable {
 				return false;
 		}
 	}
-	
+
 	public double doubleValue(int value) {
 		switch (value) {
 			case 1:
@@ -243,6 +244,6 @@ public class EnterpriseConfig implements Serializable {
 				return -1;
 		}
 	}
-	
+
 
 }

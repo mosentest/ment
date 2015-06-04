@@ -1,42 +1,46 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:ment="http://www.hemu.com/ment/taglib">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ment="http://www.hemu.com/ment/taglib">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="global"/>
     <ui:define name="page-header-title"><h:outputText value="Global Settings"/></ui:define>
     <ui:define name="settings-main">
         <f:event listener="#{globalSettingsBean.fetchGlobal}" type="preRenderView"/>
         <h:form id="form">
-        <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
-            <h:outputText value="Title"/>
-            <h:inputText styleClass="form-control" id="title" value="#{globalSettingsBean.globalSettings.title}"/>
-            <h:message styleClass="color-danger" for="title"/>
+            <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-label,form-value,form-error">
+                <h:outputText value="Title"/>
+                <h:inputText styleClass="form-control" id="title" value="#{globalSettingsBean.globalSettings.title}"/>
+                <h:message styleClass="color-danger" for="title"/>
 
-            <h:outputText value="Max authentication allowed"/>
-            <h:selectOneMenu id="max_authentication_allowed" styleClass="form-control" value="#{globalSettingsBean.globalSettings.maxAuthenticationAllowed}">
-                <f:selectItems value="#{ment:intArray(1, 5, 1)}" />
-            </h:selectOneMenu>
-            <h:message styleClass="color-danger" for="max_authentication_allowed"/>
+                <h:outputText value="Max authentication allowed"/>
+                <h:selectOneMenu id="max_authentication_allowed" styleClass="form-control"
+                                 value="#{globalSettingsBean.globalSettings.maxAuthenticationAllowed}">
+                    <f:selectItems value="#{ment:intArray(1, 5, 1)}"/>
+                </h:selectOneMenu>
+                <h:message styleClass="color-danger" for="max_authentication_allowed"/>
 
-            <h:outputText value="Enable personal settings"/>
-            <h:selectBooleanCheckbox id="enable_personal_settings" value="#{globalSettingsBean.globalSettings.enablePersonalSettings}"/>
-            <h:message styleClass="color-danger" for="enable_personal_settings"/>
+                <h:outputText value="Enable personal settings"/>
+                <h:selectBooleanCheckbox id="enable_personal_settings"
+                                         value="#{globalSettingsBean.globalSettings.enablePersonalSettings}"/>
+                <h:message styleClass="color-danger" for="enable_personal_settings"/>
 
-            <h:outputText value="Enable log out confirmation"/>
-            <h:selectBooleanCheckbox id="enable_logout_confirmation" value="#{globalSettingsBean.globalSettings.enableLogoutConfirmation}"/>
-            <h:message styleClass="color-danger" for="enable_logout_confirmation"/>
+                <h:outputText value="Enable log out confirmation"/>
+                <h:selectBooleanCheckbox id="enable_logout_confirmation"
+                                         value="#{globalSettingsBean.globalSettings.enableLogoutConfirmation}"/>
+                <h:message styleClass="color-danger" for="enable_logout_confirmation"/>
 
-            <h:outputText value=""/>
-            <h:outputText value=""/>
-            <h:outputText value=""/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
 
-            <h:outputText value=""/>
-            <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{globalSettingsBean.updateGlobal}"/>
-            <h:outputText value=""/>
-        </h:panelGrid>
+                <h:outputText value=""/>
+                <h:commandButton type="submit" styleClass="btn btn-primary" value="Save"
+                                 action="#{globalSettingsBean.updateGlobal}"/>
+                <h:outputText value=""/>
+            </h:panelGrid>
         </h:form>
     </ui:define>
 </ui:composition>

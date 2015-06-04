@@ -22,19 +22,19 @@ import javax.persistence.TemporalType;
 public class EnterpriseModule implements Serializable {
 
 	private static final long serialVersionUID = -8412995696531047196L;
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="enterprise_id", referencedColumnName="id")
+	@JoinColumn(name = "enterprise_id", referencedColumnName = "id")
 	private Enterprise enterprise;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="module_id", referencedColumnName="id")
+	@JoinColumn(name = "module_id", referencedColumnName = "id")
 	private Module module;
-	
+
 	@Column(name = "enabled")
 	private boolean enabled;
 
@@ -45,8 +45,9 @@ public class EnterpriseModule implements Serializable {
 	@Column(name = "to_date")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date to;
-	
-	public EnterpriseModule() {}
+
+	public EnterpriseModule() {
+	}
 
 	public Enterprise getEnterprise() {
 		return enterprise;
@@ -87,5 +88,5 @@ public class EnterpriseModule implements Serializable {
 	public void setTo(Date to) {
 		this.to = to;
 	}
-	
+
 }

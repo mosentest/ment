@@ -5,28 +5,28 @@
 <h:head>
     <base href="#{request.contextPath}/"/>
     <title>Enterprise Console</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="icon" type="image/x-icon" href="#{resource['img/favicon.ico']}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
     <h:outputStylesheet name="css/bootstrap.css" media="all"/>
     <h:outputStylesheet name="css/common.css" media="all"/>
     <h:outputScript name="js/jquery-2.0.3.js"/>
     <h:outputScript name="js/comm.js"/>
     <h:outputScript name="js/bootstrap.js"/>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var url = "ws://localhost:80/comm";
             var ws = new WebSocket(url);
-            ws.onopen = function() {
+            ws.onopen = function () {
                 console.log("connected");
                 ws.send("hahahaha");
             };
-            ws.onmessage =  function(event) {
+            ws.onmessage = function (event) {
                 console.log("message: " + event.data);
             };
-            ws.onclose = function() {
+            ws.onclose = function () {
                 console.log("closed");
             }
-            $('#send').click(function() {
+            $('#send').click(function () {
                 ws.send('hahahahaha');
                 console.log('message sent');
             });
@@ -35,7 +35,8 @@
     </script>
 </h:head>
 <h:body>
-    <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" a:role="banner" style="background-color:#ffffff;">
+    <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" a:role="banner"
+                  style="background-color:#ffffff;">
         <h:panelGroup styleClass="container" layout="block" rendered="#{not current.authenticated}">
             <h:panelGroup styleClass="navbar-header" layout="block">
                 <h:outputLink value="index.xhtml" styleClass="navbar-brand">
@@ -44,7 +45,6 @@
             </h:panelGroup>
         </h:panelGroup>
     </h:panelGroup>
-
     <h:panelGroup id="content" layout="block">
     </h:panelGroup>
 </h:body>
@@ -55,6 +55,7 @@
             <h:outputText value="Designed and built by Hemu Inc."/>
             <h:outputLink value="http://www.google.com" target="_blank"/>
         </p>
+
         <p>
             <h:outputText value="Code licensed under "/>
             <h:outputLink value="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">

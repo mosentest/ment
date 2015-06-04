@@ -9,7 +9,7 @@ import java.util.Properties;
 @Entity
 @Table(name = "t_settings_global", schema = "ment_core")
 public class GlobalSettings implements SettingsEntity, Serializable {
-	
+
 	private static final long serialVersionUID = 8189118879112150940L;
 
 	@Id
@@ -19,20 +19,21 @@ public class GlobalSettings implements SettingsEntity, Serializable {
 	@OneToOne(optional = false, fetch = FetchType.LAZY, mappedBy = "globalSettings")
 	@JoinColumn(name = "enterprise_id")
 	private Enterprise enterprise;
-	
+
 	@Column(name = "title")
 	private String title;
 
 	@Column(name = "max_authentication_allowed")
 	private int maxAuthenticationAllowed;
-	
+
 	@Column(name = "enable_personal_settings")
 	private boolean enablePersonalSettings;
 
 	@Column(name = "enable_logout_confirmation")
 	private boolean enableLogoutConfirmation;
-	
-	public GlobalSettings() {}
+
+	public GlobalSettings() {
+	}
 
 	@Override
 	public void setDefaultSettings(Properties properties) {
@@ -64,7 +65,7 @@ public class GlobalSettings implements SettingsEntity, Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public int getMaxAuthenticationAllowed() {
 		return maxAuthenticationAllowed;
 	}

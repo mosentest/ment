@@ -11,5 +11,5 @@ public class DateUtil {
 		cal.setTime(date);
 		return cal.get(Calendar.YEAR) == today.get(Calendar.YEAR) && cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR);
 	}
-	
+
 }

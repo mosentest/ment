@@ -5,13 +5,13 @@ package hemu.ment.core.constant;
  */
 public class ApplicationVariable {
 
-    public static final String I18N = "i18n-";
-    public static final String GLOBAL = "global-";
-    public static final String EMAIL = "email-";
+	public static final String I18N = "i18n-";
+	public static final String GLOBAL = "global-";
+	public static final String EMAIL = "email-";
 
-    public static final String FILE_DIRECTORY = "E:\\entconsole\\{enterprise}\\";
+	public static final String FILE_DIRECTORY = "E:\\entconsole\\{enterprise}\\";
 
-    public static final String IMAGE_PATH = FILE_DIRECTORY + "profile\\";
+	public static final String IMAGE_PATH = FILE_DIRECTORY + "profile\\";
 
-    public static final String MASTER_ENT = "HEMUI";
+	public static final String MASTER_ENT = "HEMUI";
 }

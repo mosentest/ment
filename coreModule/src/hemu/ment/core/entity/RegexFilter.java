@@ -21,18 +21,19 @@ public class RegexFilter implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "regex")
 	private String regex;
-	
+
 	@Column(name = "enabled")
 	private boolean enabled;
-	
-	public RegexFilter() {}
-	
+
+	public RegexFilter() {
+	}
+
 	public boolean filter(String text) {
 		return text.matches(regex);
 	}
@@ -68,5 +69,5 @@ public class RegexFilter implements Serializable {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
+
 }

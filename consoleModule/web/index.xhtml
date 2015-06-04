@@ -8,7 +8,8 @@
             <h:panelGroup styleClass="row" layout="block">
                 <h:panelGroup styleClass="col-sm-offset-3 col-lg-6" layout="block">
                     <h:panelGroup styleClass="panel panel-default" layout="block">
-                        <h:panelGroup styleClass="panel-heading" layout="block"><h:outputText value="Log in"/></h:panelGroup>
+                        <h:panelGroup styleClass="panel-heading" layout="block"><h:outputText
+                                value="Log in"/></h:panelGroup>
                         <h:panelGroup styleClass="panel-body" layout="block">
                             <h:form styleClass="form-horizontal" role="form">
                                 <h:panelGroup styleClass="form-group" layout="block">
@@ -25,7 +26,8 @@
                                 <h:panelGroup styleClass="form-group" layout="block">
                                     <h:outputLabel styleClass="col-sm-3 control-label" for="password" value="Password"/>
                                     <h:panelGroup styleClass="col-sm-7" layout="block">
-                                        <h:inputSecret id="password" styleClass="form-control" value="#{current.password}">
+                                        <h:inputSecret id="password" styleClass="form-control"
+                                                       value="#{current.password}">
                                             <f:validateLength minimum="6" maximum="20"/>
                                         </h:inputSecret>
                                     </h:panelGroup>
@@ -42,7 +44,8 @@
                                 </h:panelGroup>
                                 <h:panelGroup styleClass="form-group" layout="block">
                                     <h:panelGroup styleClass="col-sm-offset-3 col-sm-6" layout="block">
-                                        <h:commandButton type="submit" styleClass="btn btn-primary" value="Log in" action="#{current.login}"/>
+                                        <h:commandButton type="submit" styleClass="btn btn-primary" value="Log in"
+                                                         action="#{current.login}"/>
                                     </h:panelGroup>
                                 </h:panelGroup>
                             </h:form>

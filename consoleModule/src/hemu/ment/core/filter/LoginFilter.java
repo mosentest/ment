@@ -9,33 +9,33 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginFilter implements Filter {
-	
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		
+
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	                     FilterChain chain) throws IOException, ServletException {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		LoginBean loginBean = ContextUtil.getUserBean(req);
-        boolean isLoggedIn = loginBean != null && loginBean.isAuthenticated();
-        if (isLoginPage(req.getRequestURI())) {
-            if (isLoggedIn) {
-                res.sendRedirect(req.getContextPath() + "/c/dashboard.xhtml");
-            } else {
-                chain.doFilter(request, response);
-            }
-        } else {
-            if (isLoggedIn) {
-                chain.doFilter(request, response);
-            } else {
-                res.sendRedirect(req.getContextPath() + "/index.xhtml");
-            }
-        }
+		boolean isLoggedIn = loginBean != null && loginBean.isAuthenticated();
+		if (isLoginPage(req.getRequestURI())) {
+			if (isLoggedIn) {
+				res.sendRedirect(req.getContextPath() + "/c/dashboard.xhtml");
+			} else {
+				chain.doFilter(request, response);
+			}
+		} else {
+			if (isLoggedIn) {
+				chain.doFilter(request, response);
+			} else {
+				res.sendRedirect(req.getContextPath() + "/index.xhtml");
+			}
+		}
 	}
 
 	private boolean isLoginPage(String url) {
@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		
+
 	}
 
 }

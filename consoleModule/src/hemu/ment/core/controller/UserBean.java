@@ -16,127 +16,129 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class UserBean {
 
-    private static final int SIZE = 30;
+	private static final int SIZE = 30;
 
-    @EJB
-    private UserLocal userEJB;
+	@EJB
+	private UserLocal userEJB;
 
-    private Page<User> list;
+	private Page<User> list;
 
-    private User user;
+	private User user;
 
-    @ManagedProperty(value = "#{current.enterprise.id}")
-    private long enterprise;
+	@ManagedProperty(value = "#{current.enterprise.id}")
+	private long enterprise;
 
-    private String query;
+	private String query;
 
-    private int pn;
+	private int pn;
 
-    private int lim;
+	private int lim;
 
-    private long id;
+	private long id;
 
-    private String url;
+	private String url;
 
-    public void list() {
-        pn = pn < 0 ? 0 : pn;
-        lim = lim < 10 || lim > 50 ? lim = SIZE : lim;
-        list = userEJB.list(enterprise, query, pn, lim);
+	public void list() {
+		pn = pn < 0 ? 0 : pn;
+		lim = lim < 10 || lim > 50 ? lim = SIZE : lim;
+		list = userEJB.list(enterprise, query, pn, lim);
 
-    }
+	}
 
-    private String buildUrl() {
-        StringBuilder buffer = new StringBuilder("c/settings/userlist.xhtml?");
-        if (query != null) buffer.append("query=" + query + "&");
-        if (lim != SIZE) buffer.append("lim=" + lim + "&");
-        return buffer.toString();
-    }
+	private String buildUrl() {
+		StringBuilder buffer = new StringBuilder("c/settings/userlist.xhtml?");
+		if (query != null) buffer.append("query=" + query + "&");
+		if (lim != SIZE) buffer.append("lim=" + lim + "&");
+		return buffer.toString();
+	}
 
-    public void get() {
-        if (id != 0) {
-            try {
-                user = userEJB.get(enterprise, id);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	public void get() {
+		if (id != 0) {
+			try {
+				user = userEJB.get(enterprise, id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    public String create() {
-        return null;
-    }
+	public String create() {
+		return null;
+	}
 
-    public String update() {
-        return null;
-    }
+	public String update() {
+		return null;
+	}
 
-    public UserLocal getUserEJB() {
-        return userEJB;
-    }
+	public UserLocal getUserEJB() {
+		return userEJB;
+	}
 
-    public void setUserEJB(UserLocal userEJB) {
-        this.userEJB = userEJB;
-    }
+	public void setUserEJB(UserLocal userEJB) {
+		this.userEJB = userEJB;
+	}
 
-    public Page<User> getList() {
-        return list;
-    }
+	public Page<User> getList() {
+		return list;
+	}
 
-    public void setList(Page<User> list) {
-        this.list = list;
-    }
+	public void setList(Page<User> list) {
+		this.list = list;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public long getEnterprise() {
-        return enterprise;
-    }
+	public long getEnterprise() {
+		return enterprise;
+	}
 
-    public void setEnterprise(long enterprise) {
-        this.enterprise = enterprise;
-    }
+	public void setEnterprise(long enterprise) {
+		this.enterprise = enterprise;
+	}
 
-    public String getQuery() {
-        return query;
-    }
+	public String getQuery() {
+		return query;
+	}
 
-    public void setQuery(String query) {
-        this.query = query;
-    }
+	public void setQuery(String query) {
+		this.query = query;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public int getPn() {
-        return pn;
-    }
+	public int getPn() {
+		return pn;
+	}
 
-    public void setPn(int pn) {
-        this.pn = pn;
-    }
+	public void setPn(int pn) {
+		this.pn = pn;
+	}
 
-    public String getUrl() { return url; }
+	public String getUrl() {
+		return url;
+	}
 
-    public int getLim() {
-        return lim;
-    }
+	public int getLim() {
+		return lim;
+	}
 
-    public void setLim(int lim) {
-        this.lim = lim;
-    }
+	public void setLim(int lim) {
+		this.lim = lim;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 }

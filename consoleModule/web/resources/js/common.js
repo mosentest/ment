@@ -1,11 +1,11 @@
 function confirmCall(url, title, message, description) {
 	$('#delete-modal #modal-title').html(title);
 	$('#delete-modal #modal-message').html(message);
-	$('#delete-modal #modal-perform').click(function() {
+	$('#delete-modal #modal-perform').click(function () {
 		$.ajax({
 			url: url,
 			type: 'POST',
-			success: function(data, status, xhr) {
+			success: function (data, status, xhr) {
 				window.scrollTo(0, 0);
 				if (data.success) {
 					showAlert('confirm', data.message);
@@ -13,7 +13,7 @@ function confirmCall(url, title, message, description) {
 					showAlert('warning', data.message);
 				}
 			},
-			error: function(xhr, statux, error) {
+			error: function (xhr, statux, error) {
 				window.scrollTo(0, 0);
 				showAlert('warning', error);
 			}
@@ -28,7 +28,7 @@ function ajaxSubmit(id) {
 		url: form.attr('action'),
 		type: form.attr('method'),
 		data: form.serialize(),
-		success: function(data, status, xhr) {
+		success: function (data, status, xhr) {
 			window.scrollTo(0, 0);
 			if (data.success) {
 				showAlert('confirm', data.message);
@@ -36,7 +36,7 @@ function ajaxSubmit(id) {
 				showAlert('warning', data.message);
 			}
 		},
-		error: function(xhr, statux, error) {
+		error: function (xhr, statux, error) {
 			window.scrollTo(0, 0);
 			showAlert('warning', error);
 		}
@@ -45,7 +45,7 @@ function ajaxSubmit(id) {
 
 function clearForm(id) {
 	$('#' + id).find('input:text, input:password, input:file, select, textarea').val('');
-    $$('#' + id).find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+	$$('#' + id).find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }
 
 function showAlert(type, message) {
@@ -65,7 +65,7 @@ function showAlert(type, message) {
 	}
 	dialog.html(message);
 	var left = (($(window).width() - dialog.outerWidth()) / 2) + $(window).scrollLeft();
-	dialog.css({left : left + 'px'});
+	dialog.css({left: left + 'px'});
 	dialog.slideDown(2000).delay(2000).slideUp(2000);
 }
 

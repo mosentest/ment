@@ -10,10 +10,10 @@ import java.util.Set;
 @Singleton
 public class CommServer {
 
-    private Set<Session> sessions;
+	private Set<Session> sessions;
 
-    public CommServer() {
+	public CommServer() {
 
-    }
+	}
 
 }

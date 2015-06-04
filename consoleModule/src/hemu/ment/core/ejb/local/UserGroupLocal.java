@@ -11,14 +11,14 @@ import java.util.List;
 @Local
 public interface UserGroupLocal {
 
-    public List<UserGroup> getList(Long enterprise);
+	public List<UserGroup> getList(Long enterprise);
 
-    public UserGroup getUserGroup(Long enterprise, String role);
+	public UserGroup getUserGroup(Long enterprise, String role);
 
-    public UserGroup update(UserGroup userGroup);
+	public UserGroup update(UserGroup userGroup);
 
-    public void remove(UserGroup userGroup);
+	public void remove(UserGroup userGroup);
 
-    public UserGroup create(UserGroup userGroup);
+	public UserGroup create(UserGroup userGroup);
 
 }

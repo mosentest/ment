@@ -1,9 +1,9 @@
 <ui:composition template="/WEB-INF/template/settingsTemplate.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:util="http://java.sun.com/jsf/composite/util">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:util="http://java.sun.com/jsf/composite/util">
     <ui:param name="nav" value="settings"/>
     <ui:param name="subnav" value="usergroup"/>
     <ui:define name="page-header-title"><h:outputText value="User group"/></ui:define>
@@ -19,7 +19,8 @@
                 <h:message styleClass="color-danger" for="name"/>
 
                 <h:outputText value="Description"/>
-                <h:inputTextarea id="description" styleClass="form-control" cols="60" rows="6" value="#{userGroupBean.userGroup.description}" />
+                <h:inputTextarea id="description" styleClass="form-control" cols="60" rows="6"
+                                 value="#{userGroupBean.userGroup.description}"/>
                 <h:message styleClass="color-danger" for="description"/>
 
                 <h:outputText value="Users"/>
@@ -47,7 +48,8 @@
                 <h:outputText value=""/>
 
                 <h:outputText value=""/>
-                <h:commandButton type="submit" styleClass="btn btn-primary" value="Save" action="#{userGroupBean.update}"/>
+                <h:commandButton type="submit" styleClass="btn btn-primary" value="Save"
+                                 action="#{userGroupBean.update}"/>
                 <h:outputText value=""/>
             </h:panelGrid>
         </h:form>

@@ -18,7 +18,7 @@ public class UserGroup implements Serializable {
 	private static final long serialVersionUID = -1838588996310300202L;
 
 	private static final String[] SORTABLE_COLUMNS = {
-		"name", "description", "userCount"
+			"name", "description", "userCount"
 	};
 
 	private static final String DEFAULT_COLUMN = "name";
@@ -48,13 +48,14 @@ public class UserGroup implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@OrderBy("firstName, lastName")
-    @JoinTable(schema = "ment_core", name = "t_usergroup_user",
-		uniqueConstraints = @UniqueConstraint(columnNames = {"usergroup_id", "user_id"}),
-    	joinColumns = @JoinColumn(name = "usergroup_id", referencedColumnName = "id"),
-    	inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	@JoinTable(schema = "ment_core", name = "t_usergroup_user",
+			uniqueConstraints = @UniqueConstraint(columnNames = {"usergroup_id", "user_id"}),
+			joinColumns = @JoinColumn(name = "usergroup_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
 	private List<User> users;
 
-	public UserGroup() {}
+	public UserGroup() {
+	}
 
 	@Override
 	public boolean equals(Object obj) {

@@ -68,7 +68,8 @@ public class Project implements Serializable {
 	@Column(name = "user_count")
 	private int userCount;
 
-	public Project() {}
+	public Project() {
+	}
 
 	public String getProjectHeader() {
 		return String.format("[%s] - %s", code, name);

@@ -7,5 +7,5 @@ import java.util.Properties;
 public interface SettingsEntity extends Identifiable {
 
 	public void setDefaultSettings(Properties properties);
-	
+
 }

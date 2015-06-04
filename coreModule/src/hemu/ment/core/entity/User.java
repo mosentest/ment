@@ -90,7 +90,8 @@ public class User implements Serializable {
 	@Transient
 	private Set<RoleConstant> roles = new HashSet<>();
 
-	public User() {}
+	public User() {
+	}
 
 	@Override
 	public boolean equals(Object o) {

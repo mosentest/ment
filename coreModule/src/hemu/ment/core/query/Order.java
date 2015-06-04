@@ -5,46 +5,47 @@ package hemu.ment.core.query;
  */
 public class Order {
 
-    private String name;
+	private String name;
 
-    private String column;
+	private String column;
 
-    private boolean ascending;
+	private boolean ascending;
 
-    public Order(String name, String column, boolean ascending) {
-        this.name = name;
-        this.column = column;
-        this.ascending = ascending;
-    }
+	public Order(String name, String column, boolean ascending) {
+		this.name = name;
+		this.column = column;
+		this.ascending = ascending;
+	}
 
-    public Order() {}
+	public Order() {
+	}
 
-    @Override
-    public String toString() {
-        return column + " " + (ascending ? "ASC" : "DESC");
-    }
+	@Override
+	public String toString() {
+		return column + " " + (ascending ? "ASC" : "DESC");
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getColumn() {
-        return column;
-    }
+	public String getColumn() {
+		return column;
+	}
 
-    public void setColumn(String column) {
-        this.column = column;
-    }
+	public void setColumn(String column) {
+		this.column = column;
+	}
 
-    public boolean isAscending() {
-        return ascending;
-    }
+	public boolean isAscending() {
+		return ascending;
+	}
 
-    public void setAscending(boolean ascending) {
-        this.ascending = ascending;
-    }
+	public void setAscending(boolean ascending) {
+		this.ascending = ascending;
+	}
 }

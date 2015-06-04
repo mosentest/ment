@@ -12,20 +12,21 @@ import java.io.Serializable;
 @Table(name = "t_role", schema = "ment_core")
 public class Role implements Serializable {
 
-    private static final long serialVersionUID = 1509140799978096631L;
+	private static final long serialVersionUID = 1509140799978096631L;
 
-    @Id
-    private String name;
+	@Id
+	private String name;
 
-    public Role() {}
+	public Role() {
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
 }
 

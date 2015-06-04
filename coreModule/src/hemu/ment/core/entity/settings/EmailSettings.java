@@ -22,10 +22,10 @@ public class EmailSettings implements SettingsEntity, Serializable {
 	@OneToOne(optional = false, fetch = FetchType.LAZY, mappedBy = "emailSettings")
 	@JoinColumn(name = "enterprise_id")
 	private Enterprise enterprise;
-	
+
 	@Column(name = "enable_email_notification")
 	private boolean enableEmailNotification;
-	
+
 	@Column(name = "smtp_host")
 	private String smtpHost;
 
@@ -57,7 +57,7 @@ public class EmailSettings implements SettingsEntity, Serializable {
 	private String ticketTemplate;
 
 	@Column(name = "support_template")
-	private String supportTemplate;	
+	private String supportTemplate;
 
 	@Column(name = "banned_domains")
 	private String bannedDomains;
@@ -65,7 +65,7 @@ public class EmailSettings implements SettingsEntity, Serializable {
 	@Column(name = "banned_adresses")
 	private String bannedAdresses;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(schema = "ment_core", name = "t_email_filter",
 			joinColumns = @JoinColumn(name = "settings_id"),
 			inverseJoinColumns = @JoinColumn(name = "filter_id"))
@@ -73,7 +73,7 @@ public class EmailSettings implements SettingsEntity, Serializable {
 
 	@Override
 	public void setDefaultSettings(Properties properties) {
-		
+
 	}
 
 	@Override

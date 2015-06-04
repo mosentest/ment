@@ -10,10 +10,10 @@ import java.io.Serializable;
 @Table(name = "chat_message", schema = "ment_communication")
 public class ChatMessage implements Serializable {
 
-    private static final long serialVersionUID = 7325167214419439874L;
+	private static final long serialVersionUID = 7325167214419439874L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 }

@@ -12,11 +12,11 @@ public enum RoleConstant {
 	ENTERPRISE_SUPPORT("support", "Enterprise Support", "omitted..."),
 	ENTERPRISE_USER("user", "User", "omitted..."),
 	ENTERPRISE_DEVELOPER("dev", "Enterprise Developer", "omitted...");
-	
+
 	public final String code;
-	
+
 	public final String name;
-	
+
 	public final String description;
 
 	private static final Map<String, RoleConstant> cache = new HashMap<>();
