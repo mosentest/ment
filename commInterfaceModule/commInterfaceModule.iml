@@ -46,5 +46,7 @@
     <orderEntry type="library" scope="PROVIDED" name="JSF" level="application" />
     <orderEntry type="library" name="primefaces-5.2" level="application" />
     <orderEntry type="module" module-name="coreModule" />
+    <orderEntry type="library" name="gson-2.3.1" level="application" />
+    <orderEntry type="module" module-name="commCoreModule" />
   </component>
 </module>

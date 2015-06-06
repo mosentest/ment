@@ -7,6 +7,7 @@
         <element id="directory" name="classes">
           <element id="module-output" name="commInterfaceModule" />
           <element id="module-output" name="coreModule" />
+          <element id="module-output" name="commCoreModule" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="application" name="apache" />
@@ -15,6 +16,7 @@
           <element id="library" level="application" name="javax.transaction-api-1.2" />
           <element id="library" level="application" name="JPA 2.1-2.1" />
           <element id="library" level="application" name="primefaces-5.2" />
+          <element id="library" level="application" name="gson-2.3.1" />
         </element>
       </element>
       <element id="jpa-descriptors" facet="commInterfaceModule/jpa/JPA" />

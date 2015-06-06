@@ -25,3 +25,8 @@ facesconfig
 userlist
 &amp
 remoting
+onmessage
+onopen
+onclose
+uident
+eident

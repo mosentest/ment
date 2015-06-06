@@ -18,7 +18,7 @@
             var ws = new WebSocket(url);
             ws.onopen = function () {
                 console.log("connected");
-                ws.send("hahahaha");
+                ws.send("test");
             };
             ws.onmessage = function (event) {
                 console.log("message: " + event.data);
@@ -26,11 +26,7 @@
             ws.onclose = function () {
                 console.log("closed");
             }
-            $('#send').click(function () {
-                ws.send('hahahahaha');
-                console.log('message sent');
-            });
-            var comm = new Comm("ws:localhost:80/comm");
+            <!--var comm = new Comm("ws:localhost:80/comm");-->
         });
     </script>
 </h:head>
