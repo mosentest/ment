@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-	<persistence-unit name="ment_comm" transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/ment_comm</jta-data-source>
-		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-			<property name="hibernate.archive.autodetection" value="class"/>
-			<property name="hibernate.show_sql" value="true"/>
-			<property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="none"/>
-		</properties>
-	</persistence-unit>
 	<persistence-unit name="ment_core" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/ment_core</jta-data-source>
@@ -19,7 +8,7 @@
 			<property name="hibernate.archive.autodetection" value="class"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="none"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>
 	</persistence-unit>
 </persistence>

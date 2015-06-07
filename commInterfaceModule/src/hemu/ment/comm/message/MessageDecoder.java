@@ -20,11 +20,10 @@ public class MessageDecoder implements Decoder.Text<TransferMessage> {
 
 	@Override
 	public void init(EndpointConfig config) {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
 	public void destroy() {
-		throw new UnsupportedOperationException("Not supported yet.");
+
 	}
 }

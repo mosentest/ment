@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="JBoss 9.0.0.CR1" level="application_server_libraries" />
+    <orderEntry type="library" name="JPA 2.1-2.1" level="application" />
+    <orderEntry type="module" module-name="coreModule" />
   </component>
 </module>

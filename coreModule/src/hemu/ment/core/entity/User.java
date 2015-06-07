@@ -1,10 +1,15 @@
 package hemu.ment.core.entity;
 
+import hemu.ment.comm.entity.ConversationParticipant;
 import hemu.ment.core.enums.RoleConstant;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_user", schema = "ment_core")
@@ -86,6 +91,9 @@ public class User implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private List<UserGroup> userGroups;
+
+	@OneToMany(mappedBy = "participant")
+	private List<ConversationParticipant> conversations;
 
 	@Transient
 	private Set<RoleConstant> roles = new HashSet<>();

@@ -12,5 +12,6 @@
     <orderEntry type="library" name="JPA 2.1-2.1" level="application" />
     <orderEntry type="library" name="ehcache" level="application" />
     <orderEntry type="library" name="javaee-api-7.0" level="application" />
+    <orderEntry type="module" module-name="commCoreModule" />
   </component>
 </module>
