@@ -1,3 +1,6 @@
+html, body {
+	height: 100vh;
+}
 /*c-c stands for comm-conversation*/
 /*conversation list*/
 .c-c-profile {
@@ -39,7 +42,7 @@
 }
 .c-c-body {
 	overflow-y: auto;
-	height: 800px;
+	height: 660px;
 }
 /*conversation message*/
 .c-c-message {

@@ -17,6 +17,8 @@ import java.io.Serializable;
 @Table(name = "t_message_conversation_participant", schema = "ment_core")
 public class ConversationParticipant implements Serializable {
 
+	private static final long serialVersionUID = 3724307650578553256L;
+
 	@Id
 	@Column(name = "participant_id")
 	private Long participantId;
@@ -41,4 +43,51 @@ public class ConversationParticipant implements Serializable {
 
 	public ConversationParticipant() {}
 
+	public Long getParticipantId() {
+		return participantId;
+	}
+
+	public void setParticipantId(Long participantId) {
+		this.participantId = participantId;
+	}
+
+	public Long getConversationId() {
+		return conversationId;
+	}
+
+	public void setConversationId(Long conversationId) {
+		this.conversationId = conversationId;
+	}
+
+	public User getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(User participant) {
+		this.participant = participant;
+	}
+
+	public Conversation getConversation() {
+		return conversation;
+	}
+
+	public void setConversation(Conversation conversation) {
+		this.conversation = conversation;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	public int getnUnread() {
+		return nUnread;
+	}
+
+	public void setnUnread(int nUnread) {
+		this.nUnread = nUnread;
+	}
 }

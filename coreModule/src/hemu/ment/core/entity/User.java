@@ -19,7 +19,8 @@ import java.util.Set;
 		@NamedQuery(name = "User.GetEnterprise", query = "SELECT u.enterprise FROM User u WHERE u.id = :user"),
 		@NamedQuery(name = "User.List", query = "SELECT u FROM User u WHERE u.enterprise.id = :enterprise"),
 		@NamedQuery(name = "User.Get", query = "SELECT u FROM User u WHERE u.enterprise.id = :enterprise AND u.id = :user"),
-		@NamedQuery(name = "User.Size", query = "SELECT COUNT(u) FROM User u WHERE u.enterprise.id = :enterprise")})
+		@NamedQuery(name = "User.Size", query = "SELECT COUNT(u) FROM User u WHERE u.enterprise.id = :enterprise")
+})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 7445898962052022294L;

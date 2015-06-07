@@ -5,6 +5,7 @@ import hemu.ment.core.entity.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,6 +13,10 @@ import java.util.List;
  */
 @Entity
 @Table(name = "t_message_conversation", schema = "ment_core")
+@NamedQueries({
+		@NamedQuery(name = "Conversation.List", query = "SELECT c FROM Conversation c JOIN c.participants p WHERE p.participantId = :user AND p.open = true ORDER BY c.latest DESC"),
+		@NamedQuery(name = "Conversation.CountUnread", query = "SELECT SUM(p.nUnread) FROM Conversation c JOIN c.participants p WHERE p.participantId = :user")
+})
 public class Conversation implements Serializable {
 
 	private static final long serialVersionUID = 1947773009672809761L;
@@ -38,6 +43,11 @@ public class Conversation implements Serializable {
 
 	@Column(name = "n_participant")
 	private boolean nParticipant;
+
+
+	@Column(name = "latest_date")
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date latest;
 
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "creator_id")
@@ -121,5 +131,13 @@ public class Conversation implements Serializable {
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
+	}
+
+	public Date getLatest() {
+		return latest;
+	}
+
+	public void setLatest(Date latest) {
+		this.latest = latest;
 	}
 }
