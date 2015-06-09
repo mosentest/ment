@@ -7,6 +7,7 @@
       <element id="module-output" name="coreModule" />
       <element id="jpa-descriptors" facet="commEJBModule/jpa/JPA" />
       <element id="module-output" name="commCoreModule" />
+      <element id="module-output" name="commInterfaceModule" />
     </root>
   </artifact>
 </component>

@@ -8,16 +8,15 @@
           <element id="module-output" name="consoleModule" />
           <element id="module-output" name="coreModule" />
           <element id="directory" name="META-INF">
-            <element id="dir-copy" path="$PROJECT_DIR$/consoleModule/META-INF" />
+            <element id="dir-copy" path="$PROJECT_DIR$/consoleModule/resources/META-INF" />
           </element>
         </element>
         <element id="directory" name="lib">
           <element id="library" level="application" name="ehcache" />
           <element id="library" level="application" name="hibernate" />
-          <element id="library" level="application" name="primefaces-5.2" />
-          <element id="library" level="application" name="apache" />
-          <element id="library" level="application" name="javax.transaction-api-1.2" />
-          <element id="library" level="application" name="JPA 2.1-2.1" />
+          <element id="library" level="application" name="jpa-2.1" />
+          <element id="library" level="application" name="jta-1.1" />
+          <element id="library" level="application" name="richfaces" />
         </element>
       </element>
       <element id="jpa-descriptors" facet="consoleModule/jpa/JPA" />
