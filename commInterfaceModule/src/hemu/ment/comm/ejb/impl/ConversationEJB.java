@@ -10,6 +10,8 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +26,22 @@ public class ConversationEJB implements ConversationLocal {
 	private EntityManager entityManager;
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Conversation> list(long enterprise, long user) {
-		return null;
+		Query query = entityManager.createNamedQuery("PrivateConversation.List");
+		query.setParameter("enterprise", enterprise);
+		query.setParameter("user", user);
+		List<Conversation> list = query.getResultList();
+		query = entityManager.createNamedQuery("GroupConversation.List");
+		query.setParameter("enterprise", enterprise);
+		query.setParameter("user", user);
+		if (list == null) {
+			list = query.getResultList();
+		} else {
+			list.addAll(query.getResultList());
+		}
+		Collections.sort(list);
+
+		return list;
 	}
 }

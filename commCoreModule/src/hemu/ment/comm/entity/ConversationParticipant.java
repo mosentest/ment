@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Created by muu on 2015/6/7.
  */
 @Entity
-@Table(name = "t_message_conversation_participant", schema = "ment_core")
+@Table(name = "t_message_group_conversation_participant", schema = "ment_core")
 public class ConversationParticipant implements Serializable {
 
 	private static final long serialVersionUID = 3724307650578553256L;
@@ -33,7 +33,7 @@ public class ConversationParticipant implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "conversation_id", insertable = false, updatable = false)
-	private Conversation conversation;
+	private GroupConversation conversation;
 
 	@Column(name = "is_open")
 	private boolean open;
@@ -67,11 +67,11 @@ public class ConversationParticipant implements Serializable {
 		this.participant = participant;
 	}
 
-	public Conversation getConversation() {
+	public GroupConversation getConversation() {
 		return conversation;
 	}
 
-	public void setConversation(Conversation conversation) {
+	public void setConversation(GroupConversation conversation) {
 		this.conversation = conversation;
 	}
 

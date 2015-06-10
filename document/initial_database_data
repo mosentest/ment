@@ -1,3 +1,41 @@
+#150610 CREATE CONVERSATION & MESSAGE
+#private messages
+INSERT INTO ment_core.t_message_private_conversation(id, conversation_id, latest_date, n_unread, is_open, enterprise_id, target_id, user_id)
+VALUES (1, 1, CURTIME(), 1, 1, 1, 2, 1);
+INSERT INTO ment_core.t_message_private_conversation(id, conversation_id, latest_date, n_unread, is_open, enterprise_id, target_id, user_id)
+VALUES (2, 1, CURTIME(), 0, 0, 1, 1, 2);
+
+INSERT INTO ment_core.t_message_private (id, content, conversation_id, create_date, sender_id)
+VALUES (1, '111111 111111 111111', 1, CURTIME(), 1);
+INSERT INTO ment_core.t_message_private (id, content, conversation_id, create_date, sender_id)
+VALUES (2, '222222 222222 222222', 1, CURTIME(), 2);
+INSERT INTO ment_core.t_message_private (id, content, conversation_id, create_date, sender_id)
+VALUES (3, '333333 333333 333333', 1, CURTIME(), 2);
+
+#group messages
+INSERT INTO ment_core.t_message_group_conversation(id, description, latest_date, n_participant, title, creator_id, enterprise_id)
+VALUES (1, 'description 1', CURTIME(), 2, 'First discussion group', 1, 1);
+
+INSERT INTO ment_core.t_message_group_conversation_participant (participant_id, conversation_id, n_unread, is_open)
+VALUES (1, 1, 1, 1);
+INSERT INTO ment_core.t_message_group_conversation_participant (participant_id, conversation_id, n_unread, is_open)
+VALUES (2, 1, 0, 0);
+
+INSERT INTO ment_core.t_message_group (id, content, conversation_id, create_date, sender_id)
+VALUES (1, '111111 111111 111111', 1, CURTIME(), 1);
+INSERT INTO ment_core.t_message_group (id, content, conversation_id, create_date, sender_id)
+VALUES (2, '222222 222222 222222', 1, CURTIME(), 2);
+INSERT INTO ment_core.t_message_group (id, content, conversation_id, create_date, sender_id)
+VALUES (3, '333333 333333 333333', 1, CURTIME(), 2);
+
+
+#150610 CREATE SECOND USER
+INSERT INTO ment_core.t_user(id, address, country, create_date, email, enable_personal_settings,enabled,first_name,password_hash,last_name,login_date,password_text,phone,enterprise_id )
+VALUES (2, '', 'CN', CURDATE(), '2', true, true, '2', 'ZrEme7hRDUNfu33Ri6KVkQ==', '2', CURDATE(), 'HFQnBkfc8hig3ccBODK9NbBIbhINOzFYp120mFTt498NoTHLCebErGYGb2QuFzM9c0ktk+CNWf34
+rdS0Zd7LKw==', '+', 1);
+INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (1, 2);
+INSERT INTO ment_core.t_usergroup_user (usergroup_id, user_id) VALUES (3, 2);
+
 
 #15-05-29 INSERT USER GROUP, ROLES, USERS
 INSERT INTO ment_core.t_usergroup(id,default_group,description,name,enterprise_id, role_name)
@@ -27,14 +65,14 @@ VALUES (1, 'HEMUI', CURDATE(), 'Hemu Inc.', 'Hemu Inc.', true, 'key', 'leiyangx2
 INSERT INTO ment_core.t_settings_internationalization (id, date_format, datetime_format, default_locale, default_timezone_id, time_format)
 VALUES (1, 'yyyy-MM-dd', 'yy-MM-dd HH:mm:ss', 'zh_CN', 'CET', '');
 
-INSERT INTO ment_core.t_settings_global (id, email_format, title, enable_logout_confirmation, enable_personal_settings, max_authentication_allowed)
-VALUES (1, '', 'Enterprise Console', true, true, 3);
+INSERT INTO ment_core.t_settings_global (id, title, enable_logout_confirmation, enable_personal_settings, max_authentication_allowed)
+VALUES (1, 'Enterprise Console', true, true, 3);
 
 INSERT INTO ment_core.t_settings_email (id, banned_adresses, banned_domains, connection_prefix, enable_email_notification, sender_mail, sender_name, smtp_auth, smtp_host, smtp_password, smtp_port, smtp_username, support_template, ticket_template)
 VALUES (1, '', '', '', true, '', '', true, '', '', 1000, '', '', '');
 
-INSERT INTO ment_core.t_user(id, address, confirm_key, country, create_date, email, enable_personal_settings,enabled,first_name,password_hash,last_name,login_date,password_text,phone,enterprise_id )
-VALUES (1, '', '', 'CN', CURDATE(), 'admin@admin.com', true, true, 'Yang', 'ZrEme7hRDUNfu33Ri6KVkQ==', 'Lei', CURDATE(), 'HFQnBkfc8hig3ccBODK9NbBIbhINOzFYp120mFTt498NoTHLCebErGYGb2QuFzM9c0ktk+CNWf34
+INSERT INTO ment_core.t_user(id, address, country, create_date, email, enable_personal_settings,enabled,first_name,password_hash,last_name,login_date,password_text,phone,enterprise_id )
+VALUES (1, '', 'CN', CURDATE(), 'admin@admin.com', true, true, 'Yang', 'ZrEme7hRDUNfu33Ri6KVkQ==', 'Lei', CURDATE(), 'HFQnBkfc8hig3ccBODK9NbBIbhINOzFYp120mFTt498NoTHLCebErGYGb2QuFzM9c0ktk+CNWf34
 rdS0Zd7LKw==', '+', 1);
 
 update ment_core.t_enterprise SET email_settings_id = 1, i18n_settings_id = 1, global_settings_id = 1, default_user_id = 1 WHERE id = 1;
