@@ -1,5 +1,6 @@
 package hemu.ment.core.controller;
 
+import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
@@ -11,6 +12,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import java.io.Serializable;
 
 @ManagedBean(name = "current")
@@ -25,6 +27,9 @@ public class LoginBean implements Serializable {
 
 	private User user;
 	private Enterprise enterprise;
+
+	@Inject
+	private CacheConsole cacheConsole;
 
 	@EJB
 	private UserLocal userEJB;
