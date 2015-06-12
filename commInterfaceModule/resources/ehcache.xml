@@ -6,12 +6,6 @@
 
 	<diskStore path="java.io.tmpdir"/>
 
-	<cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
-	                                 properties="peerDiscovery=manual,rmiUrls=//127.0.0.1:40001/app|//127.0.0.1:40001/session"/>
-
-	<cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
-	                                 properties="hostName=127.0.0.1,port=40002,socketTimeoutMillis=2000"/>
-
 	<defaultCache
 			maxEntriesLocalHeap="10000"
 			eternal="false"
@@ -20,35 +14,7 @@
 			maxEntriesLocalDisk="10000000"
 			diskExpiryThreadIntervalSeconds="120"
 			memoryStoreEvictionPolicy="LRU">
-		<cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-		                           properties="replicateAsynchronously=true,replicatePuts=true,replicateUpdates=true,replicateUpdatesViaCopy=true,replicateRemovals=true"/>
 		<persistence strategy="localTempSwap"/>
 	</defaultCache>
-
-	<cache name="session"
-	       eternal="false"
-	       maxElementsInMemory="100000"
-	       maxElementsOnDisk="10000"
-	       timeToIdleSeconds="1800"
-	       timeToLiveSeconds="0"
-	       memoryStoreEvictionPolicy="LRU"
-	       diskExpiryThreadIntervalSeconds="60">
-		<cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-		                           properties="replicateAsynchronously=true,replicatePuts=true,replicateUpdates=true,replicateUpdatesViaCopy=true,replicateRemovals=true"/>
-		<persistence strategy="localTempSwap" />
-	</cache>
-
-	<cache name="app"
-	       maxEntriesLocalHeap="10000"
-	       maxEntriesLocalDisk="1000"
-	       eternal="true"
-	       diskSpoolBufferSizeMB="20"
-	       timeToIdleSeconds="300" timeToLiveSeconds="600"
-	       memoryStoreEvictionPolicy="LFU"
-	       transactionalMode="off">
-		<cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-		                           properties="replicateAsynchronously=true,replicatePuts=true,replicateUpdates=true,replicateUpdatesViaCopy=true,replicateRemovals=true"/>
-		<persistence strategy="localTempSwap"/>
-	</cache>
 
 </ehcache>

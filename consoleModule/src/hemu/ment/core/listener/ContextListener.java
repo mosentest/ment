@@ -30,9 +30,9 @@ public class ContextListener implements ServletContextListener {
 		//add enterprise settings
 		List<Enterprise> enterpriseList = enterpriseSettingsEJB.getAllSettings();
 		for (Enterprise enterprise : enterpriseList) {
-			cacheConsole.appCache(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
-			cacheConsole.appCache(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
-			cacheConsole.appCache(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
+			cacheConsole.cacheApp(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
+			cacheConsole.cacheApp(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
+			cacheConsole.cacheApp(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
 		}
 		//add supported constants
 		context.setAttribute("SUPPORTED_LOCALE", SupportedConstant.SUPPORTED_LOCALE);

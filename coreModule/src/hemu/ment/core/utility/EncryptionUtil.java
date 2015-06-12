@@ -7,6 +7,8 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.ByteBuffer;
+import java.util.UUID;
 
 /**
  * Created by muu on 2015/5/27.
@@ -18,16 +20,33 @@ public class EncryptionUtil {
 	private static final String ALGORITHM = "AES";
 	private static final int LENGTH = 128;
 
+	public static final String SESSION_CIPHER = "c41wVyVYTQ/yeYpfJXrIoEh0lvNpCLGITK9CdFwzGvHfvQALNIOkBDJ1pJh7hBM3js+2rIf1yJNS\n" +
+			"biEaLolmxQ==";
+
+
 	public static void main(String[] args) throws Exception {
+		System.out.println(generateHexString());
 		String password = "123456";
 		byte[] key = createKey();
 		String encoded = new BASE64Encoder().encode(key);
 		String encrypted = encrypt(key, password);
 		byte[] decoded = new BASE64Decoder().decodeBuffer(encoded);
 		String decrypted = decrypt(decoded, encrypted);
-		System.out.println(encoded + "  [][][][][][");
-		System.out.println(encrypted + "  [][][][][][");
-		System.out.println(decrypted + "  [][][][][][");
+		System.out.println(encoded + "\n");
+		System.out.println(encrypted + "\n");
+		System.out.println(decrypted + "\n");
+	}
+
+	public static String generateAuthToken() {
+		return generateHexString();
+	}
+
+	public static String generateHexString() {
+		UUID uuid = UUID.randomUUID();
+		ByteBuffer buffer = ByteBuffer.wrap(new byte[16]);
+		buffer.putLong(uuid.getMostSignificantBits());
+		buffer.putLong(uuid.getLeastSignificantBits());
+		return new BASE64Encoder().encode(buffer.array());
 	}
 
 	public static boolean unchanged(String originalPassword, String encodedHash, String newPassword) {
@@ -77,6 +96,9 @@ public class EncryptionUtil {
 	}
 
 	public static String encrypt(byte[] key, String data) {
+		if (data == null) {
+			return null;
+		}
 		Cipher cipher = null;
 		try {
 			SecretKey secretKey = new SecretKeySpec(key, 0, key.length, ALGORITHM);
@@ -100,6 +122,9 @@ public class EncryptionUtil {
 	}
 
 	public static String decrypt(byte[] encodedKey, String encryptedData) {
+		if (encryptedData == null) {
+			return null;
+		}
 		Cipher cipher = null;
 		try {
 			SecretKey secretKey = new SecretKeySpec(encodedKey, 0, encodedKey.length, ALGORITHM);

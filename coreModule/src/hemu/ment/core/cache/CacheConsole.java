@@ -1,14 +1,18 @@
 package hemu.ment.core.cache;
 
 import hemu.ment.core.constant.ApplicationVariable;
+import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.Identifiable;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Element;
+import hemu.ment.core.entity.User;
+import net.rubyeye.xmemcached.MemcachedClient;
+import net.rubyeye.xmemcached.MemcachedClientBuilder;
+import net.rubyeye.xmemcached.XMemcachedClientBuilder;
+import net.rubyeye.xmemcached.utils.AddrUtil;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -18,68 +22,133 @@ public class CacheConsole implements Serializable {
 
 	private static final long serialVersionUID = 5069759560292475667L;
 
-	private Cache appCache;
-	private Cache entCache;
+	private MemcachedClient sessionClient;
+	private MemcachedClient appClient;
 
 	public CacheConsole() {
 	}
 
 	@PostConstruct
-	public void init() {
-		CacheManager cacheManager = CacheManager.getInstance();
-		cacheManager.clearAll();
-		appCache = cacheManager.getCache("appCache");
-		entCache = cacheManager.getCache("entCache");
+	public void init() throws Exception {
+		MemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses("127.0.0.1:11211"));
+		sessionClient = builder.build();
+		appClient = sessionClient;//Temporary solution
 		initCacheManager();
 	}
 
 	@PreDestroy
 	public void destroy() {
-		appCache.removeAll();
-		entCache.removeAll();
-		CacheManager.getInstance().clearAll();
 	}
 
 	private void initCacheManager() {
 		File file = new File(ApplicationVariable.IMAGE_PATH.replace("{enterprise}", ApplicationVariable.MASTER_ENT), "default.png");
 		try {
 			byte[] array = Files.readAllBytes(file.toPath());
-			appCache.put(new Element("default-profile", array));
+			appClient.set("default-profile", 0, array);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void appCache(String key, Object value) {
-		appCache.put(new Element(key, value));
+	public String getAuthToken(String address) {
+		try {
+			String authToken = (String) sessionClient.get(address);
+			return authToken;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public <T> T getAppCache(Class<T> classType, String key) {
-		return (T) appCache.get(key).getObjectValue();
+	public HttpSession getSession(String authToken) {
+		try {
+			HttpSession session = (HttpSession) sessionClient.get(authToken);
+			return session;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public Long getIdentifier(String key) {
-		return ((Identifiable) appCache.get(key).getObjectValue()).getId();
+	public boolean cacheSession(String authToken, Object value) {
+		try {
+			appClient.set(authToken, 3600, value);
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public void invalidateSession(String authToken) {
+		try {
+			sessionClient.delete(authToken);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean cacheApp(String key, Object value, int timeout) {
+		try {
+			appClient.set(key, timeout, value);
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean cacheApp(String key, Object value) {
+		return cacheApp(key, value, 0);
 	}
 
 	public Object getAppCache(String key) {
-		return appCache.get(key).getObjectValue();
+		try {
+			Object object = appClient.get(key);
+			return object;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
-	public String appCacheString(String key) {
+	public <T> T getAppCache(Class<T> classType, String key) {
+		try {
+			T object = appClient.get(key);
+			return object;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public long uid(String authToken) {
+		return getUser(authToken).getId();
+	}
+
+	public long eid(String authToken) {
+		return getEnterprise(authToken).getId();
+	}
+
+	public User getUser(String authToken) {
+		return (User) getSession(authToken).getAttribute("user");
+	}
+
+	public Enterprise getEnterprise(String authToken) {
+		return getUser(authToken).getEnterprise();
+	}
+
+	public Long getIdentifier(String key) {
+		return getAppCache(Identifiable.class, key).getId();
+	}
+
+	public String getAppString(String key) {
 		return (String) getAppCache(key);
 	}
 
-	public byte[] appCacheByteArray(String key) {
+	public byte[] getAppByteArray(String key) {
 		return (byte[]) getAppCache(key);
-	}
-
-	public int appCacheInt(String key) {
-		return (int) getAppCache(key);
-	}
-
-	public boolean appCacheBoolean(String key) {
-		return (boolean) getAppCache(key);
 	}
 
 }

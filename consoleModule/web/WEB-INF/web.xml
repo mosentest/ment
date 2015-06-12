@@ -27,11 +27,11 @@
 		<listener-class>hemu.ment.core.listener.ContextListener</listener-class>
 	</listener>
 	<filter>
-		<filter-name>loginFilter</filter-name>
-		<filter-class>hemu.ment.core.filter.LoginFilter</filter-class>
+		<filter-name>authFilter</filter-name>
+		<filter-class>hemu.ment.core.filter.AuthFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>loginFilter</filter-name>
+		<filter-name>authFilter</filter-name>
 		<url-pattern>/c/*</url-pattern>
 	</filter-mapping>
 	<filter>

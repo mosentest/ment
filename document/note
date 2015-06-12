@@ -6,3 +6,11 @@ for unsupported attributes in jsf:
 f:metadata tag only works on the top level page, not inside the template client
 
 use jboss-client : jboss-deployment-structure.xml, and add a module in jboss directory
+
+"     &quot;
+&     &amp;
+'     &apos;
+<     &lt;
+>     &gt;
+
+sc create "Memcached11211" binPath= "C:\memcached\memcached.exe -d runservice -p 11211" DisplayName= "Memcached11211" start=auto

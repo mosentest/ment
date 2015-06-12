@@ -1,14 +1,20 @@
 package hemu.ment.core.filter;
 
+import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.controller.LoginBean;
 import hemu.ment.core.utility.ContextUtil;
+import sun.misc.Cache;
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LoginFilter implements Filter {
+public class AuthFilter implements Filter {
+
+	@Inject
+	private CacheConsole cacheConsole;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -23,9 +29,10 @@ public class LoginFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		LoginBean loginBean = ContextUtil.getUserBean(req);
 		boolean isLoggedIn = loginBean != null && loginBean.isAuthenticated();
+
 		if (isLoginPage(req.getRequestURI())) {
 			if (isLoggedIn) {
-				res.sendRedirect(req.getContextPath() + "/c/dashboard.xhtml");
+				res.sendRedirect(req.getContextPath() + "/sso.xhtml");
 			} else {
 				chain.doFilter(request, response);
 			}

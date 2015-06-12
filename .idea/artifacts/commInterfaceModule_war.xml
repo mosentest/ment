@@ -16,6 +16,7 @@
           <element id="library" level="application" name="jpa-2.1" />
           <element id="library" level="application" name="jta-1.1" />
           <element id="library" level="application" name="richfaces" />
+          <element id="library" level="application" name="xmemcached-2.0.0" />
         </element>
       </element>
       <element id="jpa-descriptors" facet="commInterfaceModule/jpa/JPA" />

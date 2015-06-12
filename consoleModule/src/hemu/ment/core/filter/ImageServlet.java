@@ -34,7 +34,7 @@ public class ImageServlet extends HttpServlet {
 		Enterprise enterprise = ContextUtil.getEnterprise(request);
 		String fileName = request.getPathInfo().substring(1);
 		if (fileName.equals("default.png")) {
-			byte[] array = cacheConsole.appCacheByteArray("default-profile");
+			byte[] array = cacheConsole.getAppByteArray("default-profile");
 			response.setHeader("Content-Length", String.valueOf(array.length));
 			response.setHeader("Content-Type", getServletContext().getMimeType(fileName));
 			response.setHeader("Content-Disposition", "inline; filename=\"" + fileName + "\"");

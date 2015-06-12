@@ -6,6 +6,7 @@ import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.exception.InformationException;
 import hemu.ment.core.utility.ContextUtil;
+import hemu.ment.core.utility.EncryptionUtil;
 import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.ejb.EJB;
@@ -24,6 +25,7 @@ public class LoginBean implements Serializable {
 	private String email;
 	private String password;
 	private boolean rememberMe;
+	private String authToken;
 
 	private User user;
 	private Enterprise enterprise;
@@ -41,8 +43,9 @@ public class LoginBean implements Serializable {
 		try {
 			user = userEJB.login(email, password);
 			enterprise = user.getEnterprise();
-			ContextUtil.setObject("uident", user);
-			ContextUtil.setObject("eident", enterprise);
+			authToken = EncryptionUtil.generateAuthToken();
+			cacheConsole.cacheSession(authToken, ContextUtil.getSession());
+			cacheConsole.cacheSession(ContextUtil.getClientAddress(), authToken);
 			return "/c/dashboard.xhtml?faces-redirect=true";
 		} catch (InformationException e) {
 			FacesMessageUtil.addErrorMessage(e.getMessage(), null);
@@ -51,6 +54,7 @@ public class LoginBean implements Serializable {
 	}
 
 	public String logout() {
+		cacheConsole.invalidateSession((String) ContextUtil.getSessionAttr("authToken"));
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/index.xhtml?faces-redirect=true";
 	}
@@ -97,5 +101,13 @@ public class LoginBean implements Serializable {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getAuthToken() {
+		return authToken;
+	}
+
+	public void setAuthToken(String authToken) {
+		this.authToken = authToken;
 	}
 }

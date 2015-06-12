@@ -12,5 +12,6 @@
     <orderEntry type="library" name="ehcache" level="application" />
     <orderEntry type="library" name="javaee-api-7.0" level="application" />
     <orderEntry type="library" name="jpa-2.1" level="application" />
+    <orderEntry type="library" name="xmemcached-2.0.0" level="application" />
   </component>
 </module>

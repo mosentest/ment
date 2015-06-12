@@ -50,7 +50,7 @@
 			    <ul class="nav nav-pills nav-stacked" role="tablist">
                     <ui:repeat var="conversation" value="#{communicationBean.conversationList}">
                         <li id="li-c-#{conversation.id}"><a class="dropdown-toggle" data-toggle="dropdown">
-                            <h:graphicImage styleClass="c-c-profile" value="resources/img/comm/groupchat.png" rendered="#{conversation.type == 'GROUP'}"/>
+                            <h:graphicImage styleClass="c-c-profile" value="../resources/img/comm/groupchat.png" rendered="#{conversation.type == 'GROUP'}"/>
                             <h:graphicImage styleClass="c-c-profile" value="/image/profile/#{conversation.avatar}" rendered="#{conversation.type == 'PRIVATE'}"/>
                             <h:panelGroup styleClass="c-c-name"><h:outputText value="#{conversation.title}"/></h:panelGroup>
                             <h:panelGroup styleClass="c-c-badge badge pull-right" id="li-badge-#{conversation.id}"><h:outputText value="#{conversation.nUnread}"/></h:panelGroup>
@@ -66,7 +66,7 @@
 			        <h:panelGroup styleClass="panel-heading c-c-heading" layout="block">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
 			            <h:panelGroup styleClass="c-c-title" layout="block">
-				            <h:graphicImage value="resources/img/comm/groupchat.png"/>Project discussion group 1</h:panelGroup>
+				            <h:graphicImage value="../resources/img/comm/groupchat.png"/>Project discussion group 1</h:panelGroup>
 				        <h:panelGroup styleClass="c-c-description" layout="block">Current release at 2015-05-01</h:panelGroup>
 				        <h:panelGroup styleClass="c-c-link" layout="block">
 					        <h:outputText value="36 participants in conversation"/>
@@ -87,7 +87,7 @@
 							    <h:panelGroup styleClass="c-c-message-from">
 								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
 									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
 									    </h:panelGroup>
 									    <h:panelGroup styleClass="user-name">
 										    <h:outputText value="Stalin"/>
@@ -108,57 +108,7 @@
 							    <h:panelGroup styleClass="c-c-message-from">
 								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
 									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
-									    </h:panelGroup>
-									    <h:panelGroup styleClass="user-name">
-										    <h:outputText value="Stalin"/>
-									    </h:panelGroup>
-								    </h:outputLink>
-							    </h:panelGroup>
-							    <h:panelGroup styleClass="c-c-message-time">
-								    <h:outputText value="11:11:11"/>
-							    </h:panelGroup>
-						    </h:panelGroup>
-						    <h:panelGroup styleClass="c-c-message-contnet" layout="block">
-							    <h:outputText value="hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa"/>
-						    </h:panelGroup>
-					    </h:panelGroup>
-
-					    <h:panelGroup styleClass="c-c-message col-lg-10 c-c-message-self" layout="block">
-						    <h:panelGroup styleClass="c-c-message-heading" layout="block">
-						    </h:panelGroup>
-						    <h:panelGroup styleClass="c-c-message-contnet" layout="block">
-							    <h:outputText value="hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa"/>
-						    </h:panelGroup>
-					    </h:panelGroup>
-
-					    <h:panelGroup styleClass="c-c-message col-lg-10" layout="block">
-						    <h:panelGroup styleClass="c-c-message-heading" layout="block">
-							    <h:panelGroup styleClass="c-c-message-from">
-								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
-									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
-									    </h:panelGroup>
-									    <h:panelGroup styleClass="user-name">
-										    <h:outputText value="Stalin"/>
-									    </h:panelGroup>
-								    </h:outputLink>
-							    </h:panelGroup>
-							    <h:panelGroup styleClass="c-c-message-time">
-								    <h:outputText value="11:11:11"/>
-							    </h:panelGroup>
-						    </h:panelGroup>
-						    <h:panelGroup styleClass="c-c-message-contnet" layout="block">
-							    <h:outputText value="hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa"/>
-						    </h:panelGroup>
-					    </h:panelGroup>
-
-					    <h:panelGroup styleClass="c-c-message col-lg-10" layout="block">
-						    <h:panelGroup styleClass="c-c-message-heading" layout="block">
-							    <h:panelGroup styleClass="c-c-message-from">
-								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
-									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
 									    </h:panelGroup>
 									    <h:panelGroup styleClass="user-name">
 										    <h:outputText value="Stalin"/>
@@ -187,7 +137,7 @@
 							    <h:panelGroup styleClass="c-c-message-from">
 								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
 									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
 									    </h:panelGroup>
 									    <h:panelGroup styleClass="user-name">
 										    <h:outputText value="Stalin"/>
@@ -208,7 +158,57 @@
 							    <h:panelGroup styleClass="c-c-message-from">
 								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
 									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
+									    </h:panelGroup>
+									    <h:panelGroup styleClass="user-name">
+										    <h:outputText value="Stalin"/>
+									    </h:panelGroup>
+								    </h:outputLink>
+							    </h:panelGroup>
+							    <h:panelGroup styleClass="c-c-message-time">
+								    <h:outputText value="11:11:11"/>
+							    </h:panelGroup>
+						    </h:panelGroup>
+						    <h:panelGroup styleClass="c-c-message-contnet" layout="block">
+							    <h:outputText value="hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa"/>
+						    </h:panelGroup>
+					    </h:panelGroup>
+
+					    <h:panelGroup styleClass="c-c-message col-lg-10 c-c-message-self" layout="block">
+						    <h:panelGroup styleClass="c-c-message-heading" layout="block">
+						    </h:panelGroup>
+						    <h:panelGroup styleClass="c-c-message-contnet" layout="block">
+							    <h:outputText value="hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa"/>
+						    </h:panelGroup>
+					    </h:panelGroup>
+
+					    <h:panelGroup styleClass="c-c-message col-lg-10" layout="block">
+						    <h:panelGroup styleClass="c-c-message-heading" layout="block">
+							    <h:panelGroup styleClass="c-c-message-from">
+								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
+									    <h:panelGroup styleClass="user-avatar">
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
+									    </h:panelGroup>
+									    <h:panelGroup styleClass="user-name">
+										    <h:outputText value="Stalin"/>
+									    </h:panelGroup>
+								    </h:outputLink>
+							    </h:panelGroup>
+							    <h:panelGroup styleClass="c-c-message-time">
+								    <h:outputText value="11:11:11"/>
+							    </h:panelGroup>
+						    </h:panelGroup>
+						    <h:panelGroup styleClass="c-c-message-contnet" layout="block">
+							    <h:outputText value="hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa hahah ha hah sdhfhsa hdsahf hsadfh hashfdashdfhashdfhashfhashdfhshdfhsa"/>
+						    </h:panelGroup>
+					    </h:panelGroup>
+
+					    <h:panelGroup styleClass="c-c-message col-lg-10" layout="block">
+						    <h:panelGroup styleClass="c-c-message-heading" layout="block">
+							    <h:panelGroup styleClass="c-c-message-from">
+								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
+									    <h:panelGroup styleClass="user-avatar">
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
 									    </h:panelGroup>
 									    <h:panelGroup styleClass="user-name">
 										    <h:outputText value="Stalin"/>
@@ -236,7 +236,7 @@
 							    <h:panelGroup styleClass="c-c-message-from">
 								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
 									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
 									    </h:panelGroup>
 									    <h:panelGroup styleClass="user-name">
 										    <h:outputText value="Stalin"/>
@@ -257,7 +257,7 @@
 							    <h:panelGroup styleClass="c-c-message-from">
 								    <h:outputLink value="c/userinfo.xhtml?id=0" styleClass="user-link">
 									    <h:panelGroup styleClass="user-avatar">
-										    <h:graphicImage styleClass="profile-small" value="resources/img/default.png"/>
+										    <h:graphicImage styleClass="profile-small" value="../resources/img/default.png"/>
 									    </h:panelGroup>
 									    <h:panelGroup styleClass="user-name">
 										    <h:outputText value="Stalin"/>

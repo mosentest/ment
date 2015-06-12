@@ -114,7 +114,7 @@ public class GlobalSettingsBean {
 		}
 		Long id = cacheConsole.getIdentifier(ApplicationVariable.I18N + enterprise.getCode());
 		InternationalizationSettings settings = enterpriseSettingsEJB.updateInternationalizationSettings(id, i18nSettings);
-		cacheConsole.appCache(ApplicationVariable.I18N + enterprise.getCode(), settings);
+		cacheConsole.cacheApp(ApplicationVariable.I18N + enterprise.getCode(), settings);
 		FacesMessageUtil.addInfoMessage("Internationalization Settings has been updated");
 		return "/c/settings/internationalization.xhtml";
 	}
@@ -126,7 +126,7 @@ public class GlobalSettingsBean {
 		}
 		Long id = cacheConsole.getIdentifier(ApplicationVariable.GLOBAL + enterprise.getCode());
 		GlobalSettings settings = enterpriseSettingsEJB.updateGlobalSettings(id, globalSettings);
-		cacheConsole.appCache(ApplicationVariable.GLOBAL + enterprise.getCode(), settings);
+		cacheConsole.cacheApp(ApplicationVariable.GLOBAL + enterprise.getCode(), settings);
 		FacesMessageUtil.addInfoMessage("Global Settings has been updated");
 		return "/c/settings/global.xhtml";
 	}
@@ -138,7 +138,7 @@ public class GlobalSettingsBean {
 		}
 		Long id = cacheConsole.getIdentifier(ApplicationVariable.EMAIL + enterprise.getCode());
 		EmailSettings settings = enterpriseSettingsEJB.updateEmailSettings(id, emailSettings);
-		cacheConsole.appCache(ApplicationVariable.EMAIL + enterprise.getCode(), settings);
+		cacheConsole.cacheApp(ApplicationVariable.EMAIL + enterprise.getCode(), settings);
 		FacesMessageUtil.addInfoMessage("Email Settings has been updated");
 		return "/c/settings/email.xhtml";
 	}

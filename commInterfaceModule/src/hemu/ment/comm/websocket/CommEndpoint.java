@@ -3,6 +3,7 @@ package hemu.ment.comm.websocket;
 import hemu.ment.comm.message.MessageDecoder;
 import hemu.ment.comm.message.MessageEncoder;
 import hemu.ment.comm.message.TransferMessage;
+import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
 
@@ -25,6 +26,7 @@ import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.util.Properties;
 
@@ -52,6 +54,9 @@ public class CommEndpoint implements MessageListener {
 
 	private EndpointConfig endpointConfig;
 
+	@Inject
+	private CacheConsole cacheConsole;
+
 	@PostConstruct
 	public void postConstruct() throws Exception {
 		Properties prop = new Properties();
@@ -77,9 +82,9 @@ public class CommEndpoint implements MessageListener {
 	}
 
 	@OnOpen
-	public void open(Session session, EndpointConfig endpointConfig) {
+	public void open(@PathParam("authToken") String authToken, Session session, EndpointConfig endpointConfig) {
 		this.endpointConfig = endpointConfig;
-		commServer.connect(session, getUser());
+		commServer.connect(session, cacheConsole.uid(authToken));
 	}
 
 	@OnClose
@@ -125,15 +130,4 @@ public class CommEndpoint implements MessageListener {
 		System.out.println("received: " + message);
 	}
 
-	private HttpSession getHttpSession() {
-		return (HttpSession) endpointConfig.getUserProperties().get("httpSession");
-	}
-
-	private long getUser() {
-		return ((User) getHttpSession().getAttribute("uident")).getId();
-	}
-
-	private long getEnterprise() {
-		return ((Enterprise) getHttpSession().getAttribute("eident")).getId();
-	}
 }
