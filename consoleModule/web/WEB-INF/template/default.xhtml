@@ -12,25 +12,6 @@
     <h:outputScript name="js/jquery-2.0.3.js"/>
     <h:outputScript name="js/common.js"/>
     <h:outputScript name="js/bootstrap.js"/>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var url = "ws://localhost:80/chat";
-            var ws = new WebSocket(url);
-            ws.onopen = function () {
-                console.log("connected");
-            };
-            ws.onmessage = function (event) {
-                console.log("message: " + event.data);
-            };
-            ws.onclose = function () {
-                console.log("closed");
-            }
-            $('#send').click(function () {
-                ws.send('hahahahaha');
-                console.log('message sent');
-            });
-        });
-    </script>
 </h:head>
 <h:body>
     <ui:insert name="header">

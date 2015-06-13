@@ -1,7 +1,11 @@
 package hemu.ment.core.utility;
 
+import hemu.ment.core.cache.CacheConsole;
+import hemu.ment.core.cache.SessionObject;
 import hemu.ment.core.query.Page;
 
+import javax.inject.Inject;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,6 +15,16 @@ import java.util.Date;
 public final class Functions {
 
 	private Functions() {
+	}
+
+	public static String encodeURL(String url) {
+		String encoded = null;
+		try {
+			encoded = URLEncoder.encode(url, "UTF-8");
+		} catch (Exception e) {
+			encoded = null;
+		}
+		return encoded;
 	}
 
 	public static <T> String printPage(Page<T> page, String url) {

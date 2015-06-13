@@ -1,7 +1,7 @@
 package hemu.ment.core.listener;
 
 import hemu.ment.core.cache.CacheConsole;
-import hemu.ment.core.constant.ApplicationVariable;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.constant.SupportedConstant;
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
 import hemu.ment.core.entity.Enterprise;
@@ -30,9 +30,9 @@ public class ContextListener implements ServletContextListener {
 		//add enterprise settings
 		List<Enterprise> enterpriseList = enterpriseSettingsEJB.getAllSettings();
 		for (Enterprise enterprise : enterpriseList) {
-			cacheConsole.cacheApp(ApplicationVariable.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
-			cacheConsole.cacheApp(ApplicationVariable.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
-			cacheConsole.cacheApp(ApplicationVariable.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
+			cacheConsole.cacheApp(C.I18N + enterprise.getCode(), enterprise.getInternationalizationSettings());
+			cacheConsole.cacheApp(C.EMAIL + enterprise.getCode(), enterprise.getEmailSettings());
+			cacheConsole.cacheApp(C.GLOBAL + enterprise.getCode(), enterprise.getGlobalSettings());
 		}
 		//add supported constants
 		context.setAttribute("SUPPORTED_LOCALE", SupportedConstant.SUPPORTED_LOCALE);

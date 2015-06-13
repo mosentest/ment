@@ -1,6 +1,6 @@
 package hemu.ment.core.cache;
 
-import hemu.ment.core.constant.ApplicationVariable;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.Identifiable;
 import hemu.ment.core.entity.User;
@@ -41,7 +41,7 @@ public class CacheConsole implements Serializable {
 	}
 
 	private void initCacheManager() {
-		File file = new File(ApplicationVariable.IMAGE_PATH.replace("{enterprise}", ApplicationVariable.MASTER_ENT), "default.png");
+		File file = new File(C.IMAGE_PATH.replace("{enterprise}", C.MASTER_ENT), "default.png");
 		try {
 			byte[] array = Files.readAllBytes(file.toPath());
 			appClient.set("default-profile", 0, array);
@@ -60,9 +60,9 @@ public class CacheConsole implements Serializable {
 		}
 	}
 
-	public HttpSession getSession(String authToken) {
+	public SessionObject getSession(String authToken) {
 		try {
-			HttpSession session = (HttpSession) sessionClient.get(authToken);
+			SessionObject session = (SessionObject) sessionClient.get(authToken);
 			return session;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class CacheConsole implements Serializable {
 
 	public boolean cacheSession(String authToken, Object value) {
 		try {
-			appClient.set(authToken, 3600, value);
+			sessionClient.set(authToken, 3600, value);
 			return true;
 		}
 		catch (Exception e) {
@@ -132,7 +132,7 @@ public class CacheConsole implements Serializable {
 	}
 
 	public User getUser(String authToken) {
-		return (User) getSession(authToken).getAttribute("user");
+		return getSession(authToken).getUser();
 	}
 
 	public Enterprise getEnterprise(String authToken) {

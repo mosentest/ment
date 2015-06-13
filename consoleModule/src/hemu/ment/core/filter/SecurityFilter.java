@@ -1,10 +1,14 @@
 package hemu.ment.core.filter;
 
+import hemu.ment.core.cache.CacheConsole;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.entity.User;
 import hemu.ment.core.enums.RoleConstant;
 import hemu.ment.core.utility.LinkedProperties;
 import hemu.ment.core.utility.ContextUtil;
+import sun.misc.Cache;
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +23,9 @@ import java.util.regex.Pattern;
 public class SecurityFilter implements Filter {
 
 	private LinkedHashSet<FilterPattern> filterPatterns;
+
+	@Inject
+	private CacheConsole cacheConsole;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -58,7 +65,7 @@ public class SecurityFilter implements Filter {
 			} else if (filterPattern.isAuthenticated()) {//is always true cuz filter is called after login filter
 				authorized = true;
 			} else {
-				User user = ContextUtil.getUser(req);
+				User user = cacheConsole.getUser(ContextUtil.getAuthToken());
 				for (RoleConstant role : user.getRoles()) {
 					if (role.code.equals(filterPattern.getRole())) {
 						authorized = true;

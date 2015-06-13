@@ -1,5 +1,8 @@
 package hemu.ment.comm.utility;
 
+import hemu.ment.core.constant.C;
+
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,17 +33,45 @@ public class ContextUtil {
 		return ip;
 	}
 
+	public static void clearSession() {
+		getSession().invalidate();
+		getSession(true);
+	}
+
+	public static String getAuthToken() {
+		return (String) getSession().getAttribute(C.AUTH_TOKEN);
+	}
+
+	public static Object getRequestObject(String key) {
+		return getContext().getRequestParameterMap().get(key);
+	}
+
 	public static HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
 	public static HttpSession getSession() {
-		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		return getSession(false);
+	}
+
+	public static HttpSession getSession(boolean renew) {
+		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(renew);
 	}
 
 	public static Object getSessionAttr(String key) {
 		return getSession().getAttribute(key);
 	}
 
+	public static ExternalContext getContext() {
+		return FacesContext.getCurrentInstance().getExternalContext();
+	}
+
+	private static void setObject(HttpServletRequest request, String key, Object value) {
+		request.getSession().setAttribute(key, value);
+	}
+
+	public static Object getObject(HttpServletRequest request, String key) {
+		return request.getSession().getAttribute(key);
+	}
 
 }

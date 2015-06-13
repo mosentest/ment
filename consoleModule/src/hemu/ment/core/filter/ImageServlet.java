@@ -1,7 +1,7 @@
 package hemu.ment.core.filter;
 
 import hemu.ment.core.cache.CacheConsole;
-import hemu.ment.core.constant.ApplicationVariable;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.utility.ContextUtil;
@@ -31,7 +31,7 @@ public class ImageServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Enterprise enterprise = ContextUtil.getEnterprise(request);
+		Enterprise enterprise = cacheConsole.getEnterprise((String) request.getSession().getAttribute(C.AUTH_TOKEN));
 		String fileName = request.getPathInfo().substring(1);
 		if (fileName.equals("default.png")) {
 			byte[] array = cacheConsole.getAppByteArray("default-profile");
@@ -43,7 +43,7 @@ public class ImageServlet extends HttpServlet {
 			Long id = Long.parseLong(fileName.substring(0, fileName.indexOf('.')));
 			if (enterprise.isMaster() || userEJB.accessible(id, enterprise.getId())) {
 				Enterprise userEnterprise = userEJB.getEnterprise(id);
-				File file = new File(ApplicationVariable.IMAGE_PATH.replace("{enterprise}", userEnterprise.getCode()), fileName);
+				File file = new File(C.IMAGE_PATH.replace("{enterprise}", userEnterprise.getCode()), fileName);
 				response.setHeader("Content-Length", String.valueOf(file.length()));
 				response.setHeader("Content-Type", getServletContext().getMimeType(fileName));
 				response.setHeader("Content-Disposition", "inline; filename=\"" + fileName + "\"");

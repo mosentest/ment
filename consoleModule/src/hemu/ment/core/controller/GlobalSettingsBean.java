@@ -1,7 +1,7 @@
 package hemu.ment.core.controller;
 
 import hemu.ment.core.cache.CacheConsole;
-import hemu.ment.core.constant.ApplicationVariable;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.constant.SupportedConstant;
 import hemu.ment.core.ejb.local.EnterpriseSettingsLocal;
 import hemu.ment.core.entity.Enterprise;
@@ -48,15 +48,15 @@ public class GlobalSettingsBean {
 	}
 
 	public void fetchI18N() {
-		i18nSettings = cacheConsole.getAppCache(InternationalizationSettings.class, ApplicationVariable.I18N + enterprise.getCode());
+		i18nSettings = cacheConsole.getAppCache(InternationalizationSettings.class, C.I18N + enterprise.getCode());
 	}
 
 	public void fetchGlobal() {
-		globalSettings = cacheConsole.getAppCache(GlobalSettings.class, ApplicationVariable.GLOBAL + enterprise.getCode());
+		globalSettings = cacheConsole.getAppCache(GlobalSettings.class, C.GLOBAL + enterprise.getCode());
 	}
 
 	public void fetchEmail() {
-		emailSettings = cacheConsole.getAppCache(EmailSettings.class, ApplicationVariable.EMAIL + enterprise.getCode());
+		emailSettings = cacheConsole.getAppCache(EmailSettings.class, C.EMAIL + enterprise.getCode());
 	}
 
 	private void validateI18N() {
@@ -112,9 +112,9 @@ public class GlobalSettingsBean {
 		if (FacesMessageUtil.containsValidationError()) {
 			return "/c/settings/internationalizationform.xhtml";
 		}
-		Long id = cacheConsole.getIdentifier(ApplicationVariable.I18N + enterprise.getCode());
+		Long id = cacheConsole.getIdentifier(C.I18N + enterprise.getCode());
 		InternationalizationSettings settings = enterpriseSettingsEJB.updateInternationalizationSettings(id, i18nSettings);
-		cacheConsole.cacheApp(ApplicationVariable.I18N + enterprise.getCode(), settings);
+		cacheConsole.cacheApp(C.I18N + enterprise.getCode(), settings);
 		FacesMessageUtil.addInfoMessage("Internationalization Settings has been updated");
 		return "/c/settings/internationalization.xhtml";
 	}
@@ -124,9 +124,9 @@ public class GlobalSettingsBean {
 		if (FacesMessageUtil.containsValidationError()) {
 			return "/c/settings/globalform.xhtml";
 		}
-		Long id = cacheConsole.getIdentifier(ApplicationVariable.GLOBAL + enterprise.getCode());
+		Long id = cacheConsole.getIdentifier(C.GLOBAL + enterprise.getCode());
 		GlobalSettings settings = enterpriseSettingsEJB.updateGlobalSettings(id, globalSettings);
-		cacheConsole.cacheApp(ApplicationVariable.GLOBAL + enterprise.getCode(), settings);
+		cacheConsole.cacheApp(C.GLOBAL + enterprise.getCode(), settings);
 		FacesMessageUtil.addInfoMessage("Global Settings has been updated");
 		return "/c/settings/global.xhtml";
 	}
@@ -136,9 +136,9 @@ public class GlobalSettingsBean {
 		if (FacesMessageUtil.containsValidationError()) {
 			return "/c/settings/emailform.xhtml";
 		}
-		Long id = cacheConsole.getIdentifier(ApplicationVariable.EMAIL + enterprise.getCode());
+		Long id = cacheConsole.getIdentifier(C.EMAIL + enterprise.getCode());
 		EmailSettings settings = enterpriseSettingsEJB.updateEmailSettings(id, emailSettings);
-		cacheConsole.cacheApp(ApplicationVariable.EMAIL + enterprise.getCode(), settings);
+		cacheConsole.cacheApp(C.EMAIL + enterprise.getCode(), settings);
 		FacesMessageUtil.addInfoMessage("Email Settings has been updated");
 		return "/c/settings/email.xhtml";
 	}

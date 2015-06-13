@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ment="http://www.hemu.com/ment/taglib">
+<h:head>
+    <title>Enterprise Console</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
+    <h:outputStylesheet name="css/bootstrap.css" media="all"/>
+    <h:outputStylesheet name="css/common.css" media="all"/>
+    <f:verbatim>
+        <script type="text/javascript">
+            var loaded = 0;
+            function load() {
+                loaded++;
+                if (loaded == 1) {
+                    window.location.href = "http://www.entconsole.com/c/dashboard.xhtml";
+                }
+            }
+        </script>
+    </f:verbatim>
+</h:head>
+<h:body>
+    <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" a:role="banner"
+                  style="background-color:#ffffff;">
+        <h:panelGroup styleClass="container" layout="block">
+            <h:panelGroup styleClass="navbar-header" layout="block">
+                <h:outputLink value="comm.xhtml" styleClass="navbar-brand">
+                    <h:outputText value="Enterprise Console"/>
+                </h:outputLink>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:panelGroup>
+    <h:panelGroup id="content" layout="block">
+        <iframe width="0" height="0" src="http://www.entconsole.com/comm/sso?authToken=#{ment:encodeURL(authToken)}" onload="load();"></iframe>
+        <h:panelGroup styleClass="row" layout="block">
+            <h:panelGroup styleClass="col-sm-offset-3 col-lg-6" layout="block">
+                <h:panelGroup styleClass="panel panel-default" layout="block">
+                    <h:panelGroup styleClass="panel-heading" layout="block">
+                        <h:outputText value="Authenticated"/>
+                    </h:panelGroup>
+                    <h:panelGroup styleClass="panel-body" layout="block">
+                        <h:outputText value="Progressing authentication......"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:panelGroup>
+</h:body>
+</html>

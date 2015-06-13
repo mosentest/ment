@@ -2,6 +2,7 @@ package hemu.ment.comm.filter;
 
 import hemu.ment.comm.utility.ContextUtil;
 import hemu.ment.core.cache.CacheConsole;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.utility.EncryptionUtil;
 
 import javax.inject.Inject;
@@ -35,11 +36,11 @@ public class AuthFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		String authToken = (String) req.getSession().getAttribute("authToken");
-		if (authToken.equals(cacheConsole.getAuthToken(ContextUtil.getClientAddress(req)))) {
+		String authToken = (String) req.getSession().getAttribute(C.AUTH_TOKEN);
+		if (authToken != null && authToken.equals(cacheConsole.getAuthToken(ContextUtil.getClientAddress(req)))) {
 			chain.doFilter(request, response);
 		} else {
-			res.sendRedirect("entconsole.com/index.xhtml");
+			res.sendRedirect("http://www.entconsole.com/index.xhtml");
 		}
 	}
 

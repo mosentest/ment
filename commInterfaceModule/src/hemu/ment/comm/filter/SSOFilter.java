@@ -2,7 +2,8 @@ package hemu.ment.comm.filter;
 
 import hemu.ment.comm.utility.ContextUtil;
 import hemu.ment.core.cache.CacheConsole;
-import hemu.ment.core.utility.EncryptionUtil;
+import hemu.ment.core.cache.SessionObject;
+import hemu.ment.core.constant.C;
 
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -35,18 +36,27 @@ public class SSOFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		try {
-			String authToken = (String) req.getAttribute("authToken");
-			if (authToken.equals(cacheConsole.getAuthToken(ContextUtil.getClientAddress(req)))) {
-				req.getSession(false).invalidate();
-				req.getSession(true);
-				req.getSession().setAttribute("authToken", authToken);
+			if (req.getSession().getAttribute(C.AUTH_TOKEN) != null) {
 				res.sendRedirect(req.getContextPath() + "/c/index.xhtml");
-			} else {
-				res.sendRedirect("entconsole.com/index.xhtml");
+				return;
 			}
 		} catch (Exception e) {
-
+			//unauthorized
 		}
+		try {
+			String authToken = req.getParameter(C.AUTH_TOKEN);
+			if (authToken.equals(cacheConsole.getAuthToken(ContextUtil.getClientAddress(req)))) {
+				req.getSession(true);
+				req.getSession().setAttribute(C.AUTH_TOKEN, authToken);
+				SessionObject session = cacheConsole.getSession(authToken);
+				session.authenticate(true);
+				cacheConsole.cacheSession(authToken, session);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.sendRedirect("http://www.entconsole.com/index.xhtml");
+		}
+		chain.doFilter(request, response);
 	}
 
 	@Override

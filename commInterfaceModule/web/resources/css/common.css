@@ -34,6 +34,11 @@ ul.list-group .group-item-first {
 	top: -100px;
 }
 
+.profile-nav {
+	width: 18px;
+	height: 18px;
+}
+
 .profile-small {
 	width: 24px;
 	height: 24px;

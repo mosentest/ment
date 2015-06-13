@@ -1,6 +1,8 @@
 package hemu.ment.core.controller;
 
 import hemu.ment.core.cache.CacheConsole;
+import hemu.ment.core.cache.SessionObject;
+import hemu.ment.core.constant.C;
 import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.Enterprise;
 import hemu.ment.core.entity.User;
@@ -11,13 +13,15 @@ import hemu.ment.core.utility.FacesMessageUtil;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.naming.Context;
 import java.io.Serializable;
 
-@ManagedBean(name = "current")
-@SessionScoped
+@ManagedBean(name = "loginBean")
+@RequestScoped
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = -2228271739572661055L;
@@ -44,9 +48,11 @@ public class LoginBean implements Serializable {
 			user = userEJB.login(email, password);
 			enterprise = user.getEnterprise();
 			authToken = EncryptionUtil.generateAuthToken();
-			cacheConsole.cacheSession(authToken, ContextUtil.getSession());
+			ContextUtil.clearSession();
+			ContextUtil.getSession().setAttribute(C.AUTH_TOKEN, authToken);
+			cacheConsole.cacheSession(authToken, new SessionObject(user));
 			cacheConsole.cacheSession(ContextUtil.getClientAddress(), authToken);
-			return "/c/dashboard.xhtml?faces-redirect=true";
+			return "/c/sso.xhtml?faces-redirect=true";
 		} catch (InformationException e) {
 			FacesMessageUtil.addErrorMessage(e.getMessage(), null);
 			return (email = password = null);
