@@ -2,17 +2,19 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
         xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:panelGroup styleClass="navbar navbar-static-top header" layout="block" id="top" a:role="banner"
                   style="background-color:#ffffff;">
-        <h:panelGroup styleClass="container" layout="block" rendered="#{not current.authenticated}">
+        <c:set var="sessionObject" value="#{sessionBean.session(authToken)}"/>
+        <h:panelGroup styleClass="container" layout="block" rendered="#{empty sessionObject}">
             <h:panelGroup styleClass="navbar-header" layout="block">
                 <h:outputLink value="index.xhtml" styleClass="navbar-brand">
                     <h:outputText value="Enterprise Console"/>
                 </h:outputLink>
             </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup styleClass="container" layout="block" rendered="#{current.authenticated}">
+        <h:panelGroup styleClass="container" layout="block" rendered="#{not empty sessionObject}">
             <h:panelGroup styleClass="navbar-header" layout="block">
                 <h:outputLink styleClass="navbar-brand" value="c/dashboard.xhtml">
                     <h:outputText value="Enterprise Console"/>
@@ -40,18 +42,20 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><h:outputLink value="#"><h:graphicImage styleClass="profile-small"
-                                                                    value="/image/profile/#{current.user.avatar}"/></h:outputLink>
+                        <li><h:outputLink value="#"><h:graphicImage styleClass="profile-nav"
+                                                                    value="http://www.entconsole.com/r/i/p/#{sessionObject.user.avatar}"/></h:outputLink>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                <h:outputText value="#{current.fullName}"/>
+                                <h:outputText value="#{sessionObject.user.fullName}"/>
                                 <h:panelGroup styleClass="caret"></h:panelGroup>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><h:commandLink action="#{current.logout}" value="Settings"/></li>
+                                <li><h:outputLink value="http://www.entconsole.com/comm/c/index.xhtml" target="_blank"><h:outputText value="Open communication"/></h:outputLink></li>
                                 <li class="divider"></li>
-                                <li><h:commandLink action="#{current.logout}" value="Log out"/></li>
+                                <li><h:commandLink action="#{loginBean.logout}" value="Settings"/></li>
+                                <li class="divider"></li>
+                                <li><h:commandLink action="#{loginBean.logout}" value="Log out"/></li>
                             </ul>
                         </li>
                     </ul>

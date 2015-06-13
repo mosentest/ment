@@ -1,10 +1,9 @@
-package hemu.ment.core.filter;
+package hemu.ment.resource.filter;
 
 import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.constant.C;
-import hemu.ment.core.ejb.local.UserLocal;
 import hemu.ment.core.entity.Enterprise;
-import hemu.ment.core.utility.ContextUtil;
+import hemu.ment.resource.ejb.local.ResourceLocal;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -18,13 +17,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 /**
- * Created by muu on 2015/5/31.
+ * Created by muu on 2015/6/13.
  */
-@WebServlet("/image/profile/*")
+@WebServlet("/i/p/*")
 public class ImageServlet extends HttpServlet {
 
 	@EJB
-	private UserLocal userEJB;
+	private ResourceLocal resourceEJB;
 
 	@Inject
 	private CacheConsole cacheConsole;
@@ -41,8 +40,8 @@ public class ImageServlet extends HttpServlet {
 			response.getOutputStream().write(array);
 		} else {
 			Long id = Long.parseLong(fileName.substring(0, fileName.indexOf('.')));
-			if (enterprise.isMaster() || userEJB.accessible(id, enterprise.getId())) {
-				Enterprise userEnterprise = userEJB.getEnterprise(id);
+			if (enterprise.isMaster() || resourceEJB.userAccessible(id, enterprise.getId())) {
+				Enterprise userEnterprise = resourceEJB.getUserEnterprise(id);
 				File file = new File(C.IMAGE_PATH.replace("{enterprise}", userEnterprise.getCode()), fileName);
 				response.setHeader("Content-Length", String.valueOf(file.length()));
 				response.setHeader("Content-Type", getServletContext().getMimeType(fileName));

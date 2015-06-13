@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="commInterfaceModule:war">
+  <artifact type="exploded-war" name="commInterface:war">
     <output-path>$PROJECT_DIR$/out/artifacts/comminterface.war</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="commInterfaceModule/web/Web" />
@@ -21,6 +21,9 @@
       </element>
       <element id="jpa-descriptors" facet="commInterfaceModule/jpa/JPA" />
       <element id="javaee-facet-resources" facet="commInterfaceModule/ejb/EJB" />
+      <element id="directory" name="resources">
+        <element id="dir-copy" path="$PROJECT_DIR$/webresources" />
+      </element>
     </root>
   </artifact>
 </component>

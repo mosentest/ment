@@ -1,29 +1,26 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="console:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/console.war</output-path>
+  <artifact type="exploded-war" name="resource.war">
+    <output-path>$PROJECT_DIR$/out/artifacts/resource.war</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="consoleModule/web/Web" />
+      <element id="javaee-facet-resources" facet="resourceModule/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="consoleModule" />
+          <element id="module-output" name="resourceModule" />
           <element id="module-output" name="coreModule" />
           <element id="directory" name="META-INF">
-            <element id="dir-copy" path="$PROJECT_DIR$/consoleModule/resources/META-INF" />
+            <element id="dir-copy" path="$PROJECT_DIR$/resourceModule/resources/META-INF" />
           </element>
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="ehcache" />
           <element id="library" level="application" name="hibernate" />
+          <element id="library" level="application" name="ejb-3.2" />
+          <element id="library" level="application" name="ehcache" />
           <element id="library" level="application" name="jpa-2.1" />
           <element id="library" level="application" name="jta-1.1" />
-          <element id="library" level="application" name="richfaces" />
           <element id="library" level="application" name="xmemcached-2.0.0" />
         </element>
       </element>
-      <element id="jpa-descriptors" facet="consoleModule/jpa/JPA" />
-      <element id="directory" name="resources">
-        <element id="dir-copy" path="$PROJECT_DIR$/webresources" />
-      </element>
+      <element id="jpa-descriptors" facet="resourceModule/jpa/JPA" />
     </root>
   </artifact>
 </component>

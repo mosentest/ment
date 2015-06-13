@@ -14,10 +14,6 @@ public interface UserLocal {
 
 	public User login(String email, String password) throws InformationException;
 
-	public boolean accessible(Long user, Long enterprise);
-
-	public Enterprise getEnterprise(Long user);
-
 	public User create(User user);
 
 	public Page<User> list(Long enterprise, String query, int page, int size);

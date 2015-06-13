@@ -4,6 +4,7 @@ import hemu.ment.core.cache.CacheConsole;
 import hemu.ment.core.cache.SessionObject;
 import hemu.ment.core.constant.C;
 
+import javax.faces.application.ResourceHandler;
 import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -40,7 +41,6 @@ public class AuthFilter implements Filter {
 			res.sendRedirect(req.getContextPath() + "/index.xhtml");
 			return;
 		}
-
 		if (isLoginPage(req.getRequestURI())) {
 			if (session != null) {
 				res.sendRedirect(req.getContextPath() + "/c/dashboard.xhtml");
@@ -67,7 +67,7 @@ public class AuthFilter implements Filter {
 	}
 
 	private boolean isLoginPage(String url) {
-		return url.endsWith("index.html") || url.endsWith("index.xhtml") || url.endsWith("index.jsf");
+		return url.endsWith("/c/index.html") || url.endsWith("/c/index.xhtml") || url.endsWith("/c/index.jsf");
 	}
 
 	@Override

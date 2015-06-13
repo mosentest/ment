@@ -15,7 +15,7 @@
             var loaded = 0;
             function load() {
                 loaded++;
-                if (loaded == 1) {
+                if (loaded == 2) {
                     window.location.href = "http://www.entconsole.com/c/dashboard.xhtml";
                 }
             }
@@ -35,6 +35,7 @@
     </h:panelGroup>
     <h:panelGroup id="content" layout="block">
         <iframe width="0" height="0" src="http://www.entconsole.com/comm/sso?authToken=#{ment:encodeURL(authToken)}" onload="load();"></iframe>
+        <iframe width="0" height="0" src="http://www.entconsole.com/r/sso?authToken=#{ment:encodeURL(authToken)}" onload="load();"></iframe>
         <h:panelGroup styleClass="row" layout="block">
             <h:panelGroup styleClass="col-sm-offset-3 col-lg-6" layout="block">
                 <h:panelGroup styleClass="panel panel-default" layout="block">

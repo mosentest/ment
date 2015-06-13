@@ -59,23 +59,6 @@ public class UserEJB implements UserLocal {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public boolean accessible(Long user, Long enterprise) {
-		Query query = entityManager.createNamedQuery("User.Accessible");
-		query.setParameter("user", user);
-		query.setParameter("enterprise", enterprise);
-		return (boolean) query.getSingleResult();
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Enterprise getEnterprise(Long user) {
-		Query query = entityManager.createNamedQuery("User.GetEnterprise");
-		query.setParameter("user", user);
-		return (Enterprise) query.getSingleResult();
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public User create(User user) {
 		return null;
 	}

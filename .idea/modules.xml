@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/coreModule/coreModule.iml" filepath="$PROJECT_DIR$/coreModule/coreModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/mentModule/mentModule.iml" filepath="$PROJECT_DIR$/mentModule/mentModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/mentProject.iml" filepath="$PROJECT_DIR$/mentProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/resourceModule/resourceModule.iml" filepath="$PROJECT_DIR$/resourceModule/resourceModule.iml" />
     </modules>
   </component>
 </project>
