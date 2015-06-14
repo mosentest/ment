@@ -12,12 +12,13 @@
           </element>
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="hibernate" />
-          <element id="library" level="application" name="ejb-3.2" />
-          <element id="library" level="application" name="ehcache" />
-          <element id="library" level="application" name="jpa-2.1" />
           <element id="library" level="application" name="jta-1.1" />
           <element id="library" level="application" name="xmemcached-2.0.0" />
+          <element id="library" level="application" name="ehcache-2.10.0" />
+          <element id="library" level="application" name="jpa-2.1-api-1.0.0.Final" />
+          <element id="library" level="application" name="hibernate-4.3.10.Final" />
+          <element id="library" level="application" name="javax.ejb-api-3.2" />
+          <element id="library" level="application" name="javax.jms-api-2.0" />
         </element>
       </element>
       <element id="jpa-descriptors" facet="resourceModule/jpa/JPA" />

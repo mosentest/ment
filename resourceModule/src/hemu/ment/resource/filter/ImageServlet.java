@@ -8,7 +8,6 @@ import hemu.ment.resource.ejb.local.ResourceLocal;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import java.nio.file.Files;
 /**
  * Created by muu on 2015/6/13.
  */
-@WebServlet("/i/p/*")
 public class ImageServlet extends HttpServlet {
 
 	@EJB

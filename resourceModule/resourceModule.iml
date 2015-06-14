@@ -35,13 +35,14 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="JBoss 9.0.0.CR1" level="application_server_libraries" />
-    <orderEntry type="library" name="ehcache" level="application" />
-    <orderEntry type="library" name="ejb-3.2" level="application" />
-    <orderEntry type="library" name="hibernate" level="application" />
     <orderEntry type="module" module-name="coreModule" />
-    <orderEntry type="library" name="jpa-2.1" level="application" />
     <orderEntry type="library" name="jta-1.1" level="application" />
     <orderEntry type="library" name="javaee-api-7.0" level="application" />
     <orderEntry type="library" name="xmemcached-2.0.0" level="application" />
+    <orderEntry type="library" name="ehcache-2.10.0" level="application" />
+    <orderEntry type="library" name="hibernate-4.3.10.Final" level="application" />
+    <orderEntry type="library" name="jpa-2.1-api-1.0.0.Final" level="application" />
+    <orderEntry type="library" name="javax.jms-api-2.0" level="application" />
+    <orderEntry type="library" name="javax.ejb-api-3.2" level="application" />
   </component>
 </module>
